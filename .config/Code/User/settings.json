@@ -1,12 +1,12 @@
 {
-  "workbench.iconTheme": "bearded-icons",
-  "workbench.productIconTheme": "fluent-icons",
-  "workbench.editor.tabSizing": "fixed",
+  // "workbench.iconTheme": "bearded-icons",
+  // "workbench.productIconTheme": "fluent-icons",
+  // "workbench.editor.tabSizing": "fixed",
   "workbench.editor.alwaysShowEditorActions": true,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.secondarySideBar.showLabels": false,
   "workbench.panel.showLabels": false,
-  "workbench.colorTheme": "Andromeda Bordered",
+  // "workbench.colorTheme": "Andromeda Bordered",
   "workbench.settings.editor": "json",
   "workbench.activityBar.location": "top",
   "workbench.editor.decorations.badges": false,
@@ -56,8 +56,8 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "git.autofetch": true,
-  "aws.telemetry": false,
-  "dev.containers.dockerPath": "podman",
+  // "aws.telemetry": false,
+  // "dev.containers.dockerPath": "podman",
   "[python]": {
     "editor.tabSize": 2
   },
