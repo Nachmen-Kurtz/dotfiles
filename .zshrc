@@ -96,7 +96,6 @@ plugins=(
   web-search
   podman
   pip
-  tmux
   rust
   aws
   zoxide
