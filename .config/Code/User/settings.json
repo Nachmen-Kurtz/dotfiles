@@ -48,7 +48,7 @@
   // 
   // 
   "telemetry.telemetryLevel": "off",
-  "explorer.compactFolders": true,
+  "explorer.compactFolders": false,
   "window.restoreWindows": "none",
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
