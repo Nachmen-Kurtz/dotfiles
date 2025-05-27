@@ -64,4 +64,11 @@
   },
   "files.autoSave": "onWindowChange",
   "breadcrumbs.filePath": "off",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "yaml": false
+  },
 }
