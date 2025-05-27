@@ -1,5 +1,4 @@
 {
-  "workbench.editor.tabSizing": "fixed",
   "workbench.editor.alwaysShowEditorActions": true,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.secondarySideBar.showLabels": false,
@@ -8,10 +7,10 @@
   "workbench.activityBar.location": "top",
   "workbench.editor.decorations.badges": false,
   "workbench.editor.decorations.colors": false,
-  // 
-  // 
-  // 
-  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  //
+  //
+  //
+  "editor.fontFamily": "JetBrains Mono",
   "editor.fontSize": 16,
   "editor.lineHeight": 24,
   "editor.cursorSmoothCaretAnimation": "on",
@@ -35,18 +34,18 @@
   "editor.stickyScroll.enabled": true,
   "editor.scrollBeyondLastLine": false,
   "editor.minimap.enabled": false,
-  // 
-  // 
-  // 
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.fontFamily": "Fira Code",
+  //
+  //
+  //
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontFamily": "JetBrains Mono",
   "terminal.integrated.fontLigatures.enabled": true,
   "terminal.integrated.cursorStyle": "underline",
   "terminal.integrated.smoothScrolling": true,
   "terminal.integrated.defaultLocation": "view",
-  // 
-  // 
-  // 
+  //
+  //
+  //
   "telemetry.telemetryLevel": "off",
   "explorer.compactFolders": false,
   "window.restoreWindows": "none",
@@ -60,8 +59,8 @@
     "editor.tabSize": 2
   },
   "[jsonc]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
   "files.autoSave": "onWindowChange",
-  "breadcrumbs.filePath": "off"
+  "breadcrumbs.filePath": "off",
 }
