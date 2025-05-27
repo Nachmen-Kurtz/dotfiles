@@ -26,3 +26,6 @@ export PATH=$HOME/.local/bin:$PATH
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 
+# MOST pager
+export PAGER='most'
+export GROFF_NO_SGR=1
