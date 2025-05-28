@@ -11,7 +11,7 @@
   //
   //
   //
-  "editor.fontFamily": "Adwaita Mono",
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.fontSize": 16,
   "editor.lineHeight": 24,
   "editor.cursorSmoothCaretAnimation": "on",
