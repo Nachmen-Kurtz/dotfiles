@@ -106,7 +106,7 @@ plugins=(
   dnf
   kind
   kubectl
-  man
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
