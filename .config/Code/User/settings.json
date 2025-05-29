@@ -49,7 +49,7 @@
   //
   "telemetry.telemetryLevel": "off",
   "explorer.compactFolders": false,
-  "window.restoreWindows": "all",
+  "window.restoreWindows": "none",
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "git.autofetch": true,
@@ -62,7 +62,6 @@
   "[jsonc]": {
     "editor.tabSize": 2,
   },
-  "files.autoSave": "onWindowChange",
   "breadcrumbs.filePath": "off",
   "github.copilot.enable": {
     "*": true,
