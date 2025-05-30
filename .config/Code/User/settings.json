@@ -1,12 +1,12 @@
 {
-  "workbench.editor.alwaysShowEditorActions": false,
-  "workbench.editor.highlightModifiedTabs": false,
+  // "workbench.editor.alwaysShowEditorActions": false,
+  // "workbench.editor.highlightModifiedTabs": false,
   "workbench.secondarySideBar.showLabels": false,
   "workbench.panel.showLabels": false,
   "workbench.settings.editor": "json",
   "workbench.activityBar.location": "top",
-  "workbench.editor.decorations.badges": true,
-  "workbench.editor.decorations.colors": true,
+  // "workbench.editor.decorations.badges": true,
+  // "workbench.editor.decorations.colors": true,
   "workbench.colorTheme": "Monokai Dimmed",
   //
   //
@@ -14,60 +14,60 @@
   "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.fontSize": 16,
   "editor.lineHeight": 24,
-  "editor.cursorSmoothCaretAnimation": "on",
-  "editor.formatOnSave": true,
+  // "editor.cursorSmoothCaretAnimation": "on",
+  // "editor.formatOnSave": true,
   "editor.fontLigatures": true,
-  "editor.cursorBlinking": "expand",
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.scrollbar.vertical": "hidden",
-  "editor.smoothScrolling": true,
-  "editor.lineNumbers": "on",
+  // "editor.cursorBlinking": "expand",
+  // "editor.scrollbar.horizontal": "hidden",
+  // "editor.scrollbar.vertical": "hidden",
+  // "editor.smoothScrolling": true,
+  // "editor.lineNumbers": "on",
   "editor.guides.bracketPairs": true,
   "editor.guides.bracketPairsHorizontal": true,
   "editor.guides.highlightActiveIndentation": "always",
   "editor.matchBrackets": "never",
-  "editor.tabSize": 2,
-  "editor.minimap.autohide": true,
-  "editor.minimap.markSectionHeaderRegex": "",
-  "editor.minimap.renderCharacters": false,
-  "editor.minimap.scale": 2,
-  "editor.inlayHints.enabled": "on",
-  "editor.stickyScroll.enabled": true,
-  "editor.scrollBeyondLastLine": false,
-  "editor.minimap.enabled": false,
+  // "editor.tabSize": 2,
+  // "editor.minimap.autohide": true,
+  // "editor.minimap.markSectionHeaderRegex": "",
+  // "editor.minimap.renderCharacters": false,
+  // "editor.minimap.scale": 2,
+  // "editor.inlayHints.enabled": "on",
+  // "editor.stickyScroll.enabled": true,
+  // "editor.scrollBeyondLastLine": false,
+  // "editor.minimap.enabled": false,
   //
   //
   //
   "terminal.integrated.fontSize": 16,
-  "terminal.integrated.fontFamily": "JetBrains Mono",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "terminal.integrated.fontLigatures.enabled": true,
-  "terminal.integrated.cursorStyle": "underline",
-  "terminal.integrated.smoothScrolling": true,
-  "terminal.integrated.defaultLocation": "view",
+  // "terminal.integrated.cursorStyle": "underline",
+  // "terminal.integrated.smoothScrolling": true,
+  // "terminal.integrated.defaultLocation": "view",
   //
   //
   //
   "telemetry.telemetryLevel": "off",
   "explorer.compactFolders": false,
-  "window.restoreWindows": "none",
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
-  "git.autofetch": true,
-  "[python]": {
-    "editor.tabSize": 2
-  },
-  "[json]": {
-    "editor.tabSize": 2
-  },
-  "[jsonc]": {
-    "editor.tabSize": 2,
-  },
-  "breadcrumbs.filePath": "off",
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false,
-    "yaml": false
-  },
+  "window.restoreWindows": "none"
+  // "explorer.confirmDelete": false,
+  // "explorer.confirmDragAndDrop": false,
+  // "git.autofetch": true,
+  // "[python]": {
+  //   "editor.tabSize": 2
+  // },
+  // "[json]": {
+  //   "editor.tabSize": 2
+  // },
+  // "[jsonc]": {
+  //   "editor.tabSize": 2,
+  // },
+  // "breadcrumbs.filePath": "off",
+  // "github.copilot.enable": {
+  //   "*": true,
+  //   "plaintext": false,
+  //   "markdown": false,
+  //   "scminput": false,
+  //   "yaml": false
+  // },
 }
