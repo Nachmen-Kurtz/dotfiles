@@ -119,7 +119,7 @@ alias mvpod='$HOME/.system/shell_scripts/mv_new_pod_from_malam.sh'
 alias bz='bat $HOME/.zshrc'
 
 
-alias cat=bat
+alias cat='bat --wrap=never'
 
 
 alias copyp2='$HOME/.system/shell_scripts/copy-podcast_2_day.sh'
