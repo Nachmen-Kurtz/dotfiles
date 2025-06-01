@@ -100,7 +100,7 @@ plugins=(
   aws
   zoxide
   terraform
-  zsh-autosuggestions
+  # zsh-autosuggestions
   zsh-syntax-highlighting
   vscode
   dnf
