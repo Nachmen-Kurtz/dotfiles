@@ -154,5 +154,10 @@ alias blabla="genact -m cargo"
 
 alias logvi="tspin"
 
+
 # Now containers is only Podman
 alias docker="podman"
+
+
+# tldr pages with colors
+alias tldr='tldr -t base16'
