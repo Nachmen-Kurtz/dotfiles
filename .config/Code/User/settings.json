@@ -49,7 +49,11 @@
   //
   "telemetry.telemetryLevel": "off",
   "explorer.compactFolders": false,
-  "window.restoreWindows": "none"
+  "window.restoreWindows": "none",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "containers.containerClient": "com.microsoft.visualstudio.containers.podman"
   // "explorer.confirmDelete": false,
   // "explorer.confirmDragAndDrop": false,
   // "git.autofetch": true,
