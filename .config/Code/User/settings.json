@@ -53,7 +53,9 @@
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
   "git.autofetch": true,
-  "containers.containerClient": "com.microsoft.visualstudio.containers.podman"
+  "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false
   // "explorer.confirmDelete": false,
   // "explorer.confirmDragAndDrop": false,
   // "git.autofetch": true,
