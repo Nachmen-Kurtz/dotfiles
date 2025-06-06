@@ -1,3 +1,6 @@
+source $HOME/.system/shell_config/aliases.zsh
+source $HOME/.system/shell_config/env_var.zsh
+source $HOME/.system/shell_config/app_config.zsh
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -23,6 +26,7 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 zinit light zsh-users/zsh-completions
+
 zinit light zsh-users/zsh-syntax-highlighting
 
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
