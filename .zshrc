@@ -88,25 +88,26 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(
   git
   eza
-  gh
+  # gh
   git
   copyfile
   copypath
-  docker
-  web-search
+  # docker
+  # web-search
   podman
-  pip
-  rust
-  aws
+  # pip
+  # rust
+  # aws
   zoxide
-  terraform
+  # terraform
   # zsh-autosuggestions
   zsh-syntax-highlighting
-  vscode
+  # vscode
   dnf
-  kind
-  kubectl
+  # kind
+  # kubectl
   colored-man-pages
+  aliases
 )
 
 source $ZSH/oh-my-zsh.sh

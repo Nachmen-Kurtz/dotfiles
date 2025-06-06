@@ -161,3 +161,7 @@ alias docker="podman"
 
 # tldr pages with colors
 alias tldr='tldr -t base16'
+
+
+# Find aliases, fasted with fzf
+alias alla='alias | fzf'
