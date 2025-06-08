@@ -6,6 +6,7 @@
 [font]
 normal = { family = "AdwaitaMono Nerd Font", style = "Regular" }
 # normal = { family = "FiraCode Nerd Font", style = "Regular" }
+# normal = { family = "MesloLGS NF", style = "Regular" }
 size = 13.0
 
 [cursor]
