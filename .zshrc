@@ -18,9 +18,6 @@ plugins=(
   git
   copyfile
   copypath
-  podman
-  man
-  aliases
   zsh-syntax-highlighting
 )
 
