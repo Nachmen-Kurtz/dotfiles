@@ -88,3 +88,5 @@ alias docker='podman'
 
 # Generate a fake cargo build process
 alias blabla='genact -m cargo'
+
+alias ls='eza'
