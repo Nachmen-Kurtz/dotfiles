@@ -12,7 +12,6 @@ disabled = true
 
 [directory]
 truncation_length = 0
-truncation_symbol = '../'
 
 [git_metrics]
 disabled = false
