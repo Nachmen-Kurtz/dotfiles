@@ -55,7 +55,10 @@
   "git.autofetch": true,
   "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
   "editor.unicodeHighlight.invisibleCharacters": false,
-  "editor.unicodeHighlight.ambiguousCharacters": false
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "amazonQ.telemetry": false,
+  "aws.telemetry": false
   // "explorer.confirmDelete": false,
   // "explorer.confirmDragAndDrop": false,
   // "git.autofetch": true,
