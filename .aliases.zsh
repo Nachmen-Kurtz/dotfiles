@@ -49,9 +49,6 @@ alias e='$EDITOR'
 # A better 'tree' command with icons
 alias tr='eza -T --icons'
 
-# Replace 'cat' with 'bat' for syntax highlighting (without wrapping lines)
-alias cat='bat --wrap=never'
-
 # Custom script to copy backgrounds
 alias cb='$HOME/.system/shell_scripts/background.sh'
 
