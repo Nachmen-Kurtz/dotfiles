@@ -7,7 +7,8 @@
   "workbench.activityBar.location": "top",
   // "workbench.editor.decorations.badges": true,
   // "workbench.editor.decorations.colors": true,
-  "workbench.colorTheme": "Monokai Dimmed",
+  "workbench.colorTheme": "Andromeda Bordered",
+  "workbench.tree.indent": 28,
   //
   //
   //
@@ -58,7 +59,9 @@
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "diffEditor.ignoreTrimWhitespace": false,
   "amazonQ.telemetry": false,
-  "aws.telemetry": false
+  "aws.telemetry": false,
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.iconTheme": "bearded-icons"
   // "explorer.confirmDelete": false,
   // "explorer.confirmDragAndDrop": false,
   // "git.autofetch": true,
