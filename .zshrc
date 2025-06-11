@@ -9,6 +9,8 @@ source "$HOME/.zshenv"
 # Set the installation directory for Oh My Zsh.
 export ZSH="$HOME/.oh-my-zsh"
 
+ZSH_THEME="robbyrussell_private"
+
 # ------------------------------------------------------------------------------
 # Oh My Zsh Configuration
 # ------------------------------------------------------------------------------
@@ -26,7 +28,7 @@ plugins=(
 source "$ZSH/oh-my-zsh.sh"
 
 # For starship prompt
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # ------------------------------------------------------------------------------
 # Initialize External Tools
