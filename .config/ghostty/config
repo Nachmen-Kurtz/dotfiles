@@ -52,7 +52,8 @@
 # theme = RetroLegends
 # focus-follows-mouse = true
 # font-family = "Mononoki Nerd Font"
-font-size = 13
+# font-size = 14
+font-family = "FiraCode Nerd Font"
 mouse-hide-while-typing = true
 background-opacity = 0.90
 keybind = ctrl+shift+h=goto_split:left
