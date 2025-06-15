@@ -50,7 +50,7 @@
 # theme = Dracula
 # theme = "Monokai Classic"
 # theme = RetroLegends
-# focus-follows-mouse = true
+focus-follows-mouse = true
 # font-family = "Mononoki Nerd Font"
 # font-size = 14
 font-family = "FiraCode Nerd Font"
@@ -61,11 +61,11 @@ keybind = ctrl+shift+j=goto_split:bottom
 keybind = ctrl+shift+k=goto_split:top
 keybind = ctrl+shift+l=goto_split:right
 keybind = f11=toggle_maximize
-# gtk-tabs-location = bottom
-# gtk-wide-tabs = false
+gtk-tabs-location = bottom
+gtk-wide-tabs = false
 # window-subtitle = working-directory
 window-theme = ghostty
 # gtk-titlebar-hide-when-maximized = true
-# adw-toolbar-style = flat
+adw-toolbar-style = flat
 window-padding-x = 20
 window-padding-y = 20
