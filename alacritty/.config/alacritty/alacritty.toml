@@ -11,10 +11,10 @@ size = 13.0
 style = { shape = "Beam", blinking = "On" }
 
 [window]
-padding = { x = 25, y = 25 }
+padding = { x = 20, y = 20 }
 opacity = 0.85
 blur = true
 decorations_theme_variant = "Dark"
-
+decorations = "none"
 [mouse]
 hide_when_typing = true
