@@ -26,3 +26,5 @@
 --theme='OneHalfDark'
 
 --style='numbers,header,grid'
+
+--wrap=never
