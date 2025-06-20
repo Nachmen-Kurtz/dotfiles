@@ -1,5 +1,5 @@
-[general]
-import = ["~/.config/alacritty/themes/themes/github_dark.toml"]
+# [general]
+# import = ["~/.config/alacritty/themes/themes/github_dark.toml"]
 
 [font]
 # normal = { family = "AdwaitaMono Nerd Font", style = "Regular" }
@@ -12,9 +12,11 @@ style = { shape = "Beam", blinking = "On" }
 
 [window]
 padding = { x = 20, y = 20 }
-opacity = 0.90
+# opacity = 0.90
 blur = true
 decorations_theme_variant = "Dark"
 decorations = "none"
+dimensions = { columns = 100, lines = 30 }
+
 [mouse]
 hide_when_typing = true

@@ -54,14 +54,14 @@
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
   "git.autofetch": true,
-  "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
   "editor.unicodeHighlight.invisibleCharacters": false,
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "diffEditor.ignoreTrimWhitespace": false,
   "amazonQ.telemetry": false,
   "aws.telemetry": false,
   "workbench.productIconTheme": "fluent-icons",
-  "workbench.iconTheme": "bearded-icons"
+  "workbench.iconTheme": "bearded-icons",
+  "containers.containerClient": "com.microsoft.visualstudio.containers.podman"
   // "explorer.confirmDelete": false,
   // "explorer.confirmDragAndDrop": false,
   // "git.autofetch": true,
