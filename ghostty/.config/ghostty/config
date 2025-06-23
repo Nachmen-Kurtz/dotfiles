@@ -48,24 +48,32 @@
 # theme = catppuccin-macchiato
 # theme = "Adwaita Dark"
 # theme = Dracula
+theme = tokyonight
 # theme = "Monokai Classic"
+# theme = ayu
 # theme = RetroLegends
-focus-follows-mouse = true
+# focus-follows-mouse = true
 # font-family = "Mononoki Nerd Font"
-# font-size = 14
-font-family = "FiraCode Nerd Font"
+font-size = 13
+# font-family = "FiraCode Nerd Font"
+# font-family = "AurulentSansM Nerd Font"
+font-family = "Hasklug Nerd Font"
 mouse-hide-while-typing = true
 background-opacity = 0.90
-keybind = ctrl+shift+h=goto_split:left
-keybind = ctrl+shift+j=goto_split:bottom
-keybind = ctrl+shift+k=goto_split:top
-keybind = ctrl+shift+l=goto_split:right
-keybind = f11=toggle_maximize
+# keybind = ctrl+shift+h=goto_split:left
+# keybind = ctrl+shift+j=goto_split:bottom
+# keybind = ctrl+shift+k=goto_split:top
+# keybind = ctrl+shift+l=goto_split:right
+# keybind = f11=toggle_maximize
 gtk-tabs-location = bottom
 gtk-wide-tabs = false
 # window-subtitle = working-directory
 window-theme = ghostty
 # gtk-titlebar-hide-when-maximized = true
-adw-toolbar-style = flat
-window-padding-x = 20
-window-padding-y = 20
+# adw-toolbar-style = flat
+window-padding-x = 15
+window-padding-y = 15
+# gtk-titlebar = false
+# adw-toolbar-style = raised-border
+gtk-adwaita = true
+desktop-notifications = true
