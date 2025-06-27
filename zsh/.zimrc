@@ -21,7 +21,7 @@ zmodule utility
 
 zmodule fzf
 
-zmodule Aloxaf/fzf-tab
+# zmodule Aloxaf/fzf-tab
 
 #
 # Prompt
