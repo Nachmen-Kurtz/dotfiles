@@ -64,7 +64,10 @@ background-opacity = 0.90
 # keybind = ctrl+shift+j=goto_split:bottom
 # keybind = ctrl+shift+k=goto_split:top
 # keybind = ctrl+shift+l=goto_split:right
-# keybind = f11=toggle_maximize
+keybind = f11=toggle_maximize
+# keybind = ctrl+minus=new_split:down
+# keybind = ctrl+plus=new_split:right
+# unbind = ctrl+plus=increase_font_size:1
 gtk-tabs-location = bottom
 gtk-wide-tabs = false
 # window-subtitle = working-directory

@@ -11,6 +11,7 @@
   "workbench.navigationControl.enabled": false,
   "workbench.iconTheme": "bearded-icons",
   "breadcrumbs.filePath": "off",
+  "workbench.panel.showLabels": false,
   // "workbench.editor.alwaysShowEditorActions": false,
   // "workbench.editor.highlightModifiedTabs": false,
   // "workbench.editor.decorations.badges": true,
@@ -70,7 +71,10 @@
   "aws.telemetry": false,
   "containers.containerClient": "com.microsoft.visualstudio.containers.podman",
   "chat.commandCenter.enabled": false,
-  "workbench.panel.showLabels": false,
+  "amazonQ.suppressPrompts": {
+    "amazonQChatPairProgramming": true,
+    "amazonQChatDisclaimer": true
+  },
   // "explorer.confirmDelete": false,
   // "explorer.confirmDragAndDrop": false,
   // "git.autofetch": true,
