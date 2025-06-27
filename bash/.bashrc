@@ -38,3 +38,5 @@ export PATH="$HOME/gems/bin:$PATH"
 eval "$(starship init bash)"
 
 eval "$(zoxide init bash)"
+
+complete -C /home/nachmen/.local/bin/terraform terraform
