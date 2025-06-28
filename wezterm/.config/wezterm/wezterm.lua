@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
--- config.font = wezterm.font("FiraCode Nerd Font")
+config.font = wezterm.font("FiraCode Nerd Font")
 config.font_size = 13.0
 
 config.adjust_window_size_when_changing_font_size = false
