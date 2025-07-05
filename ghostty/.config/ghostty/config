@@ -59,7 +59,7 @@ font-size = 13
 # font-family = "AurulentSansM Nerd Font"
 font-family = "Hasklug Nerd Font"
 mouse-hide-while-typing = true
-background-opacity = 0.90
+background-opacity = 0.95
 # keybind = ctrl+shift+h=goto_split:left
 # keybind = ctrl+shift+j=goto_split:bottom
 # keybind = ctrl+shift+k=goto_split:top
