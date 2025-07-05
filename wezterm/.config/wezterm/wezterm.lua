@@ -1,23 +1,21 @@
+-- Pull in the wezterm API
 local wezterm = require("wezterm")
 
+-- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.font = wezterm.font("FiraCode Nerd Font")
-config.font_size = 13.0
+-- This is where you actually apply your config choices.
 
-config.adjust_window_size_when_changing_font_size = false
-
+-- For example, changing the initial geometry for new windows:
+config.initial_cols = 100
+config.initial_rows = 28
 config.enable_tab_bar = false
+config.enable_wayland = true
 
--- config.window_background_image = "/home/nachmen/Pictures/Backgrounds/f42/default/f42-01-night.png"
--- config.window_background_image_hsb = {
--- 	brightness = 0.1,
--- 	hue = 1.0,
--- 	saturation = 0.5,
--- }
+-- or, changing the font size and color scheme.
+config.font_size = 12
+config.font = wezterm.font("FiraCode Nerd Font")
+config.color_scheme = "Catppuccin Mocha"
 
-config.keys = {
-	{ key = "p", mods = "CTRL", action = wezterm.action.ShowTabNavigator },
-}
-
+-- Finally, return the configuration to wezterm:
 return config
