@@ -138,9 +138,10 @@ unset key
 source "$HOME/.aliases.zsh"
 eval "$(zoxide init zsh)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /home/nachmen/.local/bin/terraform terraform
 complete -C '/usr/local/bin/aws_completer' aws
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
