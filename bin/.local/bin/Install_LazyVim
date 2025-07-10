@@ -2,11 +2,12 @@
 
 # Make a backup of your current Neovim files:
 # required
-mv ~/.config/nvim{,.bak}
+mv "$HOME/.config/nvim" "$HOME/.config/nvim.$TIME_DATE"
+
 # optional but recommended
-mv ~/.local/share/nvim{,.bak}
-mv ~/.local/state/nvim{,.bak}
-mv ~/.cache/nvim{,.bak}
+mv "$HOME/.local/share/nvim" "$HOME/.local/share/nvim.$TIME_DATE"
+mv "$HOME/.local/state/nvim" "$HOME/.local/state/nvim.$TIME_DATE"
+mv "$HOME/.cache/nvim" "$HOME/.cache/nvim.$TIME_DATE"
 
 # Clone the starter
 git clone https://github.com/LazyVim/starter ~/.config/nvim
