@@ -17,10 +17,12 @@ alias alla='alias | fzf'
 alias hf='history | fzf'
 
 # Utilities
-alias pkf='ps aux | fzf | awk "{ print \$2 }" | xargs kill -9'
+# alias pkf='ps aux | fzf | awk "{ print \$2 }" | xargs kill -9'
 alias te='gnome-text-editor'
 alias tldr='tldr -t base16'
 
+alias updates="bat /home/nachmen/Desktop/updates.zsh"
+alias cat='bat'
 
 # --------------------------
 # --- Navigation & Files ---
@@ -32,12 +34,12 @@ alias rf='rm -i $(fzf)'
 alias vf='nvim $(fzf)'
 
 # File and directory listing
-alias ls='lsd --oneline'
+# alias ls='lsd --oneline'
 alias tr='eza -T --icons'
 
 # Clipboard utilities
 alias cpfile='xclip -selection clipboard'
-alias cppath='pwd | xclip -selection clipboard'
+# alias cppath='pwd | xclip -selection clipboard'
 
 
 # -------------
@@ -210,8 +212,6 @@ alias dnfgrprm='sudo dnf groupremove'
 # --- Terraform ---
 # -----------------
 alias tf='terraform'
-alias updates="bat /home/nachmen/Desktop/updates.zsh"
-alias cat='bat'
 alias tf='terraform'
 alias tfa='terraform apply'
 alias tfaa='terraform apply -auto-approve'
@@ -230,3 +230,4 @@ alias tfv='terraform validate'
 alias tfs='terraform state'
 alias tft='terraform test'
 alias tfsh='terraform show'
+alias p3g="ping -c 3 8.8.8.8"
