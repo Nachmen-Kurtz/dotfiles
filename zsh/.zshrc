@@ -26,7 +26,7 @@ setopt HIST_IGNORE_ALL_DUPS
 #
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -e
+bindkey -v
 
 # Prompt for spelling correction of commands.
 setopt CORRECT
@@ -53,7 +53,7 @@ zstyle ':zim:zmodule' use 'degit'
 #
 
 # Set a custom prefix for the generated aliases. The default prefix is 'G'.
-zstyle ':zim:git' aliases-prefix 'g'
+zstyle ':zim:git' aliases-prefix 'G'
 
 #
 # input
