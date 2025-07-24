@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg1443" width="128" height="128" version="1.1" viewBox="0 0 33.867 33.867" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs id="defs1437">
+  <radialGradient id="radialGradient1676" cx="16.951" cy="4.2649" r="14.544" gradientTransform="matrix(5.031 0 0 1.4825 -68.33 -2.0576)" gradientUnits="userSpaceOnUse">
+   <stop id="stop1668" stop-color="#ff7a4c" offset="0"/>
+   <stop id="stop1670" stop-color="#ff1f4a" offset="1"/>
+  </radialGradient>
+  <linearGradient id="linearGradient1059" x1="6.1017" x2="6.1017" y1="7.7399" y2="96.48" gradientUnits="userSpaceOnUse">
+   <stop id="stop1053" stop-color="#fff" offset="0"/>
+   <stop id="stop1055" stop-color="#ff1f4a" offset="1"/>
+  </linearGradient>
+ </defs>
+ <metadata id="metadata1440">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1">
+  <g id="g1702" transform="matrix(.97573 0 0 .96361 -65.737 -36.328)" fill="none" opacity=".18754" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".02">
+   <rect id="rect1634" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".1"/>
+   <rect id="rect1638" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".2"/>
+   <rect id="rect1640" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".3"/>
+   <rect id="rect1642" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".4"/>
+   <rect id="rect1644" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".5"/>
+   <rect id="rect1646" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".6"/>
+   <rect id="rect1648" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".7"/>
+   <rect id="rect1650" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".8"/>
+   <rect id="rect1652" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099"/>
+   <rect id="rect1654" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="1.2"/>
+   <rect id="rect1656" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="1.4"/>
+   <rect id="rect1658" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="1.6"/>
+   <rect id="rect1660" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="1.8"/>
+   <rect id="rect1662" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="2"/>
+   <rect id="rect1664" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="2.2"/>
+   <rect id="rect1666" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="2.6"/>
+   <rect id="rect1668" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="3"/>
+   <rect id="rect1670" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="3.4"/>
+   <rect id="rect1672" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="3.8"/>
+   <rect id="rect1674" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="4.2"/>
+   <rect id="rect1676" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="4.6"/>
+   <rect id="rect1678" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="5"/>
+  </g>
+  <rect id="rect849" x="2.4074" y="2.5392" width="29.087" height="29.087" rx="6.4495" ry="6.4495" fill="url(#radialGradient1676)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6877"/>
+  <g id="g2467" fill="#811025" fill-opacity=".058664" stroke-width=".58907">
+   <path id="path2368" d="m8.087 6.8172c-0.87182 0-1.5492 0.67743-1.5492 1.5492v7.3857h4.4675v-4.4675h3.191v3.191h3.191v-5.744h3.191v4.4675h3.191v2.553h4.4675v-7.3857c0-0.87182-0.67743-1.5492-1.5492-1.5492zm-1.5492 12.126v8.0237c0 0.87182 0.67743 1.5492 1.5492 1.5492h18.6c0.87182 0 1.5492-0.67743 1.5492-1.5492v-8.0237h-4.4675v3.191h-3.191v4.4675h-3.191v-5.744h-3.191v3.191h-3.191v-5.1055z"/>
+   <path id="path2460" d="m8.3695 7.4306c-0.87182 0-1.5492 0.67743-1.5492 1.5492v7.3857h4.4675v-4.4675h3.191v3.191h3.191v-5.744h3.191v4.4675h3.191v2.553h4.4675v-7.3857c0-0.87182-0.67743-1.5492-1.5492-1.5492zm-1.5492 12.126v8.0237c0 0.87182 0.67743 1.5492 1.5492 1.5492h18.6c0.87182 0 1.5492-0.67743 1.5492-1.5492v-8.0237h-4.4675v3.191h-3.191v4.4675h-3.191v-5.744h-3.191v3.191h-3.191v-5.1055z"/>
+   <path id="path2462" d="m8.6123 8.412c-0.87182 0-1.5492 0.67743-1.5492 1.5492v7.3857h4.4675v-4.4675h3.191v3.191h3.191v-5.744h3.191v4.4675h3.191v2.553h4.4675v-7.3857c0-0.87182-0.67743-1.5492-1.5492-1.5492zm-1.5492 12.126v8.0237c0 0.87182 0.67743 1.5492 1.5492 1.5492h18.6c0.87182 0 1.5492-0.67743 1.5492-1.5492v-8.0237h-4.4675v3.191h-3.191v4.4675h-3.191v-5.744h-3.191v3.191h-3.191v-5.1055z"/>
+  </g>
+  <path id="path9" d="m7.6509 6.2334c-0.87182 0-1.5492 0.67743-1.5492 1.5492v7.3857h4.4675v-4.4675h3.191v3.191h3.191v-5.744h3.191v4.4675h3.191v2.553h4.4675v-7.3857c0-0.87182-0.67743-1.5492-1.5492-1.5492zm-1.5492 12.126v8.0237c0 0.87182 0.67743 1.5492 1.5492 1.5492h18.6c0.87182 0 1.5492-0.67743 1.5492-1.5492v-8.0237h-4.4675v3.191h-3.191v4.4675h-3.191v-5.744h-3.191v3.191h-3.191v-5.1055z" fill="url(#linearGradient1059)" stroke-width=".58907"/>
+ </g>
+</svg>
