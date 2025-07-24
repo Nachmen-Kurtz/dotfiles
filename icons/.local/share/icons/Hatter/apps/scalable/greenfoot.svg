@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg1711" width="128" height="128" version="1.1" viewBox="0 0 33.867 33.867" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs id="defs1705">
+  <linearGradient id="linearGradient4677" x1="17.821" x2="17.821" y1="29.11" y2="4.0044" gradientTransform="translate(-.070804 .0003299)" gradientUnits="userSpaceOnUse">
+   <stop id="stop4671" stop-color="#5aaf33" offset="0"/>
+   <stop id="stop4673" stop-color="#98d742" offset="1"/>
+  </linearGradient>
+ </defs>
+ <metadata id="metadata1708">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1">
+  <g id="g1702" transform="matrix(.97573 0 0 .97573 -65.819 -37.203)" fill="none" opacity=".295" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".02">
+   <rect id="rect1634" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".1"/>
+   <rect id="rect1638" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".2"/>
+   <rect id="rect1640" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".3"/>
+   <rect id="rect1642" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".4"/>
+   <rect id="rect1644" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".5"/>
+   <rect id="rect1646" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".6"/>
+   <rect id="rect1648" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".7"/>
+   <rect id="rect1650" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width=".8"/>
+   <rect id="rect1652" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099"/>
+   <rect id="rect1654" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="1.2"/>
+   <rect id="rect1656" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="1.4"/>
+   <rect id="rect1658" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="1.6"/>
+   <rect id="rect1660" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="1.8"/>
+   <rect id="rect1662" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="2"/>
+   <rect id="rect1664" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="2.2"/>
+   <rect id="rect1666" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="2.6"/>
+   <rect id="rect1668" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="3"/>
+   <rect id="rect1670" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="3.4"/>
+   <rect id="rect1672" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="3.8"/>
+   <rect id="rect1674" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="4.2"/>
+   <rect id="rect1676" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="4.6"/>
+   <rect id="rect1678" x="69.84" y="40.71" width="29.811" height="29.811" rx="6.6099" ry="6.6099" stroke-width="5"/>
+  </g>
+  <rect id="rect849" x="2.3255" y="2.5189" width="29.087" height="29.087" rx="6.4495" ry="6.4495" fill="url(#linearGradient4677)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.688"/>
+  <circle id="circle12" cx="13.112" cy="8.0956" r="1.5233" fill="#fcfcfc" stroke-width=".38083"/>
+  <circle id="circle14" cx="17.301" cy="8.0956" r="1.5233" fill="#fcfcfc" stroke-width=".38083"/>
+  <circle id="circle16" cx="21.109" cy="8.8572" r="1.1425" fill="#fcfcfc" stroke-width=".38083"/>
+  <circle id="circle18" cx="8.3514" cy="9.8093" r="2.0946" fill="#fcfcfc" stroke-width=".38083"/>
+  <path id="path20" d="m10.446 14.951c-1.1681-3.037 4.1892-4.1892 4.1892-4.1892s5.3317-1.1425 6.4742 0c2.285 2.285-1.1425 1.9042 0 5.3317 1.1425 3.4275 4.1892 1.9042 4.1892 5.3317 0 3.4275-1.1425 6.4742-4.1892 6.4742-3.4275 0-5.3317-1.1425-5.3317-2.285 0-3.4275 1.1425-4.9508 1.1425-7.2358 0-2.6658-4.57 1.5233-6.4742-3.4275z" fill="#fcfcfc" stroke-width=".38083"/>
+ </g>
+</svg>
