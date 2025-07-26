@@ -1,17 +1,20 @@
 autoload -Uz compinit
 compinit
-HISTFILE=~/.histfile
+HISTFILE="$ZDOTDIR/zsh_history"
 HISTSIZE=1000000
 SAVEHIST=1000000
 precmd() { print }
+PROMPT='$ '
 
-source "$ZDOTDIR/bindkeys.zsh"
+# PROMPT='%1~ %# '
+
+# source "$ZDOTDIR/bindkey.zsh"
 source "$ZDOTDIR/zstyle.zsh"
-source "$ZDOTDIR/aliases.zsh"
-source "$ZDOTDIR/functions.zsh"
-source "$ZDOTDIR/options.zsh"
-source "$ZDOTDIR/modules.zsh"
-source "$ZDOTDIR/exports.zsh"
+source "$ZDOTDIR/alias.zsh"
+# source "$ZDOTDIR/function.zsh"
+source "$ZDOTDIR/setopt.zsh"
+# source "$ZDOTDIR/zmodload.zsh"
+source "$ZDOTDIR/export.zsh"
 
 . "$HOME/.cargo/env"
 source <(fzf --zsh)

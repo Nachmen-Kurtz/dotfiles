@@ -7,14 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "agent": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4.1"
+  // "disable_ai": true,
+  "ssh_connections": [
+    {
+      "host": "172.31.45.177",
+      "projects": []
     }
-  },
-  "ssh_connections": [],
-  "show_edit_predictions": false,
+  ],
   "telemetry": {
     "metrics": false,
     "diagnostics": false
