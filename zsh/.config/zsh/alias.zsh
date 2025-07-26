@@ -48,5 +48,9 @@ alias gd='git diff'
 # terraform
 #---
 alias tf='terraform'
+
+
+
 alias open="xdg-open"
 alias rss="podman start freshrss"
+alias p="pwd"
