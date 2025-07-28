@@ -12,12 +12,7 @@ alias e='$EDITOR'
 alias q='echo $?'
 alias x='exit'
 
-# Search and filter
-alias alla='alias | fzf'
-alias hf='history | fzf'
-
 # Utilities
-# alias pkf='ps aux | fzf | awk "{ print \$2 }" | xargs kill -9'
 alias te='gnome-text-editor'
 alias tldr='tldr -t base16'
 
@@ -30,7 +25,7 @@ alias tr='eza -T --icons'
 
 # Clipboard utilities
 alias cpfile='xclip -selection clipboard'
-# alias cppath='pwd | xclip -selection clipboard'
+alias cppath='pwd | xclip -selection clipboard'
 
 alias docker='podman'
 alias p3g="ping -c 3 8.8.8.8"
