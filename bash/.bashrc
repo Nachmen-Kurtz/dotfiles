@@ -25,7 +25,6 @@ fi
 unset rc
 
 complete -C /usr/bin/terraform terraform
-. "$HOME/.cargo/env"
 
 # Include custom shell configuretions:
 source $HOME/.aliases.zsh
@@ -40,3 +39,4 @@ eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 
 complete -C /home/nachmen/.local/bin/terraform terraform
+. "$HOME/.cargo/env"

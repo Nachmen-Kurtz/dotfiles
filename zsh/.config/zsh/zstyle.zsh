@@ -7,7 +7,6 @@ zstyle ':completion:*' format '%F{green}%B%d%b%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' ignore-parents parent pwd .. directory
 zstyle ':completion:*' insert-unambiguous true
-# zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' list-prompt '%S%p%s'
 zstyle ':completion:*' list-suffixes true
