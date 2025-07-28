@@ -6,6 +6,8 @@
 normal = { family = "FiraCode Nerd Font", style = "Regular" }
 # normal = { family = "Hasklug Nerd Font", style = "Regular" }
 # normal = { family = "MesloLGS NF", style = "Regular" }
+# normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+# normal = { family = "CodeNewRoman Nerd Font", style = "Regular" }
 size = 13.0
 
 [cursor]
