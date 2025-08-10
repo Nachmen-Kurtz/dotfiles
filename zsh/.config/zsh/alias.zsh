@@ -49,3 +49,4 @@ alias tf='terraform'
 alias open="xdg-open"
 alias rss="podman start freshrss"
 alias p="pwd"
+alias clipb="xclip -selection clipboard"
