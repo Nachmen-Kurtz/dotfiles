@@ -27,7 +27,6 @@ alias tr='eza -T --icons'
 alias cpfile='xclip -selection clipboard'
 alias cppath='pwd | xclip -selection clipboard'
 
-alias docker='podman'
 alias p3g="ping -c 3 8.8.8.8"
 
 #----
@@ -44,9 +43,11 @@ alias gd='git diff'
 #---
 alias tf='terraform'
 
-
+unalias run-help
 
 alias open="xdg-open"
 alias rss="podman start freshrss"
 alias p="pwd"
 alias clipb="xclip -selection clipboard"
+alias n-c='nu -c'
+alias ls=lsd

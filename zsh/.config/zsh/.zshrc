@@ -1,8 +1,11 @@
-fpath+="$ZDOTDIR/.zfunc"
+fpath+="$ZDOTDIR/completions"
 
 autoload -Uz compinit && compinit
 
 autoload -U +X bashcompinit && bashcompinit
+
+autoload -Uz run-help
+
 complete -C '/usr/local/bin/aws_completer' aws
 complete -o nospace -C /home/nachmen/.local/bin/terraform terraform
 
