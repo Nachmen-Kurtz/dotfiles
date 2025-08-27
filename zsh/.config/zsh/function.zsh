@@ -53,3 +53,13 @@ function h() {
         command "$@"
     fi
 }
+
+
+########################################
+########################################
+
+# Function to create a new Rust project without a Git repository
+function nu-run() {
+	# Running the cargo new command with the --vcs none flag
+	nu -c "$1" >> "$2"
+}
