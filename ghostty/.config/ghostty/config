@@ -52,7 +52,7 @@ gtk-adwaita = true
 desktop-notifications = true
 keybind = f11=toggle_maximize
 gtk-tabs-location = top
-gtk-wide-tabs = true
+gtk-wide-tabs = false
 window-theme = ghostty
 window-padding-x = 15
 window-padding-y = 15
@@ -66,7 +66,7 @@ window-padding-y = 15
 # theme = "Monokai Classic"
 # theme = ayu
 # theme = RetroLegends
-# focus-follows-mouse = true
+focus-follows-mouse = true
 # font-family = "Mononoki Nerd Font"
 # font-family = "FiraCode Nerd Font"
 # font-family = "AurulentSansM Nerd Font"
@@ -78,8 +78,8 @@ window-padding-y = 15
 # keybind = ctrl+plus=new_split:right
 # unbind = ctrl+plus=increase_font_size:1
 # window-subtitle = working-directory
-# gtk-titlebar-hide-when-maximized = true
-# adw-toolbar-style = flat
+gtk-titlebar-hide-when-maximized = true
+adw-toolbar-style = flat
 # gtk-titlebar = false
-# adw-toolbar-style = raised-border
+adw-toolbar-style = raised-border
 
