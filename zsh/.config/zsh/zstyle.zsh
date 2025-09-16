@@ -22,7 +22,7 @@ zstyle ':completion:*' list-prompt '%S%p%s'
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*' matcher-list '' '+r:|[._-]=* r:|=*' '+l:|=*'
+zstyle ':completion:*' matcher-list '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+r:|[._-]=** r:|=**' '+l:|=* r:|=*'
 zstyle ':completion:*:matches' group yes
 zstyle ':completion:*' menu select=long-list select=0
 zstyle ':completion:*:messages' format '%F{purple}-- %d --%f'
