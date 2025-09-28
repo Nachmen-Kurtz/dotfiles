@@ -51,3 +51,5 @@ alias p="pwd"
 alias clipb="xclip -selection clipboard"
 alias n-c='nu -c'
 alias ls=lsd
+alias terraform=tofu
+alias myip="curl http://ipecho.net/plain; echo"

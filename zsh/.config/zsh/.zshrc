@@ -1,20 +1,18 @@
 fpath+="$ZDOTDIR/completions"
 
-autoload -Uz compinit && compinit
-
+autoload -Uz compinit promptinit run-help && compinit && promptinit
 autoload -U +X bashcompinit && bashcompinit
 
-autoload -Uz run-help
-
 complete -C '/usr/local/bin/aws_completer' aws
-complete -o nospace -C /home/nachmen/.local/bin/terraform terraform
+complete -C /usr/bin/tofu tofu
 
 HISTFILE="$ZDOTDIR/zsh_history"
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-precmd() { print }
-PROMPT="%F{green}$ %f"
+# precmd() { print }
+# PROMPT="%F{green}$ %f"
+prompt off
 
 source "$ZDOTDIR/bindkey.zsh"
 source "$ZDOTDIR/zstyle.zsh"

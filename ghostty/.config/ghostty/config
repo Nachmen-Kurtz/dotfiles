@@ -48,7 +48,7 @@
 font-size = 13
 mouse-hide-while-typing = true
 background-opacity = 0.95
-gtk-adwaita = true
+# gtk-adwaita = true
 desktop-notifications = true
 keybind = f11=toggle_maximize
 gtk-tabs-location = top
@@ -56,7 +56,7 @@ gtk-wide-tabs = false
 window-theme = ghostty
 window-padding-x = 15
 window-padding-y = 15
-
+# window-show-tab-bar = always
 
 #theme = tokyonight
 #font-family = "Hasklug Nerd Font"
@@ -78,7 +78,7 @@ focus-follows-mouse = true
 # keybind = ctrl+plus=new_split:right
 # unbind = ctrl+plus=increase_font_size:1
 # window-subtitle = working-directory
-gtk-titlebar-hide-when-maximized = true
+# gtk-titlebar-hide-when-maximized = true
 adw-toolbar-style = flat
 # gtk-titlebar = false
 adw-toolbar-style = raised-border
