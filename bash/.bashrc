@@ -40,3 +40,6 @@ eval "$(zoxide init bash)"
 
 complete -C /home/nachmen/.local/bin/terraform terraform
 . "$HOME/.cargo/env"
+
+
+complete -C /usr/bin/tofu tofu
