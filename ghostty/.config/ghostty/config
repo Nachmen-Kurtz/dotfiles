@@ -46,40 +46,57 @@
 ################################################
 
 font-size = 13
+#font-family = "Hasklug Nerd Font"
+# font-family = "Mononoki Nerd Font"
+# font-family = "FiraCode Nerd Font"
+# font-family = "AurulentSansM Nerd Font"
+
 mouse-hide-while-typing = true
+
 background-opacity = 0.95
-# gtk-adwaita = true
+
 desktop-notifications = true
-keybind = f11=toggle_maximize
-gtk-tabs-location = top
-gtk-wide-tabs = false
+
+# gtk-tabs-location = top
+# gtk-titlebar-style=tabs
+# gtk-titlebar = false
+# gtk-wide-tabs = false
+# gtk-adwaita = true
+# gtk-titlebar-hide-when-maximized = true
+
 window-theme = ghostty
 window-padding-x = 15
 window-padding-y = 15
 # window-show-tab-bar = always
+window-height = 30
+window-width = 80
+# window-subtitle = working-directory
 
-#theme = tokyonight
-#font-family = "Hasklug Nerd Font"
-# theme = catppuccin-macchiato
-# theme = "Adwaita Dark"
-# theme = Dracula
-# theme = "Monokai Classic"
-# theme = ayu
-# theme = RetroLegends
-focus-follows-mouse = true
-# font-family = "Mononoki Nerd Font"
-# font-family = "FiraCode Nerd Font"
-# font-family = "AurulentSansM Nerd Font"
+keybind = f11=toggle_maximize
+keybind = ctrl+x>o=toggle_tab_overview
+keybind = ctrl+x>w=new_window
+keybind = ctrl+x>t=new_tab
+keybind = ctrl+x>c=open_config
+keybind = performable:ctrl+c=copy_to_clipboard
 # keybind = ctrl+shift+h=goto_split:left
 # keybind = ctrl+shift+j=goto_split:bottom
 # keybind = ctrl+shift+k=goto_split:top
 # keybind = ctrl+shift+l=goto_split:right
 # keybind = ctrl+minus=new_split:down
 # keybind = ctrl+plus=new_split:right
+
 # unbind = ctrl+plus=increase_font_size:1
-# window-subtitle = working-directory
-# gtk-titlebar-hide-when-maximized = true
-adw-toolbar-style = flat
-# gtk-titlebar = false
-adw-toolbar-style = raised-border
+
+# theme = tokyonight
+# theme = Catppuccin Frappe
+# theme = "Adwaita Dark"
+# theme = Dracula
+# theme = "Monokai Classic"
+# theme = ayu
+# theme = RetroLegends
+
+focus-follows-mouse = true
+
+# adw-toolbar-style = flat
+# adw-toolbar-style = raised-border
 

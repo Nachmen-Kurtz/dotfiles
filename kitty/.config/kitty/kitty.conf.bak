@@ -21,7 +21,7 @@ map ctrl+down resize_window shorter
 map ctrl+home resize_window reset
 
 # Background
-background_opacity 1
+background_opacity 0.95
 dynamic_background_opacity yes
 
 # ---
@@ -40,7 +40,7 @@ font_size 13
 tab_bar_style powerline
 tab_powerline_style round
 tab_bar_edge top
-tab_bar_min_tabs 2
+tab_bar_min_tabs 0
 
 # ---
 # Logo
@@ -55,6 +55,6 @@ tab_bar_min_tabs 2
 map ctrl+shift+t new_tab_with_cwd
 
 # BEGIN_KITTY_THEME
-# Adwaita dark
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME
