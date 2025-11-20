@@ -10,9 +10,9 @@ HISTFILE="$ZDOTDIR/zsh_history"
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# precmd() { print }
-# PROMPT="%F{green}$ %f"
-prompt off
+precmd() { print }
+PROMPT="%F{green}$ %f"
+# prompt off
 
 source "$ZDOTDIR/bindkey.zsh"
 source "$ZDOTDIR/zstyle.zsh"

@@ -1,0 +1,11 @@
+set show-all-if-unmodified Off
+set visible-stats On
+set mark-symlinked-directories Off
+set colored-completion-prefix On
+set menu-complete-display-prefix Off
+set enable-bracketed-paste On
+set show-all-if-ambiguous Off
+
+# "\t": menu-complete
+# "\e[Z": reverse-menu-complete
+

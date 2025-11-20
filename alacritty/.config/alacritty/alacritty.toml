@@ -1,24 +1,23 @@
-# [general]
-# import = ["~/.config/alacritty/themes/themes/github_dark.toml"]
+[general]
+import = ["~/.config/alacritty/themes/themes/github_dark.toml"]
 
 [font]
-# normal = { family = "AdwaitaMono Nerd Font", style = "Regular" }
-normal = { family = "FiraCode Nerd Font", style = "Regular" }
+normal = { family = "AdwaitaMono Nerd Font", style = "Regular" }
+# normal = { family = "FiraCode Nerd Font", style = "Regular" }
 # normal = { family = "Hasklug Nerd Font", style = "Regular" }
 # normal = { family = "MesloLGS NF", style = "Regular" }
 # normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 # normal = { family = "CodeNewRoman Nerd Font", style = "Regular" }
-size = 13.0
+size = 14.0
 
 [cursor]
 style = { shape = "Beam", blinking = "On" }
 
 [window]
 padding = { x = 20, y = 20 }
-opacity = 0.90
-blur = true
+opacity = 0.95
 decorations_theme_variant = "Dark"
-decorations = "none"
+# decorations = "none"
 dimensions = { columns = 100, lines = 30 }
 
 [mouse]

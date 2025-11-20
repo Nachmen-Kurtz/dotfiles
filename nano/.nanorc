@@ -1,0 +1,9 @@
+set mouse
+set tabsize 4
+set tabstospaces
+set positionlog
+set softwrap
+set atblanks
+set autoindent
+set indicator
+set linenumbers
