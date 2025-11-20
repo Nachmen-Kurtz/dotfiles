@@ -6,4 +6,9 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-. "$HOME/.cargo/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/nachmen/.lmstudio/bin"
+# End of LM Studio CLI section
+
+tldr -r

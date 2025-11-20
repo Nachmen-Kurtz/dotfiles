@@ -1,0 +1,60 @@
+# ---
+# Window
+# ---
+
+# Window size
+remember_window_size  no
+initial_window_width  940
+initial_window_height 700
+
+# Hide the OS title bar
+hide_window_decorations yes
+
+# Set inner padding
+window_padding_width 10
+
+map ctrl+left resize_window narrower
+map ctrl+right resize_window wider
+map ctrl+up resize_window taller
+map ctrl+down resize_window shorter
+# reset all windows in the tab to default sizes
+map ctrl+home resize_window reset
+
+# Background
+background_opacity 0.95
+dynamic_background_opacity yes
+
+# ---
+# Font
+# ---
+
+font_family      FiraCode Nerd Font
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size 13
+
+# ---
+# Tabs
+# ---
+tab_bar_style powerline
+tab_powerline_style round
+tab_bar_edge top
+tab_bar_min_tabs 0
+
+# ---
+# Logo
+# ---
+# window_logo_path /home/nachmen/Pictures/Hatter/apps/kitty.png
+# window_logo_position center
+# window_logo_alpha 1.0
+
+# ---
+# Key Maps
+# ---
+map ctrl+shift+t new_tab_with_cwd
+
+# BEGIN_KITTY_THEME
+# Catppuccin-Mocha
+include current-theme.conf
+# END_KITTY_THEME

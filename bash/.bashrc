@@ -2,12 +2,12 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-  . /etc/bashrc
+    . /etc/bashrc
 fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-  PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
 
@@ -16,30 +16,15 @@ export PATH
 
 # User specific aliases and functions
 if [ -d ~/.bashrc.d ]; then
-  for rc in ~/.bashrc.d/*; do
-    if [ -f "$rc" ]; then
-      . "$rc"
-    fi
-  done
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
 fi
 unset rc
 
-complete -C /usr/bin/terraform terraform
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/nachmen/.lmstudio/bin"
+# End of LM Studio CLI section
 
-# Include custom shell configuretions:
-source $HOME/.aliases.zsh
-source $HOME/.zshenv
-
-# Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-
-eval "$(starship init bash)"
-
-eval "$(zoxide init bash)"
-
-complete -C /home/nachmen/.local/bin/terraform terraform
-. "$HOME/.cargo/env"
-
-
-complete -C /usr/bin/tofu tofu
