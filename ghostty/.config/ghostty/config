@@ -53,7 +53,7 @@ font-size = 13
 
 mouse-hide-while-typing = true
 
-background-opacity = 0.95
+background-opacity = 1
 
 desktop-notifications = true
 
@@ -94,9 +94,10 @@ keybind = performable:ctrl+c=copy_to_clipboard
 # theme = "Monokai Classic"
 # theme = ayu
 # theme = RetroLegends
+# theme = Catppuccin Mocha
 
 focus-follows-mouse = true
 
-# adw-toolbar-style = flat
-# adw-toolbar-style = raised-border
+adw-toolbar-style = flat
+adw-toolbar-style = raised-border
 
