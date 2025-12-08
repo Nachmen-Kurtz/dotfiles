@@ -12,6 +12,7 @@ NC='\033[0m' # No Color
 
 # Check if yt-dlp is installed
 if ! command -v yt-dlp &>/dev/null; then
+  echo ""
   echo -e "${RED}Error: yt-dlp is not installed. Please install it first.${NC}"
   echo "Install with: pip install yt-dlp"
   exit 1
@@ -19,6 +20,7 @@ fi
 
 # Check arguments
 if [ $# -lt 1 ]; then
+  echo ""
   echo -e "${RED}Usage: $0 <batch_file> [download_location]${NC}"
   echo "Example: $0 urls.txt /home/user/Videos"
   exit 1
