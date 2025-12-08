@@ -23,3 +23,6 @@ if [ -d ~/.bashrc.d ]; then
   done
 fi
 unset rc
+
+# opencode
+export PATH=/home/nachmen/.opencode/bin:$PATH

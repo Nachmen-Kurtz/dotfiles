@@ -1,8 +1,20 @@
+
+podman_rm_all_stopped() {
+  podman rm $(podman ps -aq)
+}
+
 mkd() {
     mkdir -p "$@"
     cd "$@" || exit
 }
 
+man-bat() {
+  man $1 | bat --language=Manpage --wrap auto
+}
+
+cheat-sheet () {
+  curl cheat.sh/$1
+}
 
 ucase() {
     tr '[:lower:]' '[:upper:]'

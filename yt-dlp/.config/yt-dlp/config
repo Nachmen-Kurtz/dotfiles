@@ -1,35 +1,7 @@
-# Lines starting with # are comments
-
-# Save videos to a specific directory (e.g., ~/Videos/YouTube on Linux/macOS or Downloads on Windows)
--o ~/Videos/.yt-dlp/%(title)s.%(ext)s
-
-# Prefer MP4 format for video and audio
--f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best
-
-# Embed metadata, thumbnails, and subtitles
 --embed-metadata
 --embed-thumbnail
---embed-subs
---sub-langs all
-
-# Use aria2c as the external downloader for faster downloads
---downloader aria2c
---downloader-args "aria2c:-c -x16 -s16 -k2M"
-
-# Ignore errors to continue downloading playlists even if some videos fail
---ignore-errors
-
-# Do not overwrite existing files
---no-overwrites
-
-# Restrict filenames to avoid special characters
 --restrict-filenames
-
-# Save a download archive to avoid re-downloading videos
---download-archive ~/Videos/.yt-dlp/yt-dlp-archive.txt
-
-# Retry 3 times on download failures
---retries 3
-
-# Specify encoding (optional, only if needed)
-coding: utf-8
+--download-archive ~/Videos/.NoKosher/YouTube/yt-dlp-archive.txt
+-o ~/Videos/.NoKosher/YouTube/%(title)s.%(ext)s
+--sponsorblock-mark all
+--write-description
