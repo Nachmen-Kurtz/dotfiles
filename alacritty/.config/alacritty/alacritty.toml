@@ -2,11 +2,11 @@
 import = ["~/.config/alacritty/themes/themes/github_dark.toml"]
 
 [font]
-normal = { family = "AdwaitaMono Nerd Font", style = "Regular" }
+# normal = { family = "AdwaitaMono Nerd Font", style = "Regular" }
 # normal = { family = "FiraCode Nerd Font", style = "Regular" }
 # normal = { family = "Hasklug Nerd Font", style = "Regular" }
 # normal = { family = "MesloLGS NF", style = "Regular" }
-# normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 # normal = { family = "CodeNewRoman Nerd Font", style = "Regular" }
 size = 14.0
 
