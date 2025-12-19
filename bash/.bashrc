@@ -24,5 +24,8 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-# opencode
-export PATH=/home/nachmen/.opencode/bin:$PATH
+PATH="/usr/lib64/ccache:/usr/local/bin:/usr/bin"
+PATH="$HOME/.opencode/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH"
+PATH="$PATH:/usr/local/go/bin"
+export PATH
+. "$HOME/.cargo/env"

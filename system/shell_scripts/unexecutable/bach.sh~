@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source $SRC_BASH/date
+
+cp ~/.config/background ~/Pictures/Backgrounds
+
+mv ~/Pictures/Backgrounds/background ~/Pictures/Backgrounds/"$current_date"

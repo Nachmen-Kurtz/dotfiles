@@ -1,11 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 [aws]
-disabled = true
-
-[character]
-success_symbol = '[   ](bold green) '
-error_symbol = '[   ](bold red) '
+disabled  = true
 
 [cmd_duration]
 disabled = true
@@ -21,11 +17,14 @@ disabled = false
 style = "bold blue"
 
 [os.symbols]
-Fedora = "   "
+Fedora = "  "
 
 [package]
 disabled = true
 
 [shell]
 disabled = false
-style = "bold purple"
+fish_indicator = '  '
+bash_indicator = '  '
+zsh_indicator = ' %'
+style = 'cyan bold'
