@@ -101,3 +101,4 @@ focus-follows-mouse = true
 adw-toolbar-style = flat
 adw-toolbar-style = raised-border
 
+command = /usr/bin/fish
