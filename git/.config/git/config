@@ -1,0 +1,7 @@
+[user]
+	name = Nachmen Kurtz
+	email = git@nachmenk.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main

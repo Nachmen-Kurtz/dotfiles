@@ -13,15 +13,15 @@ hide_window_decorations yes
 # Set inner padding
 window_padding_width 10
 
-map ctrl+left resize_window narrower
-map ctrl+right resize_window wider
-map ctrl+up resize_window taller
-map ctrl+down resize_window shorter
+# map ctrl+left resize_window narrower
+# map ctrl+right resize_window wider
+# map ctrl+up resize_window taller
+# map ctrl+down resize_window shorter
 # reset all windows in the tab to default sizes
-map ctrl+home resize_window reset
+# map ctrl+home resize_window reset
 
 # Background
-background_opacity 0.95
+background_opacity 1
 dynamic_background_opacity yes
 
 # ---
@@ -55,6 +55,6 @@ tab_bar_min_tabs 0
 map ctrl+shift+t new_tab_with_cwd
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Adwaita dark
 include current-theme.conf
 # END_KITTY_THEME
