@@ -29,9 +29,9 @@ abbr v nvim
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
-alias ls="eza --color=always --icons --group-directories-first"
-alias la 'eza --color=always --icons --group-directories-first --all'
-alias ll 'eza --color=always --icons --group-directories-first --all --long'
+alias ls="eza --color=always --icons"
+alias la 'eza --color=always --icons --all'
+alias ll 'eza --color=always --icons --all --long'
 abbr l ll
 abbr ncdu "ncdu --color dark"
 
