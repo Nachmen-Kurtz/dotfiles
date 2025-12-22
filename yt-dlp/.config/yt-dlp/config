@@ -1,7 +1,12 @@
+--no-playlist
+
 --embed-metadata
 --embed-thumbnail
---restrict-filenames
---download-archive ~/Videos/.NoKosher/YouTube/yt-dlp-archive.txt
--o ~/Videos/.NoKosher/YouTube/%(title)s.%(ext)s
---sponsorblock-mark all
+
 --write-description
+--write-thumbnail
+
+--download-archive ~/Videos/.yt-dlp/yt-dlp-archive.txt
+-o ~/Videos/.yt-dlp/%(title)s.%(ext)s
+
+--sponsorblock-mark all
