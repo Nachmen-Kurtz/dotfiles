@@ -29,3 +29,6 @@ PATH="$HOME/.opencode/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH"
 PATH="$PATH:/usr/local/go/bin"
 export PATH
 . "$HOME/.cargo/env"
+
+
+complete -C /opt/opentofu/tofu tofu

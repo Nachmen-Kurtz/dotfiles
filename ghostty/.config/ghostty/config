@@ -51,6 +51,8 @@
 ################################################
 ################################################
 
+command = /usr/bin/fish
+
 font-size = 13
 # font-family = "Hasklug Nerd Font"
 # font-family = "Mononoki Nerd Font"
