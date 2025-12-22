@@ -23,6 +23,7 @@ source "$ZDOTDIR/function.zsh"
 # source "$ZDOTDIR/zmodload.zsh"
 
 . "$HOME/.cargo/env"
-# source <(jj util completion zsh)
-# source <(fzf --zsh)
-# eval "$(zoxide init zsh)"
+source <(jj util completion zsh)
+source <(fzf --zsh)
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"

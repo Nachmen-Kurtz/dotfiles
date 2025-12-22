@@ -14,6 +14,12 @@
 #
 # Additionally, each config option is also explained in detail
 # on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
 
 # Config syntax crash course
 # ==========================
@@ -45,15 +51,17 @@
 ################################################
 ################################################
 
+command = /usr/bin/fish
+
 font-size = 13
-#font-family = "Hasklug Nerd Font"
+# font-family = "Hasklug Nerd Font"
 # font-family = "Mononoki Nerd Font"
 # font-family = "FiraCode Nerd Font"
 # font-family = "AurulentSansM Nerd Font"
 
 mouse-hide-while-typing = true
 
-background-opacity = 1
+background-opacity = .9
 
 desktop-notifications = true
 
@@ -62,7 +70,7 @@ desktop-notifications = true
 # gtk-titlebar = false
 # gtk-wide-tabs = false
 # gtk-adwaita = true
-# gtk-titlebar-hide-when-maximized = true
+gtk-titlebar-hide-when-maximized = true
 
 window-theme = ghostty
 window-padding-x = 15
@@ -102,3 +110,5 @@ adw-toolbar-style = flat
 adw-toolbar-style = raised-border
 
 command = /usr/bin/fish
+
+cursor-style = bar
