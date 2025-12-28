@@ -32,3 +32,5 @@ export PATH
 
 
 complete -C /opt/opentofu/tofu tofu
+
+source /home/nachmen/.config/broot/launcher/bash/br
