@@ -1,0 +1,37 @@
+# Codex Ideas for Fish Config
+
+This file summarizes possible improvements I noticed during a quick scan of your Fish config. These are optional and meant as ideas.
+
+## Ideas
+
+- Make `fastfetch` use an absolute config path so it works no matter where the shell starts.
+  - Example: `fastfetch -c ~/.config/fastfetch/examples/6.jsonc`
+  - Location: `config.fish`
+
+- Guard optional tools in `conf.d/*.fish` so missing binaries do not spam errors at startup.
+  - Example pattern:
+    - `type -q fzf; and fzf --fish | source`
+    - `type -q starship; and starship init fish | source`
+    - `type -q zoxide; and zoxide init fish | source`
+    - `test -f "$HOME/.cargo/env.fish"; and source "$HOME/.cargo/env.fish"`
+
+- Make `EDITOR` fallback more robust if `nvim` is not installed.
+  - Example:
+    - `set -l editor (command -s nvim; or command -s vim; or command -s vi)`
+    - `set -gx EDITOR $editor`
+    - `set -gx VISUAL $EDITOR`
+    - `set -gx SUDO_EDITOR $EDITOR`
+  - Location: `conf.d/set.fish`
+
+- Avoid odd behavior in `mansec` when `fzf` is canceled.
+  - Example:
+    - `test -n "$sec"; or return 1`
+  - Location: `functions/mansec.fish`
+
+- Consider `command` prefix for wrappers where you do not want functions/aliases to recurse.
+  - Example: `command ls` inside custom wrappers or where you rely on the external binary.
+
+## Notes
+
+- These are optional; nothing is broken, just quality-of-life improvements.
+- If you want, I can apply any of the changes above.

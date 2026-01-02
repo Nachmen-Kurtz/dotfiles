@@ -1,0 +1,383 @@
+ ID Command line                          Date and time       Action(s) Altered
+382 dnf upgrade                           2025-06-21 19:44:39                94
+381 dnf upgrade                           2025-06-19 14:12:08                59
+380 dnf install wezterm                   2025-06-19 09:20:21                 1
+379 dnf remove wezterm                    2025-06-19 09:17:06                 1
+378 dnf upgrade                           2025-06-19 04:04:59                 2
+377 dnf install contour-terminal          2025-06-18 19:17:01                 3
+376 dnf upgrade                           2025-06-18 17:14:27                 2
+375 dnf upgrade                           2025-06-18 00:05:07                 2
+374 dnf autoremove                        2025-06-17 23:59:06                 9
+373 dnf remove sway                       2025-06-17 23:58:41                19
+372 dnf install sway                      2025-06-17 23:49:02                19
+371 dnf remove hyprland                   2025-06-17 23:44:04                21
+370 dnf install hyprland                  2025-06-17 23:33:19                21
+369 dnf remove hyprland                   2025-06-17 23:29:26                30
+368 dnf install hyprland                  2025-06-17 23:24:39                32
+367 dnf upgrade                           2025-06-17 12:16:03                32
+366 dnf remove waybar                     2025-06-17 11:35:38                 7
+365 dnf install waybar                    2025-06-17 09:02:43                 7
+364 dnf install fish                      2025-06-16 12:32:38                 3
+363 dnf remove ghostty                    2025-06-16 12:32:13                 1
+362 dnf upgrade                           2025-06-16 09:43:59                22
+361 dnf install mpv                       2025-06-15 10:34:07                 4
+360 dnf upgrade                           2025-06-15 08:55:32                 4
+359 dnf install emacs                     2025-06-15 08:38:52                 7
+358 dnf reinstall ghostty                 2025-06-15 08:21:55                 2
+357 dnf install sqlite3                   2025-06-15 08:20:08                 1
+356 dnf install lsd                       2025-06-15 06:58:01                 1
+355 dnf install bfs                       2025-06-14 22:39:39                 1
+354 dnf upgrade                           2025-06-14 21:52:21                26
+353 dnf upgrade -y                        2025-06-13 07:01:56                 2
+352 dnf install zsh-autosuggestions.noarc 2025-06-12 17:55:38                 1
+351 dnf install zsh-syntax-highlighting.n 2025-06-12 17:36:04                 1
+350 dnf upgrade -y                        2025-06-12 10:23:22                70
+349 dnf upgrade -y                        2025-06-10 12:31:59                18
+348 dnf remove wl-clipboard               2025-06-09 18:04:56                 1
+347 dnf upgrade -y                        2025-06-09 11:58:22                70
+346 dnf install wl-clipboard              2025-06-09 05:56:25                 1
+345 dnf upgrade                           2025-06-08 12:32:00               178
+344 dnf install kitty                     2025-06-06 00:31:29                 4
+343 dnf upgrade -y                        2025-06-05 09:59:02                 4
+342 dnf upgrade -y                        2025-06-04 12:27:00                 2
+341 dnf install adwaita-icon-theme.noarch 2025-06-04 07:53:51                 2
+340 dnf upgrade -y                        2025-06-04 07:22:54                16
+339 dnf upgrade -y                        2025-06-03 09:45:08               140
+338 dnf remove wezterm                    2025-06-03 00:42:24                 2
+337 dnf remove foot xterm                 2025-06-03 00:01:40                 2
+336 dnf upgrade -y                        2025-06-02 20:37:23                96
+335 dnf install wezterm                   2025-05-31 21:40:55                 2
+334 dnf upgrade -y                        2025-05-31 20:17:02                40
+333 dnf upgrade -y                        2025-05-30 08:12:32                20
+332 dnf remove most                       2025-05-29 09:13:48                 1
+331 dnf upgrade -y                        2025-05-29 07:01:34                76
+330 dnf remove tmux-powerline             2025-05-28 20:28:14                 4
+329 dnf install tmux-powerline            2025-05-28 11:45:43                 4
+328 dnf upgrade -y                        2025-05-28 07:47:31                91
+327 dnf upgrade -y                        2025-05-27 21:48:36                 2
+326 dnf upgrade -y                        2025-05-27 08:39:16                26
+325 dnf upgrade -y                        2025-05-26 09:26:56                 8
+324 dnf upgrade -y                        2025-05-25 04:31:02                34
+323 dnf upgrade -y                        2025-05-24 19:22:36                16
+322 dnf install ghostty                   2025-05-23 11:26:10                 1
+321 dnf remove fish                       2025-05-23 11:24:30                 3
+320 dnf upgrade -y                        2025-05-23 08:32:38                54
+319 dnf upgrade -y                        2025-05-22 11:53:42                31
+318 dnf remove kdissert.x86_64            2025-05-21 20:36:21                11
+317 dnf install kdissert.x86_64           2025-05-21 20:35:04                11
+316 dnf install minder                    2025-05-21 20:32:59                 3
+315 dnf remove wezterm                    2025-05-21 17:21:31                 2
+314 dnf install wezterm                   2025-05-21 17:20:14                 2
+313 dnf remove wezterm                    2025-05-21 17:17:00                 2
+312 dnf upgrade -y                        2025-05-21 09:48:54                58
+311 dnf install perl-Image-ExifTool       2025-05-20 23:55:42                 1
+310 dnf upgrade -y                        2025-05-20 23:37:46                38
+309 dnf reinstall fish                    2025-05-20 09:04:33                 2
+308 dnf upgrade -y                        2025-05-20 07:07:50                 6
+307 dnf remove f39-backgrounds-gnome.noar 2025-05-19 12:45:06                16
+306 dnf upgrade -y                        2025-05-19 11:35:34                12
+305 dnf remove falkon                     2025-05-19 11:35:01                 6
+304 dnf install falkon                    2025-05-19 11:32:58                 6
+303 dnf install gnome-builder             2025-05-18 11:43:34                22
+302 dnf install fish                      2025-05-18 07:33:48                 3
+301 dnf remove ghostty                    2025-05-18 07:33:28                 1
+300 dnf upgrade -y                        2025-05-18 04:34:44                74
+299 dnf remove kitty-kitten kitty-shell-i 2025-05-17 22:26:51                 3
+298 dnf remove kitty                      2025-05-17 22:26:03                 1
+297 dnf upgrade -y                        2025-05-16 06:29:18                 6
+296 dnf upgrade                           2025-05-15 08:58:01                56
+295 dnf upgrade                           2025-05-14 09:04:24                55
+294 dnf install wezterm                   2025-05-14 06:40:00                 2
+293 dnf upgrade -y                        2025-05-13 16:30:14                46
+292 dnf install f35-backgrounds-gnome.noa 2025-05-12 20:01:21                 6
+291 dnf upgrade -y                        2025-05-12 08:03:56                14
+290 dnf install f21-backgrounds-extras-gn 2025-05-11 17:28:14                 6
+289 dnf install f41-backgrounds-gnome.noa 2025-05-11 17:12:58                 8
+288 dnf upgrade                           2025-05-11 11:42:32                22
+287 dnf remove anytype                    2025-05-11 11:40:59                 1
+286 dnf install ./anytype-0.46.4.x86_64.r 2025-05-11 11:36:45                 1
+285 dnf upgrade                           2025-05-10 20:45:57                58
+284 dnf install evolution                 2025-05-09 14:34:25                 4
+283 dnf upgrade -y                        2025-05-09 14:23:06                14
+282 dnf install smem                      2025-05-08 20:54:09                 1
+281 dnf install sudo-rs                   2025-05-08 13:46:24                 1
+280 dnf upgrade -y                        2025-05-08 07:06:29                 6
+279 dnf install ./sqlectron-1.38.0.x86_64 2025-05-08 07:05:29                 1
+278 dnf upgrade -y                        2025-05-07 19:49:41                38
+277 dnf upgrade -y                        2025-05-06 09:35:01                42
+276 dnf upgrade -y                        2025-05-05 13:16:22                 2
+275 dnf install ghostty                   2025-05-04 10:28:09                 1
+274 dnf remove ncurses-term-6.5-5.2025012 2025-05-04 10:28:00                 3
+273 dnf upgrade -y                        2025-05-04 10:09:10                 4
+272 dnf upgrade -y                        2025-05-03 20:14:16               146
+271 dnf upgrade --refresh                 2025-05-01 23:41:34                 2
+270 dnf upgrade --refresh                 2025-05-01 07:16:24                18
+269 dnf upgrade -y                        2025-04-30 07:07:47                16
+268 dnf remove desktop-backgrounds-basic  2025-04-29 13:07:28                 5
+267 dnf install desktop-backgrounds-basic 2025-04-29 12:05:11                 5
+266 dnf upgrade -y                        2025-04-29 09:44:38                26
+265 dnf remove code-insiders              2025-04-28 22:55:49                 1
+264 dnf install git-gui                   2025-04-28 14:41:52                 3
+263 dnf upgrade -y                        2025-04-28 08:18:50                38
+262 dnf upgrade -y                        2025-04-27 05:24:53               108
+261 dnf remove git-gui                    2025-04-27 05:23:09                 3
+260 dnf remove relagit                    2025-04-27 05:21:07                 1
+259 dnf install ./RelaGit-linux.rpm       2025-04-27 05:19:22                 1
+258 dnf install gitg                      2025-04-27 03:38:48                 6
+257 dnf install git-gui                   2025-04-27 03:34:25                 3
+256 dnf upgrade -y                        2025-04-24 17:51:31                 4
+255 dnf upgrade -y                        2025-04-24 16:30:42                 2
+254 dnf upgrade -y                        2025-04-24 08:43:51                 2
+253 dnf upgrade -y                        2025-04-24 07:31:17                34
+252 dnf upgrade --refresh                 2025-04-24 07:29:19                 2
+251 dnf upgrade -y                        2025-04-23 16:14:50                 4
+250 dnf upgrade --refresh                 2025-04-23 09:23:18                35
+249 dnf upgrade --refresh                 2025-04-22 21:13:25                 2
+248 dnf upgrade --refresh                 2025-04-22 08:38:05                 2
+247 dnf upgrade --refresh                 2025-04-22 07:09:12                57
+246 dnf upgrade --refresh                 2025-04-21 19:33:44                 2
+245 dnf upgrade --refresh                 2025-04-21 06:55:35                 2
+244 dnf autoremove                        2025-04-20 21:25:08                45
+243 dnf remove terraform                  2025-04-20 21:18:39                 1
+242 dnf install remove-retired-packages   2025-04-20 21:18:01                 1
+241 dnf install gtk4-devel zig libadwaita 2025-04-20 14:17:19                 2
+240 dnf upgrade --refresh                 2025-04-20 14:09:43               100
+239 dnf install rpmconf                   2025-04-20 11:18:37                 3
+238 dnf system-upgrade download --release 2025-04-20 10:09:39              4980
+237 dnf remove ghostty                    2025-04-20 10:07:01                 1
+236 dnf install code                      2025-04-20 00:32:44                 1
+235 dnf install code-insiders             2025-04-19 21:16:09                 1
+234 dnf remove code                       2025-04-19 21:14:57                 1
+233 dnf upgrade -y                        2025-04-18 12:38:53                26
+232 dnf upgrade -y                        2025-04-17 15:45:50                 8
+231 dnf upgrade -y                        2025-04-16 22:46:30                 6
+230 dnf upgrade -y                        2025-04-16 09:43:39                69
+229 dnf upgrade -y                        2025-04-15 09:46:02                74
+228 /usr/bin/dnf -y install /home/nachmen 2025-04-10 12:01:28                 2
+227 dnf upgrade -y                        2025-04-10 06:41:18                16
+226 dnf remove terraform-ls               2025-04-09 12:45:32                 2
+225 dnf upgrade -y                        2025-04-09 08:17:44                 4
+224 dnf upgrade -y                        2025-04-09 08:14:53                44
+223 dnf upgrade -y                        2025-04-06 06:09:57                 2
+222 dnf upgrade -y                        2025-04-05 21:39:16                34
+221 dnf upgrade -y                        2025-04-02 18:36:14                 4
+220 dnf install terraform-ls              2025-04-02 08:20:49                 2
+219 dnf upgrade -y                        2025-04-02 06:42:48                61
+218 dnf upgrade -y                        2025-04-01 09:41:00                30
+217 dnf upgrade -y                        2025-03-31 18:34:48                 4
+216 dnf remove opera-stable.x86_64        2025-03-31 07:38:09                 2
+215 dnf upgrade -y                        2025-03-31 07:36:34                16
+214 dnf autoremove                        2025-03-30 12:59:11                 8
+213 dnf upgrade -y                        2025-03-30 12:54:54                82
+212 dnf autoremove                        2025-03-29 22:39:59                 7
+211 dnf upgrade -y                        2025-03-29 21:45:10                85
+210 dnf upgrade -y                        2025-03-28 13:37:08                 2
+209 dnf upgrade -y                        2025-03-28 03:00:12                 2
+208 dnf upgrade -y                        2025-03-26 18:14:03                 6
+207 dnf install terraform                 2025-03-26 12:55:56                 1
+206 dnf remove terraform                  2025-03-26 12:54:10                 1
+205 dnf --refresh upgrade                 2025-03-26 06:59:17                80
+204 dnf --refresh upgrade                 2025-03-26 01:47:06                 6
+203 dnf --refresh upgrade                 2025-03-25 06:58:37                16
+202 dnf --refresh upgrade                 2025-03-24 23:02:20                 2
+201 dnf --refresh upgrade                 2025-03-24 09:20:46                18
+200 /usr/bin/dnf -y install /home/nachmen 2025-03-24 06:09:01                 2
+199 dnf upgrade -y                        2025-03-22 20:19:00                16
+198 dnf install gimp                      2025-03-20 18:34:35                19
+197 dnf upgrade -y                        2025-03-20 07:46:56                44
+196 dnf upgrade -y                        2025-03-19 21:36:29                22
+195 dnf upgrade -y                        2025-03-18 10:08:17                 8
+194 dnf upgrade -y                        2025-03-17 10:54:03               148
+193 dnf upgrade -y                        2025-03-16 08:49:31                32
+192 dnf upgrade -y                        2025-03-15 20:31:42               134
+191 dnf upgrade -y                        2025-03-13 09:20:05                98
+190 dnf upgrade -y                        2025-03-12 21:37:56                 2
+189 dnf remove bat                        2025-03-12 10:47:25                 1
+188 dnf upgrade -y                        2025-03-12 06:07:12                32
+187 dnf install tcsh                      2025-03-11 05:53:18                 1
+186 dnf upgrade -y                        2025-03-10 08:54:29                 8
+185 dnf install opera-stable_117.0.5408.5 2025-03-09 11:10:32                 2
+184 dnf upgrade -y                        2025-03-09 05:29:03                22
+183 dnf remove zen-browser                2025-03-08 20:37:51                 1
+182 dnf upgrade -y                        2025-03-08 17:18:51                 6
+181 dnf install zen-browser               2025-03-08 17:12:57                 1
+180 dnf upgrade -y                        2025-03-07 13:30:06                90
+179 dnf install thunderbird               2025-03-07 13:28:08                 2
+178 dnf remove thunderbird                2025-03-07 13:10:11                 2
+177 dnf upgrade -y                        2025-03-06 05:52:17                50
+176 dnf remove megasync.x86_64            2025-03-05 07:17:00                 7
+175 dnf remove zoxide                     2025-03-03 09:42:12                 1
+174 dnf upgrade -y                        2025-03-02 14:10:37                 8
+173 dnf install blackbox-terminal         2025-03-02 08:03:12                 2
+172 dnf upgrade -y                        2025-03-02 07:27:04                 2
+171 dnf upgrade -y                        2025-03-01 20:29:20               115
+170 dnf remove eza                        2025-02-27 22:33:10                 1
+169 dnf remove tldr                       2025-02-27 22:22:12                 4
+168 dnf reinstall tldr                    2025-02-27 18:59:14                 2
+167 dnf upgrade -y                        2025-02-27 12:29:45                18
+166 /usr/bin/dnf -y install /home/nachmen 2025-02-27 06:52:20                 2
+165 dnf upgrade -y                        2025-02-27 06:26:16                 4
+164 dnf remove tilix                      2025-02-26 19:26:31                 3
+163 dnf upgrade -y                        2025-02-25 07:17:56                10
+162 /usr/bin/dnf install -y gnome-shell-e 2025-02-24 09:38:47                 4
+161 dnf install /home/nachmen/megasync-Fe 2025-02-24 09:37:59                 6
+160 dnf upgrade -y                        2025-02-24 04:38:02                 2
+159 dnf install ddgr                      2025-02-23 11:40:07                 1
+158 dnf upgrade -y                        2025-02-23 05:57:54               100
+157 dnf remove wl-clipboard               2025-02-20 17:54:27                 1
+156 dnf upgrade -y                        2025-02-20 11:35:56                14
+155 dnf autoremove                        2025-02-20 05:54:25                 4
+154 dnf upgrade -y                        2025-02-20 05:50:55                44
+153 dnf upgrade -y                        2025-02-19 06:52:11                40
+152 dnf install gparted                   2025-02-18 09:01:59                 1
+151 dnf install tldr                      2025-02-17 11:29:13                 4
+150 dnf install gdu                       2025-02-17 10:39:54                 1
+149 dnf upgrade -y                        2025-02-17 06:43:46                 6
+148 dnf upgrade -y                        2025-02-16 05:55:02               296
+147 dnf install ghostty                   2025-02-12 08:17:30                 1
+146 dnf install gtk4-devel zig libadwaita 2025-02-12 07:27:24                24
+145 dnf upgrade -y                        2025-02-12 06:46:18                52
+144 dnf install python3-tkinter           2025-02-11 03:15:24                 2
+143 dnf install gtk4-devel                2025-02-09 18:31:06                45
+142 /usr/bin/dnf -y install /home/nachmen 2025-02-09 09:53:57                 2
+141 dnf reinstall virt-install-5.0.0-1.fc 2025-02-09 09:38:32                12
+140 dnf install @virtualization           2025-02-09 09:36:40                 1
+139 dnf remove helix-25.01.1-1.fc41.x86_6 2025-02-09 08:20:49                 1
+138 dnf upgrade -y                        2025-02-09 06:37:24                52
+137 dnf install lazydocker                2025-02-07 09:53:00                 1
+136 dnf install lazygit                   2025-02-07 09:50:50                 1
+135 dnf upgrade -y                        2025-02-07 08:56:21               102
+134 dnf upgrade -y                        2025-02-06 19:48:35                42
+133 dnf install keepassxc                 2025-02-04 11:38:36                 2
+132 dnf install meld                      2025-02-02 07:55:20                 1
+131 dnf install thunderbird               2025-02-01 21:30:57                 2
+130 dnf upgrade -y                        2025-02-01 21:20:42                28
+129 dnf upgrade -y                        2025-01-31 10:13:26                60
+128 dnf upgrade -y                        2025-01-30 19:44:34                34
+127 dnf install terminator                2025-01-29 20:18:27                 3
+126 dnf install sysprof                   2025-01-29 07:41:10                 5
+125 dnf remove proton-mail.x86_64         2025-01-29 07:12:57                 1
+124 dnf install helix                     2025-01-28 17:44:18                 1
+123 dnf install d-spy                     2025-01-28 08:07:28                 2
+122 dnf upgrade -y                        2025-01-28 06:54:04                26
+121 dnf install nasm                      2025-01-27 09:18:47                 1
+120 dnf install @virtualization           2025-01-26 06:30:11                10
+119 dnf install libvirt                   2025-01-26 06:05:03                 7
+118 dnf reinstall gnome-boxes             2025-01-26 05:58:05                 2
+117 dnf upgrade                           2025-01-26 05:42:09                38
+116 dnf upgrade                           2025-01-24 12:35:23               102
+115 dnf upgrade -y                        2025-01-23 07:59:22                48
+114 dnf remove virt-manager               2025-01-22 09:16:08                 8
+113 dnf install virt-manager              2025-01-22 09:14:53                 8
+112 dnf remove libvirt                    2025-01-22 09:14:16                 7
+111 dnf install libvirt                   2025-01-22 09:13:18                 7
+110 dnf remove zsh-syntax-highlighting zs 2025-01-21 20:13:28                 2
+109 dnf install zsh-syntax-highlighting z 2025-01-21 19:54:16                 2
+108 dnf install btop                      2025-01-21 19:38:13                 1
+107 dnf install zellij                    2025-01-21 19:26:26                 1
+106 dnf install vivaldi-stable-7.0.3495.2 2025-01-21 11:29:55                 1
+105 dnf upgrade                           2025-01-21 09:04:25                16
+104 dnf install gnome-boxes               2025-01-20 15:45:40               142
+103 dnf remove gnome-boxes                2025-01-20 15:33:21               142
+102 dnf upgrade                           2025-01-20 07:04:34                24
+101 dnf upgrade                           2025-01-18 20:36:42                 6
+100 dnf upgrade                           2025-01-17 09:02:45                61
+ 99 dnf upgrade -y                        2025-01-16 12:50:26                 2
+ 98 dnf upgrade -y                        2025-01-16 08:12:45                 2
+ 97 dnf install bpytop                    2025-01-15 12:37:42                 2
+ 96 dnf install lolcat                    2025-01-15 11:39:48                 1
+ 95 dnf install cool-retro-term.x86_64    2025-01-15 11:32:30                 5
+ 94 dnf upgrade -y                        2025-01-15 06:08:20                79
+ 93 dnf install brave-browser             2025-01-14 11:55:26                 2
+ 92 dnf upgrade -y                        2025-01-14 06:13:34                20
+ 91 dnf reinstall epiphany.x86_64 epiphan 2025-01-13 15:29:34                 4
+ 90 dnf remove vivaldi-stable.x86_64      2025-01-13 11:46:15                 1
+ 89 /usr/bin/dnf -y install /home/nachmen 2025-01-13 05:42:51                 2
+ 88 dnf upgrade -y                        2025-01-13 05:36:34               106
+ 87 dnf install nmap                      2025-01-12 09:38:09                 1
+ 86 dnf install wireshark                 2025-01-11 21:48:27                 9
+ 85 dnf upgrade -y                        2025-01-11 18:22:20                82
+ 84 dnf upgrade -y                        2025-01-10 11:53:45                36
+ 83 dnf upgrade -y                        2025-01-09 08:58:18                 2
+ 82 dnf upgrade -y                        2025-01-09 07:15:02                60
+ 81 dnf remove python3-pygit2 python3-sec 2025-01-08 19:23:29                 7
+ 80 dnf install python3-pygit2 python3-se 2025-01-08 19:13:10                 3
+ 79 dnf install python3-pygit2 nautilus-p 2025-01-08 19:03:23                 4
+ 78 dnf upgrade -y                        2025-01-08 07:01:02                10
+ 77 dnf remove tldr                       2025-01-07 18:05:16                 4
+ 76 dnf install tldr                      2025-01-07 18:03:39                 4
+ 75 dnf install fractal                   2025-01-07 17:39:48                 1
+ 74 dnf upgrade -y                        2025-01-07 07:30:12                16
+ 73 dnf upgrade                           2025-01-05 06:39:22                34
+ 72 dnf upgrade                           2025-01-04 18:43:37                 4
+ 71 dnf install ruby ruby-devel openssl-d 2025-01-03 12:33:42                73
+ 70 dnf upgrade -y                        2025-01-03 07:29:29                24
+ 69 dnf install bat                       2025-01-02 19:37:59                 1
+ 68 dnf install fd-find                   2025-01-02 11:58:27                 1
+ 67 dnf upgrade                           2025-01-01 09:45:41                14
+ 66 dnf remove mysql                      2024-12-31 18:36:22                 2
+ 65 dnf install mysql                     2024-12-31 17:31:42                 2
+ 64 dnf remove sequeler                   2024-12-31 16:21:53                 8
+ 63 dnf reinstall gnome-boxes             2024-12-31 12:57:59                 2
+ 62 dnf install tilix                     2024-12-31 12:32:58                 3
+ 61 dnf upgrade -y                        2024-12-31 09:46:40                 8
+ 60 dnf install seahorse                  2024-12-31 09:22:17                 1
+ 59 dnf install secrets                   2024-12-30 13:23:01                11
+ 58 dnf install wike                      2024-12-30 13:20:56                 1
+ 57 dnf install sequeler                  2024-12-30 11:45:39                 8
+ 56 dnf install sqlitebrowser             2024-12-30 11:15:30                 5
+ 55 dnf remove alacritty                  2024-12-30 11:00:14                 1
+ 54 dnf install alacritty                 2024-12-30 10:34:03                 1
+ 53 dnf upgrade                           2024-12-30 08:39:57                 2
+ 52 dnf remove firewall-config            2024-12-29 10:26:37                 1
+ 51 dnf reinstall firewalld               2024-12-29 07:36:08                 2
+ 50 dnf install firewall-config           2024-12-29 07:10:18                 1
+ 49 dnf install htop                      2024-12-29 06:19:45                 2
+ 48 dnf upgrade                           2024-12-28 19:07:56                38
+ 47 dnf install fish                      2024-12-26 21:23:43                 2
+ 46 dnf install clapper                   2024-12-25 14:31:19                 1
+ 45 dnf remove nextcloud-client.x86_64    2024-12-25 09:50:47                12
+ 44 dnf remove nextcloud                  2024-12-25 09:48:56                30
+ 43 dnf upgrade -y                        2024-12-25 08:05:47                30
+ 42 dnf upgrade -y                        2024-12-24 15:14:17                 2
+ 41 dnf remove dbeaver-ce.x86_64          2024-12-23 14:57:50                 1
+ 40 dnf upgrade                           2024-12-23 12:17:45               109
+ 39 dnf upgrade                           2024-12-21 20:52:10               102
+ 38 dnf install kiwix-desktop.x86_64      2024-12-21 18:14:08                13
+ 37 dnf install zoxide                    2024-12-20 08:25:04                 1
+ 36 dnf remove zoxide                     2024-12-20 08:22:14                 1
+ 35 dnf install nextcloud-client          2024-12-19 20:41:32                12
+ 34 dnf install nextcloud                 2024-12-19 20:29:22                30
+ 33 dnf upgrade                           2024-12-19 19:38:18                20
+ 32 dnf upgrade                           2024-12-19 11:15:26                16
+ 31 dnf install -y neovim python3-neovim  2024-12-18 07:34:33                19
+ 30 dnf install postgresql-server nodejs  2024-12-16 16:47:22                 8
+ 29 dnf upgrade -y                        2024-12-16 08:18:36                80
+ 28 dnf remove zoxide                     2024-12-15 19:24:00                 2
+ 27 dnf install duf                       2024-12-15 08:03:43                 1
+ 26 dnf upgrade -y                        2024-12-15 08:02:29                22
+ 25 dnf install zoxide                    2024-12-15 08:01:27                 2
+ 24 dnf upgrade                           2024-12-14 18:04:32                42
+ 23 dnf upgrade                           2024-12-13 11:46:20                58
+ 22 dnf upgrade                           2024-12-13 02:29:38                 2
+ 21 dnf install gh --repo gh-cli          2024-12-13 02:02:43                 1
+ 20 dnf upgrade                           2024-12-12 07:59:58                 6
+ 19 dnf install epiphany                  2024-12-12 07:47:37                 1
+ 18 dnf install gnome-backgrounds-extras. 2024-12-11 15:05:32                 1
+ 17 dnf autoremove                        2024-12-11 12:59:57                 6
+ 16 dnf upgrade                           2024-12-11 12:58:43                31
+ 15 dnf install epiphany                  2024-12-11 09:44:19                 1
+ 14 dnf install geary                     2024-12-11 07:06:24                 3
+ 13 dnf install vlc                       2024-12-10 16:55:53                39
+ 12 dnf install fastfetch                 2024-12-10 06:53:46                10
+ 11 dnf upgrade                           2024-12-10 04:43:52                10
+ 10 dnf install terraform                 2024-12-09 04:39:57                 1
+  9 dnf upgrade                           2024-12-08 15:41:35                78
+  8 dnf upgrade                           2024-12-07 16:48:59                46
+  7 dnf upgrade -y                        2024-12-05 03:42:06               184
+  6 dnf install docker-ce docker-ce-cli c 2024-12-04 12:15:43                 8
+  5 dnf install code                      2024-12-03 11:51:47                 1
+  4 dnf install gpodder                   2024-12-03 07:28:10                14
+  3 dnf install zsh                       2024-12-03 07:14:27                 1
+  2 dnf install google-chrome-stable_curr 2024-12-03 06:36:30                 2
+  1 dnf upgrade                           2024-12-03 06:23:53              1055
