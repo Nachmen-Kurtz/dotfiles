@@ -1,10 +1,9 @@
-# journalctl
+abbr jbp0123 "journalctl -b0 -p1 -p2 -p3"
+abbr jbp4567 "journalctl -b4 -p5 -p6 -p7"
 abbr jb "journalctl -b"
 abbr jf "journalctl --follow"
 abbr jg "journalctl -b --grep"
 abbr ju "journalctl --unit"
-
-# Tmux
 abbr t tmux
 abbr tc 'tmux attach'
 abbr ta 'tmux attach -t'
@@ -12,20 +11,15 @@ abbr tad 'tmux attach -d -t'
 abbr ts 'tmux new -s'
 abbr tl 'tmux ls'
 abbr tk 'tmux kill-session -t'
-abbr mux tmuxinator
-
-# Dnf
 abbr dnfi 'sudo dnf install'
 abbr dnfs 'sudo dnf search'
 abbr dnfr 'sudo dnf remove'
 abbr dnfu 'sudo dnf upgrade --refresh'
-
-# Editor
+abbr dnfuy 'sudo dnf --refresh --assumeyes upgrade'
+abbr dnfc 'sudo dnf --refresh check-update'
 abbr vim nvim
 abbr vi nvim
 abbr v nvim
-
-# Files & Directories
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
@@ -34,8 +28,6 @@ alias la 'eza --color=always --icons --all'
 alias ll 'eza --color=always --icons --all --long'
 abbr l ll
 abbr ncdu "ncdu --color dark"
-
-# systemctl
 abbr s systemctl
 abbr su "systemctl --user"
 abbr ss "command systemctl status"

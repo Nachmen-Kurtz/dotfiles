@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# Package Management History Collection Script
-# Collects history and information from multiple package managers
+set -e
 
-set -e # Exit on error
-
-# ============================================
-# COLOR DEFINITIONS
-# ============================================
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -16,11 +10,8 @@ MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
 WHITE='\033[1;37m'
 BOLD='\033[1m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# ============================================
-# HELPER FUNCTIONS
-# ============================================
 print_header() {
   echo -e "${CYAN}${BOLD}============================================${NC}"
   echo -e "${CYAN}${BOLD}$1${NC}"
@@ -47,9 +38,6 @@ print_section() {
   echo -e "${MAGENTA}${BOLD}$1${NC}"
 }
 
-# ============================================
-# OS DETECTION
-# ============================================
 detect_os() {
   if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if [ -f /etc/os-release ]; then
@@ -73,7 +61,6 @@ detect_os() {
   fi
 }
 
-# Detect available package managers
 detect_package_managers() {
   AVAILABLE_PKG_MGRS=()
 
@@ -85,9 +72,6 @@ detect_package_managers() {
   if command -v brew &>/dev/null; then AVAILABLE_PKG_MGRS+=("Homebrew"); fi
 }
 
-# ============================================
-# 1. PREPARATION - Store current date
-# ============================================
 echo ""
 CURRENT_DATE=$(date +"%Y-%m-%d_%H-%M-%S")
 
@@ -95,7 +79,6 @@ print_header "Package Management History Collection"
 echo -e "${WHITE}Script started at: ${BOLD}$CURRENT_DATE${NC}"
 echo ""
 
-# Detect OS and package managers
 detect_os
 detect_package_managers
 
@@ -141,9 +124,6 @@ for mgr in "${AVAILABLE_PKG_MGRS[@]}"; do
 done
 echo ""
 
-# ============================================
-# 2. DEFINE READABLE OUTPUT NAMES
-# ============================================
 BASE_DIR="Manage_Packages_${CURRENT_DATE}"
 FLATPAK_OUTPUT="${BASE_DIR}/Flatpak"
 DNF_OUTPUT="${BASE_DIR}/DNF"
@@ -153,10 +133,8 @@ RPM_OUTPUT="${BASE_DIR}/RPM"
 CARGO_OUTPUT="${BASE_DIR}/Cargo"
 HOMEBREW_OUTPUT="${BASE_DIR}/Homebrew"
 
-# Create base directory first
 mkdir -p "$BASE_DIR"
 
-# Create directory structure for detected package managers
 for mgr in "${AVAILABLE_PKG_MGRS[@]}"; do
   case $mgr in
   "DNF") mkdir -p "$DNF_OUTPUT" "$RPM_OUTPUT" ;;
@@ -171,11 +149,6 @@ done
 print_success "Created directory structure in: $BASE_DIR"
 echo ""
 
-# ============================================
-# 3. RUN BASIC HISTORY RETRIEVAL COMMANDS
-# ============================================
-
-# DNF (Fedora/RHEL)
 if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " DNF " ]]; then
   print_header "Collecting DNF History"
 
@@ -188,24 +161,19 @@ if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " DNF " ]]; then
   print_info "Running: dnf list --installed"
   dnf list --installed >"${DNF_OUTPUT}/dnf_list_installed.txt" 2>&1 && print_success "DNF installed packages list collected" || print_warning "dnf list installed failed"
 
-  # Copy essential DNF database files only
   if [ -d /usr/lib/sysimage/libdnf5 ]; then
     print_info "Copying essential DNF database files..."
-    # Copy only history.sqlite and system.repo
     find /usr/lib/sysimage/libdnf5 -maxdepth 2 \( -name "*.sqlite" -o -name "*.db" -o -name "*.repo" \) -exec cp {} "${DNF_OUTPUT}/" \; 2>&1 && print_success "Essential DNF database files copied" || print_warning "Some DNF files failed to copy"
   fi
 
-  # Copy essential RPM database files only
   if [ -d /usr/lib/sysimage/rpm ]; then
     print_info "Copying essential RPM database files..."
-    # Copy only the essential Berkeley DB files
     find /usr/lib/sysimage/rpm -maxdepth 1 \( -name "*.sqlite" -o -name "rpmdb.sqlite" -o -name "Packages" \) -exec cp {} "${RPM_OUTPUT}/" \; 2>&1 && print_success "Essential RPM database files copied" || print_warning "Some RPM files failed to copy"
   fi
 
   echo ""
 fi
 
-# APT (Debian/Ubuntu)
 if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " APT " ]]; then
   print_header "Collecting APT History"
 
@@ -236,7 +204,6 @@ if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " APT " ]]; then
   echo ""
 fi
 
-# Pacman (Arch Linux)
 if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " Pacman " ]]; then
   print_header "Collecting Pacman History"
 
@@ -262,7 +229,6 @@ if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " Pacman " ]]; then
   echo ""
 fi
 
-# Flatpak
 if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " Flatpak " ]]; then
   print_header "Collecting Flatpak History"
 
@@ -281,7 +247,6 @@ if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " Flatpak " ]]; then
   echo ""
 fi
 
-# Cargo
 if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " Cargo " ]]; then
   print_header "Collecting Cargo Information"
 
@@ -291,7 +256,6 @@ if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " Cargo " ]]; then
   echo ""
 fi
 
-# Homebrew (macOS)
 if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " Homebrew " ]]; then
   print_header "Collecting Homebrew Information"
 
@@ -312,10 +276,6 @@ if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " Homebrew " ]]; then
 
   echo ""
 fi
-
-# ============================================
-# COMPLETION SUMMARY
-# ============================================
 
 print_header "Collection Complete"
 echo -e "${WHITE}Date: ${BOLD}$CURRENT_DATE${NC}"
