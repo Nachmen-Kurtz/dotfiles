@@ -48,7 +48,7 @@ tab_bar_edge top
 # window_logo_position center
 # window_logo_alpha 1.0
 
-shell /usr/bin/fish
+#shell /usr/bin/fish
 editor /usr/bin/nvim
 
 # ---
@@ -58,13 +58,13 @@ editor /usr/bin/nvim
 
 # background_image ~/Pictures/wallpapers-master/0042.jpg
 # BEGIN_KITTY_THEME
-# Adwaita dark
+# Ayu
 include current-theme.conf
 # END_KITTY_THEME
 
 
 # BEGIN_KITTY_FONTS
-font_family      family="JetBrainsMono Nerd Font"
+font_family      family="FiraCode Nerd Font"
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
