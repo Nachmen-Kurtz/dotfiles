@@ -2,6 +2,7 @@
 
 # From completion.sh
 complete -C '/usr/local/bin/aws_completer' aws
+complete -C /opt/opentofu/tofu tofu
 
 # From env.sh
 . "$HOME/.cargo/env"
