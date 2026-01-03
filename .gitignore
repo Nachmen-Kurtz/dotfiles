@@ -2,3 +2,4 @@
 .gemini/
 .gemini.lock
 GEMINI.md
+fish/.config/fish/fish_variables
