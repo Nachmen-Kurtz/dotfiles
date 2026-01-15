@@ -2,7 +2,6 @@ set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx SHELL /usr/bin/fish
-set -gx MANPAGER "bat -plman"
 
 set -gx fish_vi_force_cursor 1
 set -gx fish_cursor_default block

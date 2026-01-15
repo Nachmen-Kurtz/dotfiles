@@ -1,4 +1,10 @@
-# flatpak
+#!/usr/bin/bash
+
+# TODO:
+# Defin function in the script to install require apps and optional apps.
+# 1. Require apps contain a list of core useg apps (Obsidian, Planify, etc.)
+# 2. Optional Apps contain a list of apps no core (like Damask, IPLookup, etc.)
+
 flatpak install flathub \
   app.drey.Damask \
   md.obsidian.Obsidian \
@@ -38,5 +44,6 @@ flatpak install flathub \
   fr.romainvigier.MetadataCleaner \
   io.github.tfuxu.floodit \
   com.github.tchx84.Flatseal \
+  com.logseq.Logseq \
   -y
 

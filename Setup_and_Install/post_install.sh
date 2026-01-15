@@ -1,3 +1,4 @@
 #!/usr/bin/bash
 
-usermod -aG libvirt nachmen
+usermod -aG libvirt $USER
+usermod -aG input $USER
