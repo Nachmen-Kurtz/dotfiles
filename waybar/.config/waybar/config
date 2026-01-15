@@ -1,29 +1,26 @@
 {
-  "layer": "top",
-  "position": "top",
   "height": 30,
-  "margin": "0 0 0 0",
   //
   "modules-left": [
+    "clock",
     "sway/workspaces",
     "sway/mode",
     "sway/scratchpad",
+    "tray",
     "mpd"
   ],
   //
   "modules-center": [
-    "clock"
+    "sway/language",
+    "keyboard-state"
   ],
   //
   "modules-right": [
-    "tray",
-    "keyboard-state",
-    "sway/language",
+    "network",
     "pulseaudio",
     "backlight",
     "power-profiles-daemon",
-    "battery",
-    "custom/power"
+    "battery"
   ],
   //
   "keyboard-state": {
@@ -145,5 +142,14 @@
       ]
     },
     "on-click": "pavucontrol"
+  },
+  //
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
   }
 }
