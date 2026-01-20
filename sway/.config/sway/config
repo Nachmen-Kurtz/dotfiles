@@ -1,99 +1,132 @@
 include /etc/sway/config.d/*
 include catppuccin-mocha
 
-exec wl-paste -t text --watch clipman store --no-persist
+exec wl-paste --watch cliphist store
+exec wl-paste --primary --watch cliphist store
 exec wlsunset -l 32.08 -L 34.78 -T 5700 -t 3500
+exec vivaldi-stable
+exec gpodder
+exec flatpak run io.github.alainm23.planify
+exec flatpak run com.vixalien.sticky
+exec kitty
+exec emacsclient -c -a "emacs"
+exec keepassxc
+exec flatpak run com.belmoussaoui.Authenticator
+exec alacritty
+exec evolution
+
+focus_follows_mouse yes
+
+gaps inner 10
 
 exec swayidle -w \
   timeout 300 'swaylock -f -c 000000' \
   timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
   before-sleep 'swaylock -f -c 000000'
 
-set $mod Mod4
-set $left h
-set $down j
-set $up k
-set $right l
-set $term kitty
-set $menu wofi --show drun
-set $wallpapers_path $HOME/Pictures/wallpapers-master
+set $mod        Mod4
+set $left       h
+set $down       j
+set $up         k
+set $right      l
+set $term       kitty
+set $menu       fuzzel --prompt '$ ' --show-action
+set $wallpapers $HOME/Pictures/wallpapers-master
 
 input type:touchpad {
-  dwt enabled
-  tap enabled
-  natural_scroll enabled
-  middle_emulation enabled
+  dwt               enabled
+  tap               enabled
+  natural_scroll    enabled
+  middle_emulation  enabled
 }
 
 input type:keyboard {
-  xkb_layout us,il
-  xkb_variant ,
-  xkb_options grp:alt_shift_toggle
+  xkb_layout    us,il
+  xkb_variant   ,
+  xkb_options   grp:alt_shift_toggle
+  xkb_capslock  disabled
+  xkb_numlock   enabled
 }
 
-output * bg $(find $wallpapers_path -type f | shuf -n 1) fill
-output eDP-1 scale 1.25
-output eDP-1 position 0 0
-output DP-6 position 1536 0
-output DP-5 position 3456 0
+output *  bg  $(find $wallpapers -type f | shuf -n 1) fill
 
-workspace 1 output eDP-1
-workspace 2 output DP-6
-workspace 3 output DP-5
+output eDP-1  scale 1.25
+
+output eDP-1  position  0     0
+output DP-6   position  1536  0
+output DP-5   position  3456  0
+
+workspace 1   output eDP-1
+workspace 2   output DP-6
+workspace 4   output DP-6
+workspace 3   output DP-5
+workspace 5   output DP-5
+workspace 6   output DP-5
+workspace 7   output DP-5
+workspace 8   output DP-5
+workspace 9   output DP-5
+workspace 10  output DP-5
+
+assign [app_id="vivaldi-stable"]              workspace 2
+assign [app_id="com.vixalien.sticky"]         workspace 4
+assign [app_id="gpodder"]                     workspace 4
+assign [app_id="io.github.alainm23.planify"]  workspace 4
+assign [app_id="org.gnome.Evolution"]         workspace 3
+assign [app_id="kitty"]                       workspace 5
+assign [app_id="emacs"]                       workspace 6
+
+for_window [app_id="org.keepassxc.KeePassXC"]         move scratchpad
+for_window [app_id="com.belmoussaoui.Authenticator"]  move scratchpad
+for_window [app_id="Alacritty"]                       move scratchpad
 
 floating_modifier $mod normal
 
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-bindsym $mod+Return exec $term
-bindsym $mod+d exec $menu
-bindsym $mod+b splith
-bindsym $mod+v splitv
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+f fullscreen
-bindsym $mod+a focus parent
-bindsym $mod+n exec swaync-client -t
-bindsym $mod+minus scratchpad show
-bindsym $mod+r mode "resize"
+bindsym $mod+$left     focus      left
+bindsym $mod+$down     focus      down
+bindsym $mod+$up       focus      up
+bindsym $mod+$right    focus      right
+bindsym $mod+Left      focus      left
+bindsym $mod+Down      focus      down
+bindsym $mod+Up        focus      up
+bindsym $mod+Right     focus      right
+bindsym $mod+Return    exec       $term
+bindsym $mod+d         exec       $menu
+bindsym $mod+b         splith
+bindsym $mod+v         splitv
+bindsym $mod+s         layout     stacking
+bindsym $mod+w         layout     tabbed
+bindsym $mod+e         layout     toggle split
+bindsym $mod+f         fullscreen
+bindsym $mod+a         focus      parent
+bindsym $mod+minus     scratchpad show
+bindsym $mod+r         mode       "resize"
+bindsym $mod+space     focus      mode_toggle
 
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-bindsym $mod+Shift+q kill
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+Shift+n workspace next
-bindsym $mod+Shift+p workspace prev
-
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+$left  move      left
+bindsym $mod+Shift+$down  move      down
+bindsym $mod+Shift+$up    move      up
+bindsym $mod+Shift+$right move      right
+bindsym $mod+Shift+c      reload
+bindsym $mod+Shift+e      exec      swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+Left   move      left
+bindsym $mod+Shift+Down   move      down
+bindsym $mod+Shift+Up     move      up
+bindsym $mod+Shift+Right  move      right
+bindsym $mod+Shift+q      kill
+bindsym $mod+Shift+space  floating  toggle
+bindsym $mod+Shift+minus  move      scratchpad
+bindsym $mod+Shift+n      workspace next
+bindsym $mod+Shift+p      workspace prev
 
 bindsym $mod+Alt+d exec gsettings set org.gnome.desktop.interface color-scheme \'prefer-dark\'
 bindsym $mod+Alt+l exec gsettings set org.gnome.desktop.interface color-scheme \'prefer-light\'
-bindsym $mod+Alt+p exec grim ~/Pictures/Screenshots/screenshot-$(date +%F_%T).png && notify-send "Screenshot $(date +%F_%T).png Saved"
-bindsym $mod+Alt+s exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot-$(date +%F_%T).png && notify-send "Screenshot $(date +%F_%T).png Saved"
-bindsym $mod+Alt+v exec vivaldi
+bindsym $mod+Alt+p exec grim - | tee ~/Pictures/Screenshots/screenshot-$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Screenshot Saved & Copied"
+bindsym $mod+Alt+s exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot-$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Area Saved & Copied"
 bindsym $mod+Alt+k exec swaylock
 bindsym $mod+Alt+h exec systemctl suspend
 bindsym $mod+Alt+o exec systemctl poweroff
 bindsym $mod+Alt+r exec systemctl reboot
 bindsym $mod+Alt+n exec notify-send "hello"
-bindsym $mod+Alt+w exec rofi -show window
-bindsym $mod+Alt+c exec rofi -show run
 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -117,23 +150,23 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked XF86AudioMute          exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume   exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume   exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute       exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+bindsym --locked XF86MonBrightnessDown  exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp    exec brightnessctl set 5%+
 
 mode "resize" {
-  bindsym $left resize shrink width 10px
-  bindsym $down resize grow height 10px
-  bindsym $up resize shrink height 10px
-  bindsym $right resize grow width 10px
+  bindsym $left   resize shrink width   10px
+  bindsym $down   resize grow   height  10px
+  bindsym $up     resize shrink height  10px
+  bindsym $right  resize grow   width   10px
 
-  bindsym Left resize shrink width 10px
-  bindsym Down resize grow height 10px
-  bindsym Up resize shrink height 10px
-  bindsym Right resize grow width 10px
+  bindsym Left  resize shrink width   10px
+  bindsym Down  resize grow   height  10px
+  bindsym Up    resize shrink height  10px
+  bindsym Right resize grow   width   10px
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -141,7 +174,7 @@ mode "resize" {
 
 bar {
   swaybar_command waybar
-  mode invisible
+  mode            invisible
 }
 
 client.focused           $lavender $base $text  $rosewater $lavender
