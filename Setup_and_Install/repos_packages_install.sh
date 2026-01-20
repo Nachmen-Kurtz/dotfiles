@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 pacman -Syu --noconfirm --needed \
+  keepassxc \
   exiftool \
   less \
   vlc \
