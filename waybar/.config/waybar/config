@@ -55,10 +55,6 @@
     "consume-icons": {
       "on": " "
     },
-    "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
-      "on": " "
-    },
     "repeat-icons": {
       "on": " "
     },
@@ -68,7 +64,10 @@
     "state-icons": {
       "paused": "",
       "playing": ""
-    }
+    },
+    "on-click": "mpc toggle",
+    "on-click-right": "mpc next",
+    "on-click-middle": "mpc prev"
   },
   //
   "tray": {
