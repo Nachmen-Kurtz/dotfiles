@@ -1,31 +1,71 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
+
 (global-display-line-numbers-mode 1)
-(savehist-mode 1)
 (column-number-mode 1)
 (display-time-mode 1)
 (show-paren-mode 1)
+(savehist-mode 1)
 
 (setq-default truncate-lines t)
+
 (setq vc-make-backup-files t)
 (setq backup-by-copying t)
 (setq delete-old-versions t)
 (setq kept-new-versions 6)
 (setq kept-old-versions 2)
 (setq version-control t)
-(setq catppuccin-flavor 'mocha)
 
 (require 'package)
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 (package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+(use-package catppuccin-theme
+  :init
+  (setq catppuccin-flavor 'mocha)
+  :config
+  (load-theme 'catppuccin t))
+
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 0))
+
+(use-package dashboard
+  :init
+  (setq initial-buffer-choice 'dashboard-open)
+  :config
+  (dashboard-setup-startup-hook))
+
+(global-set-key (kbd "C-c l")    #'org-store-link)
+(global-set-key (kbd "C-c a")    #'org-agenda)
+(global-set-key (kbd "C-c c")    #'org-capture)
+(global-set-key (kbd "C-c C-u")  #'beginning-of-buffer)
+(global-set-key (kbd "C-c C-d")  #'end-of-buffer)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(## catppuccin-theme)))
+ '(custom-safe-themes
+   '("f9d423fcd4581f368b08c720f04d206ee80b37bfb314fa37e279f554b6f415e9"
+     default))
+ '(package-selected-packages '(catppuccin-theme dashboard evil use-package)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,4 +73,19 @@
  ;; If there is more than one, they won't work right.
  )
 
-(load-theme 'catppuccin t)
+
+
+
+(setq user-mail-address "shmnzch@gmail.com"
+      user-full-name "N.K.")
+
+(setq gnus-select-method
+      '(nnimap "mail"
+        (nnimap-address "imap.gmail.com")
+        (nnimap-server-port 993)
+        (nnimap-stream ssl)))
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      smtpmail-stream-type 'starttls)
