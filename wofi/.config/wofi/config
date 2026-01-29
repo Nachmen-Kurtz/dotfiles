@@ -1,11 +1,23 @@
-allow_images=true
+# allow_images=true
 # image_size=64
 # width=600
 # height=200
-insensitive=true
-mode=drun,run
-columns=3
-padding:5
-lines=6
+# insensitive=true
+# no_actions=true
+# gtk_dark=true
+# width=300
+
+no_actions=true
 normal_window=true
+show=drun
+term=kitty
+show_all=true
+gtk_dark=true
+location=center
+insensitive=true
+allow_markup=true
+allow_images=true
+line_wrap=word
+lines=6
+width=25%
 hide_scroll=true

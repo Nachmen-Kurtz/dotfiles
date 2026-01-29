@@ -53,6 +53,7 @@ button:hover {
     padding: 0 5px;
     background-color: transparent;
     color: #ffffff;
+    border-radius: 8px;
 }
 
 #workspaces button:hover {
@@ -277,6 +278,7 @@ label:focus {
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;
+    border-radius: 8px;
 }
 
 #keyboard-state {
@@ -285,6 +287,7 @@ label:focus {
     padding: 0 0px;
     margin: 0 5px;
     min-width: 16px;
+    border-radius: 8px;
 }
 
 #keyboard-state > label {
