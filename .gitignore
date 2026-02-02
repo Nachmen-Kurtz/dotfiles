@@ -2,6 +2,13 @@
 *.swp
 *.swo
 *.bak
+**/*.bak
+*.old
+*.tmp
+*.temp
+*.backup
+*.orig
+*.rej
 #*#
 .\#*
 .DS_Store
@@ -39,3 +46,4 @@ secrets/
 **/*.p12
 **/*.crt
 
+System/

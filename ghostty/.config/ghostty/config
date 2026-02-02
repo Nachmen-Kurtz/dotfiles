@@ -61,21 +61,21 @@ font-size = 13
 
 mouse-hide-while-typing = true
 
-background-opacity = .9
-
+background-opacity = 0.9
 desktop-notifications = true
 
 # gtk-tabs-location = top
-# gtk-titlebar-style=tabs
+gtk-titlebar-style = tabs
 # gtk-titlebar = false
-# gtk-wide-tabs = false
+gtk-wide-tabs = false
 # gtk-adwaita = true
-gtk-titlebar-hide-when-maximized = true
+# gtk-titlebar-hide-when-maximized = true
+
 
 window-theme = ghostty
 window-padding-x = 15
 window-padding-y = 15
-# window-show-tab-bar = always
+window-show-tab-bar = always
 window-height = 30
 window-width = 80
 # window-subtitle = working-directory
@@ -108,7 +108,5 @@ focus-follows-mouse = true
 
 adw-toolbar-style = flat
 adw-toolbar-style = raised-border
-
-command = /usr/bin/fish
 
 cursor-style = bar

@@ -1,0 +1,14 @@
+#outer-box {
+    padding: 10px;
+}
+
+#input {
+    margin-bottom: 10px;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+#entry {
+    padding: 6px;
+    border-radius: 6px;
+}
