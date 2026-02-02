@@ -28,7 +28,7 @@ set $up         k
 set $right      l
 set $term       alacritty
 set $menu       wofi
-# set $wallpapers $HOME/Pictures/wallpapers-master
+set $wallpapers $HOME/Pictures/wallpapers-master
 
 input type:touchpad {
   dwt               enabled
@@ -45,8 +45,7 @@ input type:keyboard {
   xkb_numlock   enabled
 }
 
-output *  bg  ~/Pictures/Wallpapers/Linux/fjtPeeU-wallpaper-for-linux.jpg fill
-# output *  bg  $(find $wallpapers -type f | shuf -n 1) fill
+output *  bg  $(find $wallpapers -type f | shuf -n 1) fill
 
 output eDP-1  scale 1.25
 
