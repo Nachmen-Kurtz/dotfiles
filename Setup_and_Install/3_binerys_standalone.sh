@@ -9,8 +9,11 @@ chmod +x install-opentofu.sh
 ./install-opentofu.sh --install-method standalone
 rm -f install-opentofu.sh
 
-# Rust
-# Golang
 # yt-dlp
+
 # tldr
+
 # awscli
+
+# Calibre
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
