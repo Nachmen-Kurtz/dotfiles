@@ -1,0 +1,57 @@
+* Feeds :elfeed:
+
+** Applications :applications:
+*** [[https://keepassxc.org/blog/index.xml][KeePassXC Blog on KeePassXC Password Manager]]
+*** [[https://www.reddit.com/r/i3wm.rss][i3 Window Manager]]
+*** [[https://www.reddit.com/r/dotfiles.rss][dotfiles: share the dots]]
+*** [[https://fishshell.com/blog/feed.xml][Fish-shell Blog]]
+*** GNU Emacs :emacs:
+**** [[https://emacsconf.org/index.rss][EmacsConf]]
+**** [[https://www.reddit.com/r/emacs.rss][M-x emacs-reddit]]
+**** [[https://www.emacswiki.org/emacs?action=rss][EmacsWiki: SiteMap]]
+**** [[https://sachachua.com/blog/feed/][Sacha Chua]]
+**** [[https://lucidmanager.org/tags/emacs/index.xml][Emacs on Lucid Manager]]
+
+** DevOps :devops:
+*** English :en:
+**** [[https://thenewstack.io/blog/feed/][The New Stack | DevOps, Open Source, and Cloud Native News]]
+**** [[https://spacelift.io/rss][Managing Infrastructure at Scale | Spacelift Blog]]
+**** [[https://opentofu.org/blog/rss.xml][OpenTofu Blog]]
+**** [[https://blog.cloudflare.com/rss][The Cloudflare Blog]]
+**** [[https://aws.amazon.com/blogs/aws/feed/][AWS News Blog]]
+*** Hebrew :he:
+**** [[https://devops.nachmenk.com/blog/rss.xml][DevOps Docs & Blog Blog]]
+
+** Linux and UNIX :linux:unix:
+*** English :en:
+**** [[https://itsfoss.com/rss/][It's FOSS News]]
+**** [[https://www.linuxjournal.com/node/feed][Linux Journal]]
+**** [[https://distrowatch.com/news/dw.xml][DistroWatch.com: News]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCXlH5v1PkEhjzLFTUTm_U7g][X.Org Foundation]]
+**** [[https://freebsdfoundation.org/feed/][FreeBSD Foundation]]
+**** [[https://www.omgubuntu.co.uk/feed][OMG! Ubuntu]]
+**** [[https://linuxiac.com/feed/][Linuxiac]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCEU9D6KIShdLeTRyH3IdSvw][It's FOSS - Linux Portal]]
+**** [[https://ostechnix.com/feed/][OSTechNix]]
+**** [[https://www.linuxfoundation.org/blog/rss.xml][Linux Foundation - Blog]]
+**** [[https://www.tecmint.com/feed/][Tecmint: Linux Howtos, Tutorials & Guides]]
+**** [[https://voidlinux.org/atom.xml][Void news]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]
+*** Hebrew :he:
+**** [[https://nachmenk.com/feed.xml][Learn Linux]]
+
+** General Tech :tech:
+*** English :en:
+**** [[https://terminaltrove.com/blog.xml][Terminal Trove]]
+**** [[https://static.fsf.org/fsforg/rss/news.xml][FSF News]]
+**** [[https://krebsonsecurity.com/feed/][Krebs on Security]]
+*** Hebrew :he:
+**** [[https://www.geektime.co.il/feed/][Geektime]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwywdccdYsNS_Cs6tS0U_dg][TrashTech - טראשטק]]
+**** [[https://pinatkafe.com/feed/][פינת הקפה]]
+**** [[https://www.retro.unarmedsecurity.net/blog-feed.xml][Unarmed Retro]]
+**** [[https://cybercyber.co.il/?feed=rss2][סייברסייבר (CyberCyber)]]
+**** [[https://internet-israel.com/feed/][אינטרנט ישראל]]
+
+** News :news:he:
+*** [[https://www.jdn.co.il/feed/][JDN]]

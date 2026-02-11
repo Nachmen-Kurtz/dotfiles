@@ -1,33 +1,5 @@
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
-(tool-bar-mode 0)
-(global-display-line-numbers-mode 1)
-(column-number-mode 1)
-(display-time-mode 1)
-(show-paren-mode 1)
-(savehist-mode 1)
-(which-key-mode 1)
-(save-place-mode 1)
-
-(setq-default truncate-lines t)
-
-(setq vc-make-backup-files t)
-(setq backup-by-copying t)
-(setq delete-old-versions t)
-(setq kept-new-versions 6)
-(setq kept-old-versions 2)
-(setq version-control t)
-(setq backup-by-copying t
-      backup-directory-alist '(("." . "~/.emacs.d/backups"))
-      delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)
-
 (require 'package)
-
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -36,7 +8,77 @@
   (package-install 'use-package))
 
 (require 'use-package)
-(setq use-package-always-ensure t)
+
+(setq-default truncate-lines t)
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory)
+      vc-make-backup-files t
+      backup-by-copying t
+      backup-directory-alist '(("." . "~/.config/emacs/backups"))
+      delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t
+      vc-follow-symlinks t
+      ad-redefinition-action 'accept
+      native-comp-async-report-warnings-errors nil
+      initial-buffer-choice 'dashboard-open
+      use-package-always-ensure t
+      use-dialog-box nil
+      org-link-descriptive nil)
+
+(unless (file-directory-p "~/.config/emacs/backups")
+  (make-directory "~/.config/emacs/backups" t))
+
+(column-number-mode 1)
+(display-time-mode 1)
+(display-battery-mode)
+(savehist-mode 1)
+(pixel-scroll-mode 1)
+(recentf-mode 1)
+(save-place-mode 1)
+
+(set-face-attribute 'default nil
+		    :family "JetBrainsMono Nerd Font"
+                    :height 110)
+
+(set-fontset-font t 'hebrew
+		  (font-spec :family "Noto Sans Hebrew"))
+
+(add-hook 'prog-mode-hook              #'display-line-numbers-mode)
+(add-hook 'before-save-hook            #'delete-trailing-whitespace)
+(add-hook 'org-mode-hook               #'visual-line-mode)
+
+(global-set-key (kbd "M-<up>")    #'beginning-of-buffer)
+(global-set-key (kbd "M-<down>")  #'end-of-buffer)
+(global-set-key (kbd "C-c C-k")   #'clipboard-kill-region)
+(global-set-key (kbd "C-c C-y")   #'clipboard-yank)
+(global-set-key (kbd "M-]")       #'forward-sexp)
+(global-set-key (kbd "M-[")       #'backward-sexp)
+
+(keymap-set minibuffer-local-map "C-p" #'minibuffer-previous-completion)
+(keymap-set minibuffer-local-map "C-n" #'minibuffer-next-completion)
+
+(use-package which-key
+  :config
+  (which-key-mode))
+
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer)
+  :config
+  (setq ibuffer-saved-filter-groups
+        '(("Default"
+	   ("Info" (mode . Info-mode))
+           ("Org" (mode . org-mode))
+           ("Web" (or (mode . eww-mode)
+                      (mode . browse-url-mode)))
+           ("Programming" (or (mode . emacs-lisp-mode)
+                              (mode . python-mode)
+                              (mode . c-mode)))
+           ("Emacs" (name . "^\\*.*\\*$")))))
+  (add-hook 'ibuffer-mode-hook
+            (lambda ()
+              (ibuffer-switch-to-saved-filter-groups "Default"))))
 
 (use-package catppuccin-theme
   :init
@@ -46,44 +88,140 @@
 
 (use-package dashboard
   :init
-  (setq initial-buffer-choice 'dashboard-open)
+  (setq dashboard-banner-logo-title "🚀 Welcome to Nachmen's GNU Emacs 🎨"
+        dashboard-startup-banner 'logo
+        dashboard-center-content t
+        dashboard-vertically-center-content t
+        dashboard-show-shortcuts t
+        dashboard-icon-type 'nerd-icons
+        dashboard-set-heading-icons t
+        dashboard-set-file-icons t
+        dashboard-display-icons-p t
+        dashboard-navigation-cycle t
+        dashboard-items '((recents . 10)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5))
+        dashboard-projects-backend 'project-el
+        dashboard-set-init-info t
+        dashboard-footer-messages '("🌟 Code with passion, debug with patience!"
+                                    "💡 Every function is an adventure!"
+                                    "🚀 Today you'll write something amazing!"
+                                    "✨ Your best code is yet to come!"
+                                    "🎯 Focus on progress, not perfection!"
+                                    "💪 Building the future, one line at a time!"
+                                    "🌈 Make it work, make it right, make it beautiful!"
+                                    "🔥 You've got this!"
+                                    "⚡ Coffee + Code = Magic ☕"
+                                    "🎨 Programming is art. You're the artist!"
+                                    "🧠 Think different. Code different."
+                                    "🏆 Today's bugs are tomorrow's features!"
+                                    "🌸 Code happy, be happy!"))
   :config
-  (dashboard-setup-startup-hook))
+  (dashboard-setup-startup-hook)
+  (global-set-key (kbd "C-c d") 'dashboard-refresh-buffer))
 
-(global-set-key (kbd "C-c f")  #'beginning-of-buffer)
-(global-set-key (kbd "C-c l")  #'end-of-buffer)
+(use-package magit
+  :bind (("C-x g" . magit-status)))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("f9d423fcd4581f368b08c720f04d206ee80b37bfb314fa37e279f554b6f415e9"
-     default))
- '(package-selected-packages '(catppuccin-theme dashboard magit use-package)))
+(use-package visual-fill-column)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(use-package pacmacs)
 
+(use-package 2048-game)
 
+(use-package emms
+  :config
+  (emms-all)
+  (setq emms-player-list '(emms-player-vlc)
+	emms-info-functions '(emms-info-native)))
 
+(use-package google-translate
+  :defer t
+  :init
+  (setq google-translate-default-source-language "En"
+        google-translate-default-target-language "He"
+        google-translate-output-destination 'echo-area
+        google-translate-backend-method 'curl)
+  :bind ("C-c t" . google-translate-at-point)
+  :config
+  (require 'google-translate-default-ui))
 
-;; (setq user-mail-address "shmnzch@gmail.com"
-;;       user-full-name "N.K.")
+(use-package nerd-icons
+  :custom
+  (nerd-icons-font-family "Symbols Nerd Font Mono"))
 
-;; (setq gnus-select-method
-;;       '(nnimap "mail"
-;;         (nnimap-address "imap.gmail.com")
-;;         (nnimap-server-port 993)
-;;         (nnimap-stream ssl)))
+(use-package elfeed
+  :bind ("C-x w" . elfeed)
+  :config
+  (setq-default elfeed-search-filter "@1-day-ago +unread +he")
+  (setq elfeed-use-curl t)
+  (add-hook 'kill-emacs-hook #'elfeed-db-compact)
+  (add-hook 'elfeed-show-mode-hook       #'visual-line-mode)
+  (add-hook 'elfeed-search-mode-hook     #'visual-line-mode)
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :feed-url "youtube\\.com"
+                                :add 'video))
+  (run-at-time nil (* 8 60 60) #'elfeed-update))
 
-;; (setq message-send-mail-function 'smtpmail-send-it
-;;       smtpmail-smtp-server "smtp.gmail.com"
-;;       smtpmail-smtp-service 587
-;;       smtpmail-stream-type 'starttls)
-q
+(use-package elfeed-org
+  :ensure t
+  :after elfeed
+  :config
+  (elfeed-org)
+  (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
+
+(use-package ligature
+  :config
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
+
+  (global-ligature-mode t))
+
+(defun my-layout-center-buffer (&optional width)
+  (setq visual-fill-column-width (or width 100))
+  (setq visual-fill-column-center-text t)
+  (visual-fill-column-mode 1)
+  (visual-line-mode 1))
+
+(add-hook 'eww-mode-hook
+	  (lambda ()
+	    (my-layout-center-buffer 110)))
+
+(add-hook 'newsticker-treeview-item-mode-hook
+	  (lambda ()
+	    (my-layout-center-buffer 90)))
+
+(add-hook 'newsticker-treeview-list-mode-hook
+	  (lambda ()
+	    (my-layout-center-buffer 90)))
+
+(add-hook 'elfeed-show-mode-hook
+	  (lambda ()
+	    (my-layout-center-buffer 90)))
+
+(add-hook 'elfeed-search-mode-hook
+	  (lambda ()
+	    (my-layout-center-buffer 120)))
+
+(add-hook 'Info-mode-hook
+	  (lambda ()
+	    (my-layout-center-buffer 110)))
+
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (my-layout-center-buffer 120)))
+
+(when (file-exists-p custom-file)
+  (load custom-file))
