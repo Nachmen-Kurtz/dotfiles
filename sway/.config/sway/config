@@ -8,7 +8,7 @@ exec nm-applet
 exec gpodder
 exec flatpak run io.github.alainm23.planify
 exec flatpak run com.vixalien.sticky
-exec alacritty
+exec kitty
 exec emacsclient -c -a "emacs"
 exec nautilus
 
@@ -26,9 +26,8 @@ set $left       h
 set $down       j
 set $up         k
 set $right      l
-set $term       alacritty
+set $term       kitty
 set $menu       wofi
-# set $wallpapers $HOME/Pictures/wallpapers-master
 
 input type:touchpad {
   dwt               enabled
@@ -45,8 +44,7 @@ input type:keyboard {
   xkb_numlock   enabled
 }
 
-output *  bg  ~/Pictures/Wallpapers/Linux/fjtPeeU-wallpaper-for-linux.jpg fill
-# output *  bg  $(find $wallpapers -type f | shuf -n 1) fill
+output *  bg  ~/Pictures/Wallpapers/Linux/wp9031408-void-linux-wallpapers.png fill
 
 output eDP-1  scale 1.25
 
