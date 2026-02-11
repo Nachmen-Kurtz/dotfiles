@@ -1,5 +1,5 @@
-[general]
-import = ["~/.config/alacritty/catppuccin-mocha.toml"]
+# [general]
+# import = ["~/.config/alacritty/catppuccin-mocha.toml"]
 
 [font]
 # normal = { family = "AdwaitaMono Nerd Font", style = "Regular" }
@@ -8,6 +8,7 @@ import = ["~/.config/alacritty/catppuccin-mocha.toml"]
 # normal = { family = "MesloLGS NF", style = "Regular" }
 normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 # normal = { family = "CodeNewRoman Nerd Font", style = "Regular" }
+# normal = { family = "Terminess Nerd Font", style = "Regular" }
 size = 13.0
 
 [cursor]
