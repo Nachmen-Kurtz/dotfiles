@@ -34,7 +34,6 @@
 (display-time-mode 1)
 (display-battery-mode)
 (savehist-mode 1)
-(pixel-scroll-mode 1)
 (recentf-mode 1)
 (save-place-mode 1)
 
@@ -49,21 +48,33 @@
 (add-hook 'before-save-hook            #'delete-trailing-whitespace)
 (add-hook 'org-mode-hook               #'visual-line-mode)
 
-(global-set-key (kbd "M-<up>")    #'beginning-of-buffer)
-(global-set-key (kbd "M-<down>")  #'end-of-buffer)
-(global-set-key (kbd "C-c C-k")   #'clipboard-kill-region)
-(global-set-key (kbd "C-c C-y")   #'clipboard-yank)
-(global-set-key (kbd "M-]")       #'forward-sexp)
-(global-set-key (kbd "M-[")       #'backward-sexp)
+(global-set-key (kbd "M-<up>")      #'beginning-of-buffer)
+(global-set-key (kbd "M-<down>")    #'end-of-buffer)
+(global-set-key (kbd "C-c C-k")     #'clipboard-kill-region)
+(global-set-key (kbd "C-c C-y")     #'clipboard-yank)
+(global-set-key (kbd "M-]")         #'forward-sexp)
+(global-set-key (kbd "M-[")         #'backward-sexp)
+(global-set-key (kbd "C-c C-d")     #'my/insert-date-time)
+(global-set-key (kbd "C-c C-D")     #'my/insert-iso-datetime)
 
 (keymap-set minibuffer-local-map "C-p" #'minibuffer-previous-completion)
 (keymap-set minibuffer-local-map "C-n" #'minibuffer-next-completion)
 
+(use-package completion-preview
+  :ensure nil
+  :hook (prog-mode . completion-preview-mode)
+  :bind
+  ( :map completion-preview-active-mode-map
+    ("M-n" . completion-preview-next-candidate)
+    ("M-p" . completion-preview-prev-candidate)))
+
 (use-package which-key
+  :ensure nil
   :config
   (which-key-mode))
 
 (use-package ibuffer
+  :ensure nil
   :bind ("C-x C-b" . ibuffer)
   :config
   (setq ibuffer-saved-filter-groups
@@ -89,21 +100,21 @@
 (use-package dashboard
   :init
   (setq dashboard-banner-logo-title "🚀 Welcome to Nachmen's GNU Emacs 🎨"
-        dashboard-startup-banner 'logo
-        dashboard-center-content t
-        dashboard-vertically-center-content t
-        dashboard-show-shortcuts t
-        dashboard-icon-type 'nerd-icons
-        dashboard-set-heading-icons t
-        dashboard-set-file-icons t
-        dashboard-display-icons-p t
-        dashboard-navigation-cycle t
+        dashboard-startup-banner             'logo
+        dashboard-center-content             t
+        dashboard-vertically-center-content  t
+        dashboard-show-shortcuts             t
+        dashboard-icon-type                  'nerd-icons
+        dashboard-set-heading-icons          t
+        dashboard-set-file-icons             t
+        dashboard-display-icons-p            t
+        dashboard-navigation-cycle           t
+	dashboard-projects-backend           'project-el
+        dashboard-set-init-info              t
         dashboard-items '((recents . 10)
                           (bookmarks . 5)
                           (projects . 5)
                           (agenda . 5))
-        dashboard-projects-backend 'project-el
-        dashboard-set-init-info t
         dashboard-footer-messages '("🌟 Code with passion, debug with patience!"
                                     "💡 Every function is an adventure!"
                                     "🚀 Today you'll write something amazing!"
@@ -133,7 +144,7 @@
 (use-package emms
   :config
   (emms-all)
-  (setq emms-player-list '(emms-player-vlc)
+  (setq emms-player-list    '(emms-player-vlc)
 	emms-info-functions '(emms-info-native)))
 
 (use-package google-translate
@@ -151,12 +162,18 @@
   :custom
   (nerd-icons-font-family "Symbols Nerd Font Mono"))
 
+(use-package diff-hl
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook    'turn-on-diff-hl-mode)
+  (add-hook 'vc-dir-mode-hook  'turn-on-diff-hl-mode))
+
 (use-package elfeed
   :bind ("C-x w" . elfeed)
   :config
   (setq-default elfeed-search-filter "@1-day-ago +unread +he")
   (setq elfeed-use-curl t)
-  (add-hook 'kill-emacs-hook #'elfeed-db-compact)
+  (add-hook 'kill-emacs-hook             #'elfeed-db-compact)
   (add-hook 'elfeed-show-mode-hook       #'visual-line-mode)
   (add-hook 'elfeed-search-mode-hook     #'visual-line-mode)
   (add-hook 'elfeed-new-entry-hook
@@ -165,7 +182,6 @@
   (run-at-time nil (* 8 60 60) #'elfeed-update))
 
 (use-package elfeed-org
-  :ensure t
   :after elfeed
   :config
   (elfeed-org)
@@ -222,6 +238,14 @@
 (add-hook 'org-mode-hook
 	  (lambda ()
 	    (my-layout-center-buffer 120)))
+
+(defun my/insert-date-time ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %a %H:%M")))
+
+(defun my/insert-iso-datetime ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%dT%H:%M:%S%z")))
 
 (when (file-exists-p custom-file)
   (load custom-file))
