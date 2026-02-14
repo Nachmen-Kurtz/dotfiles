@@ -174,4 +174,7 @@ $INSTALL_CMD \
   cmatrix \
   genact \
   lolcat \
-  cool-retro-term
+  cool-retro-term \
+  cbonsai \
+  lolcat \
+  grex
