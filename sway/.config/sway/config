@@ -44,7 +44,7 @@ input type:keyboard {
   xkb_numlock   enabled
 }
 
-output *  bg  ~/Pictures/Wallpapers/Linux/wp9031408-void-linux-wallpapers.png fill
+output *  bg  ~/Pictures/Wallpapers/Linux/wp9031503-void-linux-wallpapers.png fill
 
 output eDP-1  scale 1.25
 
