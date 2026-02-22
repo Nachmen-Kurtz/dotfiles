@@ -2,7 +2,8 @@
   "height": 30,
   //
   "modules-left": [
-    "clock",
+    "clock#date",
+    "clock#time",
     "sway/workspaces",
     "sway/mode",
     "sway/scratchpad",
@@ -75,9 +76,13 @@
     "spacing": 10
   },
   //
-  "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+  "clock#date": {
+    "format": "{:%Y-%m-%d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  //
+  "clock#time": {
+    "format": "{:%H:%M}"
   },
   //
   "backlight": {

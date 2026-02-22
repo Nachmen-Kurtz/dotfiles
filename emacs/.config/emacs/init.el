@@ -25,17 +25,25 @@
       initial-buffer-choice 'dashboard-open
       use-package-always-ensure t
       use-dialog-box nil
+      use-package-expand-minimally t
+      global-auto-revert-non-file-buffers t
+      auto-save-file-name-transforms `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t))
       org-link-descriptive nil)
 
 (unless (file-directory-p "~/.config/emacs/backups")
   (make-directory "~/.config/emacs/backups" t))
 
+(unless (file-directory-p "~/.config/emacs/auto-save")
+  (make-directory "~/.config/emacs/auto-save" t))
+
 (column-number-mode 1)
 (display-time-mode 1)
-(display-battery-mode)
+(display-battery-mode 1)
 (savehist-mode 1)
 (recentf-mode 1)
 (save-place-mode 1)
+(global-auto-revert-mode 1)
+(repeat-mode t)
 
 (set-face-attribute 'default nil
 		    :family "JetBrainsMono Nerd Font"
@@ -45,6 +53,7 @@
 		  (font-spec :family "Noto Sans Hebrew"))
 
 (add-hook 'prog-mode-hook              #'display-line-numbers-mode)
+(add-hook 'conf-mode-hook              #'display-line-numbers-mode)
 (add-hook 'before-save-hook            #'delete-trailing-whitespace)
 (add-hook 'org-mode-hook               #'visual-line-mode)
 
@@ -60,6 +69,10 @@
 (keymap-set minibuffer-local-map "C-p" #'minibuffer-previous-completion)
 (keymap-set minibuffer-local-map "C-n" #'minibuffer-next-completion)
 
+(use-package zenburn-theme
+  :config
+  (load-theme 'zenburn t))
+
 (use-package completion-preview
   :ensure nil
   :hook (prog-mode . completion-preview-mode)
@@ -69,37 +82,29 @@
     ("M-p" . completion-preview-prev-candidate)))
 
 (use-package which-key
-  :ensure nil
+  :init
+  (which-key-mode 1)
+  :diminish
   :config
-  (which-key-mode))
+  (setq which-key-side-window-location        'bottom
+	which-key-sort-order                  #'which-key-key-order-alpha
+	which-key-sort-uppercase-first        t
+	which-key-max-description-length      nil
+	which-key-idle-delay                  0
+	which-key-allow-imprecise-window-fit  nil
+	which-key-separator                   " " ))
+
+(use-package nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
 
 (use-package ibuffer
   :ensure nil
-  :bind ("C-x C-b" . ibuffer)
-  :config
-  (setq ibuffer-saved-filter-groups
-        '(("Default"
-	   ("Info" (mode . Info-mode))
-           ("Org" (mode . org-mode))
-           ("Web" (or (mode . eww-mode)
-                      (mode . browse-url-mode)))
-           ("Programming" (or (mode . emacs-lisp-mode)
-                              (mode . python-mode)
-                              (mode . c-mode)))
-           ("Emacs" (name . "^\\*.*\\*$")))))
-  (add-hook 'ibuffer-mode-hook
-            (lambda ()
-              (ibuffer-switch-to-saved-filter-groups "Default"))))
-
-(use-package catppuccin-theme
-  :init
-  (setq catppuccin-flavor 'mocha)
-  :config
-  (load-theme 'catppuccin t))
+  :bind ("C-x C-b" . ibuffer))
 
 (use-package dashboard
   :init
-  (setq dashboard-banner-logo-title "🚀 Welcome to Nachmen's GNU Emacs 🎨"
+  (setq dashboard-banner-logo-title "  Welcome to Nachmen's GNU Emacs "
         dashboard-startup-banner             'logo
         dashboard-center-content             t
         dashboard-vertically-center-content  t
@@ -107,39 +112,61 @@
         dashboard-icon-type                  'nerd-icons
         dashboard-set-heading-icons          t
         dashboard-set-file-icons             t
-        dashboard-display-icons-p            t
-        dashboard-navigation-cycle           t
-	dashboard-projects-backend           'project-el
-        dashboard-set-init-info              t
-        dashboard-items '((recents . 10)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 5))
-        dashboard-footer-messages '("🌟 Code with passion, debug with patience!"
-                                    "💡 Every function is an adventure!"
-                                    "🚀 Today you'll write something amazing!"
-                                    "✨ Your best code is yet to come!"
-                                    "🎯 Focus on progress, not perfection!"
-                                    "💪 Building the future, one line at a time!"
-                                    "🌈 Make it work, make it right, make it beautiful!"
-                                    "🔥 You've got this!"
-                                    "⚡ Coffee + Code = Magic ☕"
-                                    "🎨 Programming is art. You're the artist!"
-                                    "🧠 Think different. Code different."
-                                    "🏆 Today's bugs are tomorrow's features!"
-                                    "🌸 Code happy, be happy!"))
+        dashboard-display-icons-p            t)
   :config
   (dashboard-setup-startup-hook)
   (global-set-key (kbd "C-c d") 'dashboard-refresh-buffer))
 
 (use-package magit
-  :bind (("C-x g" . magit-status)))
+  :bind
+  (("C-x g" . magit-status)))
 
-(use-package visual-fill-column)
+(use-package diff-hl
+  :init
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode)
+  :hook
+  ((dired-mode . diff-hl-dired-mode)
+   (vc-dir-mode . diff-hl-dir-mode))
+  :bind
+  (("C-c v n" . diff-hl-next-hunk)
+   ("C-c v p" . diff-hl-previous-hunk)
+   ("C-c v h" . diff-hl-show-hunk)
+   ("C-c v r" . diff-hl-revert-hunk)
+   ("C-c v s" . diff-hl-stage-current-hunk)
+   ("C-c v u" . diff-hl-unstage-current-hunk))
+  :config
+  (unless (display-graphic-p)
+    (setq diff-hl-fallback-to-margin t)
+    (diff-hl-margin-mode))
+  (with-eval-after-load 'magit
+    (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
+
+(use-package visual-fill-column
+  :hook ((eww-mode         . my-layout-center-buffer)
+         (elfeed-show-mode . my-layout-center-buffer)
+         (Info-mode        . my-layout-center-buffer)
+         (org-mode         . my-layout-center-buffer))
+  :init
+  (defvar my-layout-default-width 100)
+  (defvar my-layout-widths
+    '((eww-mode         . 110)
+      (elfeed-show-mode . 90)
+      (Info-mode        . 110)
+      (org-mode         . 120)))
+  (defun my-layout-center-buffer (&optional width)
+    (let* ((mode major-mode)
+           (w (or width (alist-get mode my-layout-widths) my-layout-default-width)))
+      (setq-local visual-fill-column-width w)
+      (setq-local visual-fill-column-center-text t)
+      (visual-fill-column-mode 1)
+      (visual-line-mode 1))))
 
 (use-package pacmacs)
 
 (use-package 2048-game)
+
+(use-package tldr)
 
 (use-package emms
   :config
@@ -158,15 +185,14 @@
   :config
   (require 'google-translate-default-ui))
 
-(use-package nerd-icons
-  :custom
-  (nerd-icons-font-family "Symbols Nerd Font Mono"))
+(use-package nerd-icons)
 
-(use-package diff-hl
-  :ensure t
+(use-package nerd-icons-ibuffer
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+(use-package nerd-icons-completion
   :config
-  (add-hook 'prog-mode-hook    'turn-on-diff-hl-mode)
-  (add-hook 'vc-dir-mode-hook  'turn-on-diff-hl-mode))
+  (nerd-icons-completion-mode))
 
 (use-package elfeed
   :bind ("C-x w" . elfeed)
@@ -204,40 +230,6 @@
                                        "\\\\" "://"))
 
   (global-ligature-mode t))
-
-(defun my-layout-center-buffer (&optional width)
-  (setq visual-fill-column-width (or width 100))
-  (setq visual-fill-column-center-text t)
-  (visual-fill-column-mode 1)
-  (visual-line-mode 1))
-
-(add-hook 'eww-mode-hook
-	  (lambda ()
-	    (my-layout-center-buffer 110)))
-
-(add-hook 'newsticker-treeview-item-mode-hook
-	  (lambda ()
-	    (my-layout-center-buffer 90)))
-
-(add-hook 'newsticker-treeview-list-mode-hook
-	  (lambda ()
-	    (my-layout-center-buffer 90)))
-
-(add-hook 'elfeed-show-mode-hook
-	  (lambda ()
-	    (my-layout-center-buffer 90)))
-
-(add-hook 'elfeed-search-mode-hook
-	  (lambda ()
-	    (my-layout-center-buffer 120)))
-
-(add-hook 'Info-mode-hook
-	  (lambda ()
-	    (my-layout-center-buffer 110)))
-
-(add-hook 'org-mode-hook
-	  (lambda ()
-	    (my-layout-center-buffer 120)))
 
 (defun my/insert-date-time ()
   (interactive)
