@@ -1,11 +1,9 @@
-(setq package-enable-at-startup nil
-      inhibit-startup-message t
-      frame-resize-pixelwise t
-      package-native-compile t)
-
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(menu-bar-mode 1)
-(blink-cursor-mode 0)
-(cua-mode -1)
+(setq package-enable-at-startup    nil
+      inhibit-startup-message      t
+      frame-resize-pixelwise       t
+      frame-inhibit-implied-resize t
+      default-frame-alist
+      (append '((tool-bar-lines        . 0)
+                (menu-bar-lines        . 0)
+                (vertical-scroll-bars  . nil))
+              default-frame-alist))

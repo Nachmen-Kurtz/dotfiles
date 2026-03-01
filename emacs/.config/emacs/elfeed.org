@@ -47,7 +47,8 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw][Bread on Penguins]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCEU9D6KIShdLeTRyH3IdSvw][It's FOSS - Linux Portal]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw][The Linux Experiment]]
-**** [[https://www.alpinelinux.org/atom.xml][Alpine Linux News]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHDr4RtxwA1KqKGwxgdK4Vg][Computer History Museum]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC1yGcBvdPGxRIMT1yo_bKIQ][Jake@Linux]]
 *** Hebrew :he:
 **** [[https://nachmenk.com/feed.xml][Learn Linux]]
 
@@ -58,7 +59,8 @@
 **** [[https://krebsonsecurity.com/feed/][Krebs on Security]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9x0AN7BWHpCDHSm9NiJFJQ][NetworkChuck]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ][Dreams of Code]]
-**** [[https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA][Fireship]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA][Fireship]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA][Veritasium]]
 *** Hebrew :he:
 **** [[https://www.geektime.co.il/feed/][Geektime]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwywdccdYsNS_Cs6tS0U_dg][TrashTech - טראשטק]]
