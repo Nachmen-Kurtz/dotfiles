@@ -1,3 +1,17 @@
+(column-number-mode        1)
+(size-indication-mode      1)
+(display-time-mode         1)
+(display-battery-mode      1)
+(savehist-mode             1)
+(recentf-mode              1)
+(save-place-mode           1)
+(global-auto-revert-mode   1)
+(repeat-mode               1)
+(winner-mode               1)
+(blink-cursor-mode         0)
+(tooltip-mode              1)
+(context-menu-mode         1)
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -22,28 +36,17 @@
       vc-follow-symlinks t
       ad-redefinition-action 'accept
       native-comp-async-report-warnings-errors nil
-      initial-buffer-choice 'dashboard-open
       use-package-always-ensure t
       use-dialog-box nil
       use-package-expand-minimally t
       global-auto-revert-non-file-buffers t
-      auto-save-file-name-transforms `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t))
-      org-link-descriptive nil)
+      auto-save-file-name-transforms `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t)))
 
 (unless (file-directory-p "~/.config/emacs/backups")
   (make-directory "~/.config/emacs/backups" t))
 
 (unless (file-directory-p "~/.config/emacs/auto-save")
   (make-directory "~/.config/emacs/auto-save" t))
-
-(column-number-mode 1)
-(display-time-mode 1)
-(display-battery-mode 1)
-(savehist-mode 1)
-(recentf-mode 1)
-(save-place-mode 1)
-(global-auto-revert-mode 1)
-(repeat-mode t)
 
 (set-face-attribute 'default nil
 		    :family "JetBrainsMono Nerd Font"
@@ -55,19 +58,16 @@
 (add-hook 'prog-mode-hook              #'display-line-numbers-mode)
 (add-hook 'conf-mode-hook              #'display-line-numbers-mode)
 (add-hook 'before-save-hook            #'delete-trailing-whitespace)
-(add-hook 'org-mode-hook               #'visual-line-mode)
+(add-hook 'Man-mode-hook               #'visual-line-mode)
 
 (global-set-key (kbd "M-<up>")      #'beginning-of-buffer)
 (global-set-key (kbd "M-<down>")    #'end-of-buffer)
-(global-set-key (kbd "C-c C-k")     #'clipboard-kill-region)
-(global-set-key (kbd "C-c C-y")     #'clipboard-yank)
 (global-set-key (kbd "M-]")         #'forward-sexp)
 (global-set-key (kbd "M-[")         #'backward-sexp)
 (global-set-key (kbd "C-c C-d")     #'my/insert-date-time)
 (global-set-key (kbd "C-c C-D")     #'my/insert-iso-datetime)
-
-(keymap-set minibuffer-local-map "C-p" #'minibuffer-previous-completion)
-(keymap-set minibuffer-local-map "C-n" #'minibuffer-next-completion)
+(global-set-key (kbd "<f11>")       #'eshell)
+(global-set-key (kbd "C-c r")       #'rectangle-mark-mode)
 
 (use-package zenburn-theme
   :config
@@ -75,49 +75,86 @@
 
 (use-package completion-preview
   :ensure nil
-  :hook (prog-mode . completion-preview-mode)
+  :hook
+  (prog-mode . completion-preview-mode)
   :bind
-  ( :map completion-preview-active-mode-map
+  (:map completion-preview-active-mode-map
     ("M-n" . completion-preview-next-candidate)
     ("M-p" . completion-preview-prev-candidate)))
 
 (use-package which-key
+  :diminish
   :init
   (which-key-mode 1)
-  :diminish
   :config
-  (setq which-key-side-window-location        'bottom
-	which-key-sort-order                  #'which-key-key-order-alpha
-	which-key-sort-uppercase-first        t
-	which-key-max-description-length      nil
-	which-key-idle-delay                  0
-	which-key-allow-imprecise-window-fit  nil
-	which-key-separator                   " " ))
+  (setq which-key-side-window-location       'bottom
+        which-key-sort-order                 #'which-key-key-order-alpha
+        which-key-sort-uppercase-first       t
+        which-key-max-description-length     nil
+        which-key-idle-delay                 0.3
+        which-key-allow-imprecise-window-fit nil
+        which-key-separator                  " "))
+
+(use-package vertico
+  :init
+  (vertico-mode 1)
+  :config
+  (setq vertico-cycle t))
+
+(use-package orderless
+  :defer t
+  :config
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package marginalia
+  :init
+  (marginalia-mode 1))
+
+(use-package consult
+  :defer t
+  :bind
+  (("C-x b"   . consult-buffer)
+   ("C-x 4 b" . consult-buffer-other-window)
+   ("M-y"     . consult-yank-pop)
+   ("M-s r"   . consult-ripgrep)
+   ("M-s f"   . consult-find)
+   ("M-s l"   . consult-line)
+   ("M-s m"   . consult-man)
+   ("C-c i"   . consult-imenu)))
 
 (use-package nerd-icons-dired
+  :defer t
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
 (use-package ibuffer
+  :defer t
   :ensure nil
-  :bind ("C-x C-b" . ibuffer))
+  :bind
+  ("<f12>" . ibuffer))
 
 (use-package dashboard
   :init
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (setq dashboard-banner-logo-title "  Welcome to Nachmen's GNU Emacs "
-        dashboard-startup-banner             'logo
         dashboard-center-content             t
         dashboard-vertically-center-content  t
         dashboard-show-shortcuts             t
         dashboard-icon-type                  'nerd-icons
         dashboard-set-heading-icons          t
         dashboard-set-file-icons             t
-        dashboard-display-icons-p            t)
+        dashboard-display-icons-p            t
+	dashboard-navigation-cycle           t
+	dashboard-items	                     '((projects  . 10)
+                       			       (bookmarks . 10)
+                       			       (recents  . 10)))
   :config
   (dashboard-setup-startup-hook)
-  (global-set-key (kbd "C-c d") 'dashboard-refresh-buffer))
+  (global-set-key (kbd "C-c d") #'dashboard-refresh-buffer))
 
 (use-package magit
+  :defer t
   :bind
   (("C-x g" . magit-status)))
 
@@ -126,7 +163,7 @@
   (global-diff-hl-mode)
   (diff-hl-flydiff-mode)
   :hook
-  ((dired-mode . diff-hl-dired-mode)
+  ((dired-mode  . diff-hl-dired-mode)
    (vc-dir-mode . diff-hl-dir-mode))
   :bind
   (("C-c v n" . diff-hl-next-hunk)
@@ -143,75 +180,100 @@
     (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
 
 (use-package visual-fill-column
-  :hook ((eww-mode         . my-layout-center-buffer)
-         (elfeed-show-mode . my-layout-center-buffer)
-         (Info-mode        . my-layout-center-buffer)
-         (org-mode         . my-layout-center-buffer))
+  :defer t
   :init
-  (defvar my-layout-default-width 100)
-  (defvar my-layout-widths
-    '((eww-mode         . 110)
-      (elfeed-show-mode . 90)
-      (Info-mode        . 110)
-      (org-mode         . 120)))
-  (defun my-layout-center-buffer (&optional width)
-    (let* ((mode major-mode)
-           (w (or width (alist-get mode my-layout-widths) my-layout-default-width)))
-      (setq-local visual-fill-column-width w)
-      (setq-local visual-fill-column-center-text t)
-      (visual-fill-column-mode 1)
-      (visual-line-mode 1))))
+  (defun my-layout-center-buffer ()
+    (setq-local visual-fill-column-width 110
+                visual-fill-column-center-text t
+                truncate-lines nil)
+    (visual-line-mode 1)
+    (visual-fill-column-mode 1))
+  :hook ((help-mode    . my-layout-center-buffer)
+         (special-mode . my-layout-center-buffer)
+         (Info-mode    . my-layout-center-buffer)
+         (eww-mode     . my-layout-center-buffer)
+         (org-mode     . my-layout-center-buffer)))
 
-(use-package pacmacs)
+(use-package markdown-mode
+  :defer t
+  :mode
+  ("README\\.md\\'" . gfm-mode)
+  :init
+  (setq markdown-command "multimarkdown")
+  :bind
+  (:map markdown-mode-map ("C-c C-e" . markdown-do)))
 
-(use-package 2048-game)
+(use-package pacmacs
+  :defer t)
 
-(use-package tldr)
+(use-package 2048-game
+  :defer t)
+
+(use-package tldr
+  :defer t)
 
 (use-package emms
+  :defer t
   :config
   (emms-all)
   (setq emms-player-list    '(emms-player-vlc)
-	emms-info-functions '(emms-info-native)))
+        emms-info-functions '(emms-info-native)))
 
 (use-package google-translate
   :defer t
   :init
   (setq google-translate-default-source-language "En"
-        google-translate-default-target-language "He"
-        google-translate-output-destination 'echo-area
-        google-translate-backend-method 'curl)
-  :bind ("C-c t" . google-translate-at-point)
+        google-translate-default-target-language  "He"
+        google-translate-output-destination       'echo-area
+        google-translate-backend-method           'curl)
+  :bind
+  ("<f10>" . google-translate-at-point)
   :config
   (require 'google-translate-default-ui))
 
 (use-package nerd-icons)
 
 (use-package nerd-icons-ibuffer
-  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+  :defer t
+  :hook
+  (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 (use-package nerd-icons-completion
+  :defer t
+  :after marginalia
   :config
-  (nerd-icons-completion-mode))
+  (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package elfeed
-  :bind ("C-x w" . elfeed)
+  :defer t
+  :bind
+  ("C-x w" . elfeed)
   :config
-  (setq-default elfeed-search-filter "@1-day-ago +unread +he")
+  (setq-default elfeed-search-filter "+unread +kore")
   (setq elfeed-use-curl t)
-  (add-hook 'kill-emacs-hook             #'elfeed-db-compact)
-  (add-hook 'elfeed-show-mode-hook       #'visual-line-mode)
-  (add-hook 'elfeed-search-mode-hook     #'visual-line-mode)
+  (add-hook 'kill-emacs-hook         #'elfeed-db-compact)
+  (add-hook 'elfeed-show-mode-hook   #'visual-line-mode)
+  (add-hook 'elfeed-search-mode-hook #'visual-line-mode)
   (add-hook 'elfeed-new-entry-hook
-            (elfeed-make-tagger :feed-url "youtube\\.com"
-                                :add 'video))
-  (run-at-time nil (* 8 60 60) #'elfeed-update))
+            (elfeed-make-tagger :feed-url "youtube\\.com" :add 'video))
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :feed-url "jdn\\.co.il"  :add 'jdn))
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :feed-url "reddit\\.com" :add 'reddit))
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :feed-url "kore\\.co.il" :add 'kore))
+  (run-at-time "1 min" (* 8 60 60) #'elfeed-update))
 
 (use-package elfeed-org
   :after elfeed
   :config
-  (elfeed-org)
-  (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
+  (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org"))
+  (elfeed-org))
+
+(use-package page-break-lines
+  :config
+  (global-page-break-lines-mode 1))
 
 (use-package ligature
   :config
@@ -228,7 +290,6 @@
                                        "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
                                        "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
                                        "\\\\" "://"))
-
   (global-ligature-mode t))
 
 (defun my/insert-date-time ()

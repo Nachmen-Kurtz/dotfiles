@@ -2,12 +2,12 @@
 	name = Nachmen Kurtz
 	email = git@nachmenk.com
 [core]
-	editor = nvim
+	editor = emacs
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
