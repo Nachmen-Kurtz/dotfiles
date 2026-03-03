@@ -8,7 +8,7 @@ exec nm-applet
 exec gpodder
 exec flatpak run io.github.alainm23.planify
 exec flatpak run com.vixalien.sticky
-exec alacritty
+exec kitty
 exec emacsclient -c -a "emacs"
 exec nautilus
 
@@ -26,9 +26,8 @@ set $left       h
 set $down       j
 set $up         k
 set $right      l
-set $term       alacritty
+set $term       kitty
 set $menu       wofi
-# set $wallpapers $HOME/Pictures/wallpapers-master
 
 input type:touchpad {
   dwt               enabled
@@ -45,8 +44,7 @@ input type:keyboard {
   xkb_numlock   enabled
 }
 
-output *  bg  ~/Pictures/Wallpapers/Linux/fjtPeeU-wallpaper-for-linux.jpg fill
-# output *  bg  $(find $wallpapers -type f | shuf -n 1) fill
+output *  bg  ~/Pictures/Wallpapers/Linux/wp9031503-void-linux-wallpapers.png fill
 
 output eDP-1  scale 1.25
 
@@ -104,7 +102,7 @@ bindsym $mod+Shift+$down  move      down
 bindsym $mod+Shift+$up    move      up
 bindsym $mod+Shift+$right move      right
 bindsym $mod+Shift+c      reload
-bindsym $mod+Shift+e      exec      swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e      exec      swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
 bindsym $mod+Shift+Left   move      left
 bindsym $mod+Shift+Down   move      down
 bindsym $mod+Shift+Up     move      up
