@@ -23,24 +23,46 @@
 
 (require 'use-package)
 
-(setq-default truncate-lines t)
+(setq-default
+ truncate-lines            t
+ visual-wrap-prefix-mode   t)
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory)
-      vc-make-backup-files t
-      backup-by-copying t
-      backup-directory-alist '(("." . "~/.config/emacs/backups"))
-      delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t
-      vc-follow-symlinks t
-      ad-redefinition-action 'accept
-      native-comp-async-report-warnings-errors nil
-      use-package-always-ensure t
-      use-dialog-box nil
-      use-package-expand-minimally t
-      global-auto-revert-non-file-buffers t
-      auto-save-file-name-transforms `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t)))
+(setq
+ frame-title-format
+ '("Emacs — %b"
+   (:eval
+    (when (buffer-file-name)
+      (format " (%s)"
+              (abbreviate-file-name (buffer-file-name)))))))
+
+(setq
+ ad-redefinition-action                     'accept
+ auto-save-file-name-transforms             `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t))
+ backup-by-copying                          t
+ backup-directory-alist                     '(("." . "~/.config/emacs/backups"))
+ custom-file                                (expand-file-name "custom.el" user-emacs-directory)
+ delete-old-versions                        t
+ global-auto-revert-non-file-buffers        t
+ kept-new-versions                          6
+ kept-old-versions                          2
+ mouse-wheel-follow-mouse                   t
+ mouse-wheel-progressive-speed              nil
+ mouse-wheel-scroll-amount                  '(2 ((shift) . 8) ((control) . nil))
+ native-comp-async-report-warnings-errors   nil
+ next-screen-context-lines                  3
+ scroll-conservatively                      10000
+ scroll-margin                              3
+ scroll-preserve-screen-position            t
+ scroll-step                                1
+ use-dialog-box                             nil
+ use-package-always-ensure                  t
+ use-package-expand-minimally               t
+ vc-follow-symlinks                         t
+ vc-make-backup-files                       t
+ version-control                            t)
+
+(when (fboundp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode 1))
 
 (unless (file-directory-p "~/.config/emacs/backups")
   (make-directory "~/.config/emacs/backups" t))
@@ -58,7 +80,6 @@
 (add-hook 'prog-mode-hook              #'display-line-numbers-mode)
 (add-hook 'conf-mode-hook              #'display-line-numbers-mode)
 (add-hook 'before-save-hook            #'delete-trailing-whitespace)
-(add-hook 'Man-mode-hook               #'visual-line-mode)
 
 (global-set-key (kbd "M-<up>")      #'beginning-of-buffer)
 (global-set-key (kbd "M-<down>")    #'end-of-buffer)
@@ -68,6 +89,7 @@
 (global-set-key (kbd "C-c C-D")     #'my/insert-iso-datetime)
 (global-set-key (kbd "<f11>")       #'eshell)
 (global-set-key (kbd "C-c r")       #'rectangle-mark-mode)
+(global-set-key (kbd "<f9>")        #'menu-bar-open)
 
 (use-package zenburn-theme
   :config
@@ -146,6 +168,7 @@
         dashboard-set-file-icons             t
         dashboard-display-icons-p            t
 	dashboard-navigation-cycle           t
+	dashboard-page-separator             "\n\f\n"
 	dashboard-items	                     '((projects  . 10)
                        			       (bookmarks . 10)
                        			       (recents  . 10)))
@@ -189,9 +212,9 @@
     (visual-line-mode 1)
     (visual-fill-column-mode 1))
   :hook ((help-mode    . my-layout-center-buffer)
-         (special-mode . my-layout-center-buffer)
          (Info-mode    . my-layout-center-buffer)
          (eww-mode     . my-layout-center-buffer)
+	 (Man-mode     . my-layout-center-buffer)
          (org-mode     . my-layout-center-buffer)))
 
 (use-package markdown-mode
@@ -250,7 +273,7 @@
   :bind
   ("C-x w" . elfeed)
   :config
-  (setq-default elfeed-search-filter "+unread +kore")
+  (setq-default elfeed-search-filter "+unread +jdn")
   (setq elfeed-use-curl t)
   (add-hook 'kill-emacs-hook         #'elfeed-db-compact)
   (add-hook 'elfeed-show-mode-hook   #'visual-line-mode)
@@ -261,8 +284,6 @@
             (elfeed-make-tagger :feed-url "jdn\\.co.il"  :add 'jdn))
   (add-hook 'elfeed-new-entry-hook
             (elfeed-make-tagger :feed-url "reddit\\.com" :add 'reddit))
-  (add-hook 'elfeed-new-entry-hook
-            (elfeed-make-tagger :feed-url "kore\\.co.il" :add 'kore))
   (run-at-time "1 min" (* 8 60 60) #'elfeed-update))
 
 (use-package elfeed-org
@@ -274,6 +295,21 @@
 (use-package page-break-lines
   :config
   (global-page-break-lines-mode 1))
+
+
+(use-package org-roam
+  :custom
+  (org-roam-directory (file-truename "/path/to/org-files/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  (require 'org-roam-protocol))
 
 (use-package ligature
   :config
