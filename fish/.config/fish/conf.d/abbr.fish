@@ -21,21 +21,10 @@ abbr vim nvim
 abbr vi nvim
 abbr v nvim
 abbr mv "mv -iv"
-abbr cp "cp -riv"
+abbr cp "cp -riva"
 abbr mkdir "mkdir -vp"
 alias ls="eza --color=always --icons"
 alias la 'eza --color=always --icons --all'
 alias ll 'eza --color=always --icons --all --long'
 abbr l ll
 abbr ncdu "ncdu --color dark"
-abbr s systemctl
-abbr su "systemctl --user"
-abbr ss "command systemctl status"
-abbr sl "systemctl --type service --state running"
-abbr slu "systemctl --user --type service --state running"
-abbr se "sudo systemctl enable --now"
-abbr sd "sudo systemctl disable --now"
-abbr sr "sudo systemctl restart"
-abbr so "sudo systemctl stop"
-abbr sa "sudo systemctl start"
-abbr sf "systemctl --failed --all"

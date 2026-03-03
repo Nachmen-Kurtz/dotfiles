@@ -79,157 +79,103 @@ fi
 
 echo "Package Manager:        $PKG_MANAGER"
 echo "Installation command:   $INSTALL_CMD"
-#
-#
-#    # Basic Pkg:
-#   zip \
-# zip \
-#   unzip \
-#   less \
-#   vlc \
-#   nvim \
-#   btop \
-#   emacs \
-#   borgbackup \
-#   git \
-#   fish \
-#   man-db \
-#   fwupd \
-#   curl \
-#   stow \
-#   tmux \
-#   keepassxc \
-# stow \
-#  git \
-# vim \
-# curl \
-#
-#
-#    # Extra Pkg:
-#
-# ripgrep\
-# tmux \
-# fd \
-# bat \
-# btop \
-# tree \
-# tmux \
-# neovim \
-# wget \
-# eza \
-#
-#   bat \
-#   eza \
-#   lazygit \
-#   ripgrep \
-#   imagemagick \
-#   qbittorrent \
-#   acpi \
-#   blueman \
-#   lxappearance \
-#   virt-manager \
-#   asciinema \
-#   duf \
-#   nmap \
-#   kitty \
-#   gpodder \
-#   podman \
-#   fastfetch \
-#   zsh \
-#   sqlitebrowser \
-#   translate-shell \
-#   wireshark-cli \
-#   wireshark-qt \
-#   ncdu \
-#   clapper \
-#   tig \
-#   celluloid \
-#   gitui \
-#   zoxide \
-#   fzf \
-#   lsd \
-#   fd \
-#   htop \
-#   mpv \
-#   texinfo \
-#   flatpak \
-#   dua-cli \
-#   genact \
-#   nushell \
-#   rsync \
-#   vivaldi
-#   zsh \
-#   vlc \
-#   neovim \
-#   clapper \
-#   htop \
-#   zoxide \
-#   duf \
-#     bat
-#     binsider
-#     dust
-#     dua
-#     eza
-#     gping
-#     jj
-#     navi
-#     nu
-#     rip
-#     sd
-#     tspin
-#     tre
-#     zoxide
-#
-#
-#
-#   # Fun ...
-#
-#     genact
-#   cmatrix
-#
-#
-#
-# xclip
-#  contour-terminal
-#  sway
-#  hyprland
-#  waybar
-#  fish
-#  mpv
-#  emacs
-#  lsd
-#  bfs
-#  wl-clipboard
-#  gimp
-#  tcsh
-#  ddgr
-#  gparted
-#  tldr
-#  gdu
-#  lazydocker
-#  lazygit
-#  keepassxc
-#  meld
-#  sysprof
-#  d-spy
-#  nasm
-#  libvirt
-#  virt-manager
-#  libvirt
-#  btop
-#  vivaldi-stable-7.0.3495.2
-#  bpytop
-#  lolcat
-#  cool-retro-term.x86_64
-#  bat
-#  fd-find
-#  wike
-#  sequeler
-#  sqlitebrowser
-#  alacritty
-#  htop
-#  fish
-#  clapper
-#  zoxide
-#  duf
-#  zox
+
+# Basic Pkg:
+$INSTALL_CMD \
+    i3 \
+    i3status \
+    polibar \
+    dmenu \
+    picom \
+    rofi \
+    borgbackup \
+    btop \
+    curl \
+    emacs \
+    fish \
+    fwupd \
+    git \
+    keepassxc \
+    less \
+    man-db \
+    nvim \
+    stow \
+    texinfo \
+    tmux \
+    unzip \
+    vim \
+    vivaldi \
+    vlc \
+    zip \
+    podman \
+    ufw \
+    playctl
+
+# Extra Pkg
+$INSTALL_CMD \
+    acpi \
+    alacritty \
+    asciinema \
+    bat \
+    bfs \
+    binsider \
+    blueman \
+    bpytopbtop \
+    celluloid \
+    clapper \
+    contour-terminal \
+    duf \
+    dusteza \
+    fastfetch \
+    fd \
+    flatpak \
+    fzf \
+    gdugenact \
+    gimpgitui \
+    gpartedgpinggpodder \
+    htop \
+    imagemagick \
+    jj \
+    kitty \
+    lazydockerlazygit \
+    lsdlxappearance \
+    meldmpv \
+    nasmnavincdu \
+    neovim \
+    nmap \
+    nu \
+    nushell \
+    qbittorrent \
+    ripgrep \
+    ripgreprsync \
+    sd \
+    sequelersqlitebrowser \
+    sysproftcshtig \
+    tldrtranslate-shell \
+    tre \
+    tree \
+    tspinvirt-manager \
+    wget \
+    wireshark-cli \
+    wireshark-qt \
+    xclipzoxide \
+    zsh \
+    binsider \
+    ffmpeg \
+    7zip \
+    jq \
+    poppler \
+    resvg \
+    ImageMagick
+
+
+
+# Fun ...
+$INSTALL_CMD \
+    cmatrix \
+    genact \
+    lolcat \
+    cool-retro-term \
+    cbonsai \
+    lolcat \
+    grex

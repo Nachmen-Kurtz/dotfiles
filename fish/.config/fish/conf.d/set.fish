@@ -1,4 +1,4 @@
-set -gx EDITOR (which nvim)
+set -gx EDITOR (which nano)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx SHELL /usr/bin/fish
