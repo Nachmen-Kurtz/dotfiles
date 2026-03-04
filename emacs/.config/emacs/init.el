@@ -61,9 +61,6 @@
  vc-make-backup-files                       t
  version-control                            t)
 
-(when (fboundp 'pixel-scroll-precision-mode)
-  (pixel-scroll-precision-mode 1))
-
 (unless (file-directory-p "~/.config/emacs/backups")
   (make-directory "~/.config/emacs/backups" t))
 
@@ -233,6 +230,9 @@
   :defer t)
 
 (use-package tldr
+  :defer t)
+
+(use-package pdf-tools
   :defer t)
 
 (use-package emms

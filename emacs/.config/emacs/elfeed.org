@@ -7,11 +7,12 @@
 *** [[https://fishshell.com/blog/feed.xml][Fish-shell Blog]]
 *** [[https://gitlab.com/gitlab-org/cli/-/releases.atom][GitLab CLI Releases]]
 *** [[https://calibre-ebook.com/changelog.rss][calibre Changelog]]
+*** [[https://github.com/openai/codex/releases.atom][Releases · openai/codex]]
+*** [[https://github.com/google-gemini/gemini-cli/releases.atom][Releases · google-gemini/gemini-cli]]
 *** GNU Emacs :emacs:
 **** [[https://emacsconf.org/index.rss][EmacsConf]]
 **** [[https://www.reddit.com/r/emacs.rss][M-x emacs-reddit]]
 **** [[https://www.emacswiki.org/emacs?action=rss][EmacsWiki: SiteMap]]
-**** [[https://sachachua.com/blog/feed/][Sacha Chua]]
 **** [[https://lucidmanager.org/tags/emacs/index.xml][Emacs on Lucid Manager]]
 **** [[https://systemcrafters.net/rss/news.xml][System Crafters News]]
 
@@ -49,6 +50,7 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw][The Linux Experiment]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHDr4RtxwA1KqKGwxgdK4Vg][Computer History Museum]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC1yGcBvdPGxRIMT1yo_bKIQ][Jake@Linux]]
+**** [[https://codeberg.org/nachmenk.rss][Codeberg - Nachmen Kurtz]]
 *** Hebrew :he:
 **** [[https://nachmenk.com/feed.xml][Learn Linux]]
 
