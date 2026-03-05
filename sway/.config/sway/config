@@ -44,7 +44,7 @@ input type:keyboard {
   xkb_numlock   enabled
 }
 
-output *  bg  ~/Pictures/Wallpapers/Linux/wp9031503-void-linux-wallpapers.png fill
+output *  bg  ~/Pictures/Wallpapers/walls-main/poly/a_group_of_old_computer_equipment.png fill
 
 output eDP-1  scale 1.25
 
@@ -71,7 +71,6 @@ assign [app_id="org.gnome.Evolution"]         workspace 3
 assign [app_id="kitty"]                       workspace 5
 assign [app_id="emacs"]                       workspace 6
 assign [app_id="org.gnome.Nautilus"]          workspace 7
-assign [app_id="Alacritty"]		      workspace 5
 assign [app_id="virt-manager"]		      workspace 10
 
 floating_modifier $mod normal
