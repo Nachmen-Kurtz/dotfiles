@@ -2,28 +2,20 @@
 
 ** Applications :applications:
 *** [[https://keepassxc.org/blog/index.xml][KeePassXC Blog on KeePassXC Password Manager]]
-*** [[https://www.reddit.com/r/i3wm.rss][i3 Window Manager]]
-*** [[https://www.reddit.com/r/dotfiles.rss][dotfiles: share the dots]]
 *** [[https://fishshell.com/blog/feed.xml][Fish-shell Blog]]
-*** [[https://gitlab.com/gitlab-org/cli/-/releases.atom][GitLab CLI Releases]]
 *** [[https://calibre-ebook.com/changelog.rss][calibre Changelog]]
 *** GNU Emacs :emacs:
 **** [[https://emacsconf.org/index.rss][EmacsConf]]
-**** [[https://www.reddit.com/r/emacs.rss][M-x emacs-reddit]]
 **** [[https://www.emacswiki.org/emacs?action=rss][EmacsWiki: SiteMap]]
-**** [[https://sachachua.com/blog/feed/][Sacha Chua]]
 **** [[https://lucidmanager.org/tags/emacs/index.xml][Emacs on Lucid Manager]]
 **** [[https://systemcrafters.net/rss/news.xml][System Crafters News]]
 
 ** DevOps :devops:
 *** English :en:
-**** [[https://thenewstack.io/blog/feed/][The New Stack | DevOps, Open Source, and Cloud Native News]]
 **** [[https://spacelift.io/rss][Managing Infrastructure at Scale | Spacelift Blog]]
 **** [[https://opentofu.org/blog/rss.xml][OpenTofu Blog]]
-**** [[https://blog.cloudflare.com/rss][The Cloudflare Blog]]
 **** [[https://aws.amazon.com/blogs/aws/feed/][AWS News Blog]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZNhwA1B5YqiY1nLzmM0ZRg][Christian Lempa]]
-**** [[https://about.gitlab.com/atom.xml][GitLab]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w][DevOps Toolbox]]
 *** Hebrew :he:
 **** [[https://devops.nachmenk.com/blog/rss.xml][DevOps Docs & Blog Blog]]
@@ -41,14 +33,13 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCEU9D6KIShdLeTRyH3IdSvw][It's FOSS - Linux Portal]]
 **** [[https://ostechnix.com/feed/][OSTechNix]]
 **** [[https://www.linuxfoundation.org/blog/rss.xml][Linux Foundation - Blog]]
-**** [[https://www.tecmint.com/feed/][Tecmint: Linux Howtos, Tutorials & Guides]]
 **** [[https://voidlinux.org/atom.xml][Void news]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw][Bread on Penguins]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCEU9D6KIShdLeTRyH3IdSvw][It's FOSS - Linux Portal]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw][The Linux Experiment]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHDr4RtxwA1KqKGwxgdK4Vg][Computer History Museum]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC1yGcBvdPGxRIMT1yo_bKIQ][Jake@Linux]]
+**** [[https://codeberg.org/nachmenk.rss][Codeberg - Nachmen Kurtz]]
 *** Hebrew :he:
 **** [[https://nachmenk.com/feed.xml][Learn Linux]]
 
