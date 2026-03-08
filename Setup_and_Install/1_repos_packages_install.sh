@@ -109,7 +109,9 @@ $INSTALL_CMD \
     zip \
     podman \
     ufw \
-    playctl
+    playctl \
+    isync \
+    notmuch \
 
 # Extra Pkg
 $INSTALL_CMD \
