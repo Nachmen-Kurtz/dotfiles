@@ -52,6 +52,7 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ][Dreams of Code]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA][Fireship]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA][Veritasium]]
+**** [[https://www.pcmag.com/feeds/rss/latest][PCMag - PC Magazin]]
 *** Hebrew :he:
 **** [[https://www.geektime.co.il/feed/][Geektime]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwywdccdYsNS_Cs6tS0U_dg][TrashTech - טראשטק]]
