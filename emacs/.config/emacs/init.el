@@ -27,7 +27,7 @@
               visual-wrap-prefix-mode t)
 
 (setq frame-title-format
-      '("Emacs — %b"
+      '("GNU Emacs — %b"
         (:eval (when (buffer-file-name)
                  (format " (%s)" (abbreviate-file-name (buffer-file-name)))))))
 
