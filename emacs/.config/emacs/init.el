@@ -294,8 +294,8 @@
           ("j" "Journal" entry (file+datetree "~/Org/journal.org")
            "* %?\n  Entered: %T\n"))))
 
-;; (use-package org-bullets
-  ;; :hook (org-mode . org-bullets-mode))
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))
 
 (use-package org-roam
   :after org
