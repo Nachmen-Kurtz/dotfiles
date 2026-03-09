@@ -2,7 +2,7 @@
 	name = Nachmen Kurtz
 	email = git@nachmenk.com
 [core]
-	editor = emacs
+	editor = nano
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
