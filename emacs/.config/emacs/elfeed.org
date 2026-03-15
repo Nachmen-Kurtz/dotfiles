@@ -9,6 +9,7 @@
 **** [[https://www.emacswiki.org/emacs?action=rss][EmacsWiki: SiteMap]]
 **** [[https://lucidmanager.org/tags/emacs/index.xml][Emacs on Lucid Manager]]
 **** [[https://systemcrafters.net/rss/news.xml][System Crafters News]]
+**** [[https://irreal.org/blog/?feed=rss2][Irreal]]
 
 ** DevOps :devops:
 *** English :en:
@@ -52,7 +53,6 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ][Dreams of Code]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA][Fireship]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA][Veritasium]]
-**** [[https://www.pcmag.com/feeds/rss/latest][PCMag - PC Magazin]]
 *** Hebrew :he:
 **** [[https://www.geektime.co.il/feed/][Geektime]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwywdccdYsNS_Cs6tS0U_dg][TrashTech - טראשטק]]
@@ -61,7 +61,7 @@
 **** [[https://cybercyber.co.il/?feed=rss2][סייברסייבר (CyberCyber)]]
 **** [[https://internet-israel.com/feed/][אינטרנט ישראל]]
 
-** News :news:he:
+** News :he:news:
 *** [[https://www.jdn.co.il/feed/][JDN]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCzK4HSXyYGnGJM4C6y58ToA][Abisel Status]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCA5DZvGtE9DChiczMl_Q8sg][Lipa Schmeltzer]]
