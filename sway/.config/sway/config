@@ -7,7 +7,6 @@ exec wlsunset -l 32.08 -L 34.78 -T 5700 -t 3500
 exec nm-applet
 exec gpodder
 exec flatpak run io.github.alainm23.planify
-exec flatpak run com.vixalien.sticky
 exec kitty
 exec emacsclient -c -a "emacs"
 exec nautilus
@@ -39,7 +38,7 @@ input type:touchpad {
 input type:keyboard {
   xkb_layout    us,il
   xkb_variant   ,
-  xkb_options   grp:alt_shift_toggle
+  xkb_options   grp:win_space_toggle
   xkb_capslock  disabled
   xkb_numlock   enabled
 }
@@ -64,6 +63,7 @@ workspace 9   output DP-5
 workspace 10  output DP-5
 
 assign [app_id="vivaldi-stable"]              workspace 2
+assign [app_id="org.mozilla.firefox"]         workspace 2
 assign [app_id="com.vixalien.sticky"]         workspace 4
 assign [app_id="gpodder"]                     workspace 4
 assign [app_id="io.github.alainm23.planify"]  workspace 4
@@ -94,7 +94,6 @@ bindsym $mod+f         fullscreen
 bindsym $mod+a         focus      parent
 bindsym $mod+minus     scratchpad show
 bindsym $mod+r         mode       "resize"
-bindsym $mod+space     focus      mode_toggle
 
 bindsym $mod+Shift+$left  move      left
 bindsym $mod+Shift+$down  move      down
@@ -118,8 +117,6 @@ bindsym $mod+Alt+p exec grim - | tee ~/Pictures/Screenshots/screenshot-$(date +%
 bindsym $mod+Alt+s exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot-$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Area Saved & Copied"
 bindsym $mod+Alt+k exec swaylock
 bindsym $mod+Alt+h exec systemctl suspend
-bindsym $mod+Alt+o exec systemctl poweroff
-bindsym $mod+Alt+r exec systemctl reboot
 bindsym $mod+Alt+n exec notify-send "hello"
 
 bindsym $mod+1 workspace number 1

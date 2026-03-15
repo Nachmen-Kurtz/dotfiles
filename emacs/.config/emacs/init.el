@@ -1,16 +1,17 @@
-(column-number-mode        1)
-(size-indication-mode      1)
-(display-time-mode         1)
-(display-battery-mode      1)
-(savehist-mode             1)
-(recentf-mode              1)
-(save-place-mode           1)
-(global-auto-revert-mode   1)
-(repeat-mode               1)
-(winner-mode               1)
-(blink-cursor-mode         0)
-(tooltip-mode              1)
-(context-menu-mode         1)
+(column-number-mode             1)
+(size-indication-mode           1)
+(display-time-mode              1)
+(display-battery-mode           1)
+(recentf-mode                   1)
+(save-place-mode                1)
+(global-auto-revert-mode        1)
+(repeat-mode                    1)
+(winner-mode                    1)
+(blink-cursor-mode              0)
+(tooltip-mode                   1)
+(context-menu-mode              1)
+(global-hl-line-mode            1)
+(global-visual-wrap-prefix-mode 1)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -23,40 +24,43 @@
 
 (require 'use-package)
 
-(setq-default truncate-lines          t
-              visual-wrap-prefix-mode t)
+(setq-default truncate-lines t)
 
 (setq frame-title-format
       '("GNU Emacs — %b"
         (:eval (when (buffer-file-name)
                  (format " (%s)" (abbreviate-file-name (buffer-file-name)))))))
 
-(setq use-package-always-ensure                  t
-      use-package-expand-minimally               t
-      backup-by-copying                          t
-      backup-directory-alist                     '(("." . "~/.config/emacs/backups"))
-      auto-save-file-name-transforms             `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t))
-      delete-old-versions                        t
-      kept-new-versions                          6
-      kept-old-versions                          2
-      version-control                            t
-      vc-make-backup-files                       t
-      custom-file                                (expand-file-name "custom.el" user-emacs-directory)
-      scroll-conservatively                      10000
-      scroll-margin                              3
-      scroll-preserve-screen-position            t
-      scroll-step                                1
-      next-screen-context-lines                  3
-      mouse-wheel-follow-mouse                   t
-      mouse-wheel-progressive-speed              nil
-      mouse-wheel-scroll-amount                  '(2 ((shift) . 8) ((control) . nil))
-      ad-redefinition-action                     'accept
-      native-comp-async-report-warnings-errors   nil
-      use-dialog-box                             nil
-      global-auto-revert-non-file-buffers        t
-      vc-follow-symlinks                         t
-      select-enable-clipboard                    t
-      select-enable-primary                      t)
+(setq use-package-always-ensure                t
+      use-package-expand-minimally             t
+      backup-by-copying                        t
+      backup-directory-alist                   '(("." . "~/.config/emacs/backups"))
+      auto-save-file-name-transforms           `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t))
+      delete-old-versions                      t
+      kept-new-versions                        6
+      kept-old-versions                        2
+      version-control                          t
+      vc-make-backup-files                     t
+      custom-file                              (expand-file-name "custom.el" user-emacs-directory)
+      mouse-wheel-follow-mouse                 t
+      mouse-wheel-progressive-speed            nil
+      mouse-wheel-scroll-amount                '(2 ((shift) . 8) ((control) . nil))
+      ad-redefinition-action                   'accept
+      native-comp-async-report-warnings-errors nil
+      global-auto-revert-non-file-buffers      t
+      vc-follow-symlinks                       t
+      select-enable-clipboard                  t
+      select-enable-primary                    t)
+
+(setopt enable-recursive-minibuffers    t
+	read-extended-command-predicate #'command-completion-default-include-p
+	minibuffer-prompt-properties    '(read-only t cursor-intangible t face minibuffer-prompt)
+	scroll-conservatively           10000
+	scroll-margin                   3
+	scroll-preserve-screen-position t
+	scroll-step                     1
+	next-screen-context-lines       3
+	use-dialog-box                  nil)
 
 (unless (file-directory-p "~/.config/emacs/backups")
   (make-directory "~/.config/emacs/backups" t))
@@ -83,14 +87,17 @@
 (global-set-key (kbd "<f11>")    #'eshell)
 (global-set-key (kbd "C-c r")    #'rectangle-mark-mode)
 (global-set-key (kbd "<f9>")     #'menu-bar-open)
+(global-set-key (kbd "<home>")   #'delete-other-windows)
+(global-set-key (kbd "<end>")    #'delete-window)
 
 (global-set-key (kbd "<f5>")
                 (lambda () (interactive) (find-file user-init-file)))
 (global-set-key (kbd "<f6>")
-                (lambda () (interactive) (find-file "~/Org/inbox.org")))
+                (lambda () (interactive) (find-file user-emacs-directory)))
 
-(use-package zenburn-theme
-  :config (load-theme 'zenburn t))
+(use-package doom-themes
+  :config
+  (load-theme 'doom-one t))
 
 (use-package completion-preview
   :ensure nil
@@ -112,42 +119,103 @@
         which-key-allow-imprecise-window-fit nil
         which-key-separator                  " "))
 
+(use-package savehist
+  :ensure nil
+  :init
+  (savehist-mode))
+
 (use-package vertico
-  :init (vertico-mode 1)
-  :config (setq vertico-cycle t))
+  :custom
+  (vertico-scroll-margin 0)
+  (vertico-count  20)
+  (vertico-resize t)
+  (vertico-cycle  t)
+  :init
+  (vertico-mode))
 
 (use-package orderless
-  :defer t
-  :config
-  (setq completion-styles             '(orderless basic)
-        completion-category-overrides '((file (styles basic partial-completion)))))
+  :custom
+  (completion-styles               '(orderless basic))
+  (completion-category-overrides   '((file (styles partial-completion))))
+  (completion-category-defaults    nil)
+  (completion-pcm-leading-wildcard t))
 
 (use-package marginalia
-  :init (marginalia-mode 1))
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
 
 (use-package consult
-  :defer t
-  :bind (("C-x b"   . consult-buffer)
-         ("C-x 4 b" . consult-buffer-other-window)
-         ("M-y"     . consult-yank-pop)
-         ("M-s r"   . consult-ripgrep)
-         ("M-s f"   . consult-find)
-         ("M-s l"   . consult-line)
-         ("M-s m"   . consult-man)
-         ("C-c i"   . consult-imenu)))
+  :bind (("C-c M-x"           . consult-mode-command)
+         ("C-c h"             . consult-history)
+         ("C-c k"             . consult-kmacro)
+         ("C-c m"             . consult-man)
+         ("C-c i"             . consult-info)
+         ([remap Info-search] . consult-info)
+         ("C-x M-:"           . consult-complex-command)
+         ("C-x b"             . consult-buffer)
+         ("C-x 4 b"           . consult-buffer-other-window)
+         ("C-x 5 b"           . consult-buffer-other-frame)
+         ("C-x t b"           . consult-buffer-other-tab)
+         ("C-x r b"           . consult-bookmark)
+         ("C-x p b"           . consult-project-buffer)
+         ("M-#"               . consult-register-load)
+         ("M-'"               . consult-register-store)
+         ("C-M-#"             . consult-register)
+         ("M-y"               . consult-yank-pop)
+         ("M-g e"             . consult-compile-error)
+         ("M-g r"             . consult-grep-match)
+         ("M-g f"             . consult-flymake)
+         ("M-g g"             . consult-goto-line)
+         ("M-g M-g"           . consult-goto-line)
+         ("M-g o"             . consult-outline)
+         ("M-g m"             . consult-mark)
+         ("M-g k"             . consult-global-mark)
+         ("M-g i"             . consult-imenu)
+         ("M-g I"             . consult-imenu-multi)
+         ("M-s d"             . consult-find)
+         ("M-s c"             . consult-locate)
+         ("M-s g"             . consult-grep)
+         ("M-s G"             . consult-git-grep)
+         ("M-s r"             . consult-ripgrep)
+         ("M-s l"             . consult-line)
+         ("M-s L"             . consult-line-multi)
+         ("M-s k"             . consult-keep-lines)
+         ("M-s u"             . consult-focus-lines)
+         ("M-s e"             . consult-isearch-history)
+         :map isearch-mode-map
+         ("M-e"   . consult-isearch-history)
+         ("M-s e" . consult-isearch-history)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         :map minibuffer-local-map
+         ("M-s" . consult-history)
+         ("M-r" . consult-history))
+  :init
+  (advice-add #'register-preview :override #'consult-register-window)
+  (setq register-preview-delay         0.5
+	xref-show-xrefs-function       #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  :config
+  (consult-customize
+   consult-theme              :preview-key '(:debounce 0.2 any)
+   consult-ripgrep            consult-git-grep consult-grep consult-man
+   consult-bookmark           consult-recent-file consult-xref
+   consult-source-bookmark    consult-source-file-register
+   consult-source-recent-file consult-source-project-recent-file
+   :preview-key               '(:debounce 0.4 any))
+  (setq consult-narrow-key "<"))
 
 (use-package nerd-icons)
 
 (use-package nerd-icons-dired
-  :defer t
   :hook (dired-mode . nerd-icons-dired-mode))
 
 (use-package nerd-icons-ibuffer
-  :defer t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 (use-package nerd-icons-completion
-  :defer t
   :after marginalia
   :config
   (nerd-icons-completion-mode)
@@ -155,31 +223,11 @@
 
 (use-package ibuffer
   :ensure nil
-  :defer t
-  :bind ("<f12>" . ibuffer))
-
-(use-package dashboard
-  :init
-  (setq initial-buffer-choice               (lambda () (get-buffer-create "*dashboard*"))
-        dashboard-banner-logo-title         "  Welcome to Nachmen's GNU Emacs "
-        dashboard-center-content            t
-        dashboard-vertically-center-content t
-        dashboard-show-shortcuts            t
-        dashboard-icon-type                 'nerd-icons
-        dashboard-set-heading-icons         t
-        dashboard-set-file-icons            t
-        dashboard-display-icons-p           t
-        dashboard-navigation-cycle          t
-        dashboard-page-separator            "\n\f\n"
-        dashboard-items                     '((projects  . 10)
-                                              (bookmarks . 10)
-                                              (recents   . 10)))
+  :bind ("<f12>" . ibuffer)
   :config
-  (dashboard-setup-startup-hook)
-  (global-set-key (kbd "C-c d") #'dashboard-refresh-buffer))
+  (setq ibuffer-default-sorting-mode 'major-mode))
 
 (use-package magit
-  :defer t
   :bind ("C-x g" . magit-status))
 
 (use-package diff-hl
@@ -202,51 +250,57 @@
     (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)))
 
 (use-package visual-fill-column
-  :defer t
   :init
   (defun my-layout-center-buffer ()
-    (setq-local visual-fill-column-width       90
+    (setq-local visual-fill-column-width       80
                 visual-fill-column-center-text t
                 truncate-lines                 nil)
     (visual-line-mode 1)
     (visual-fill-column-mode 1))
-  :hook ((help-mode . my-layout-center-buffer)
-         (Info-mode . my-layout-center-buffer)
+  :hook ((Info-mode . my-layout-center-buffer)
          (eww-mode  . my-layout-center-buffer)
          (Man-mode  . my-layout-center-buffer)
          (org-mode  . my-layout-center-buffer)))
 
 (use-package markdown-mode
-  :defer t
   :mode  ("README\\.md\\'" . gfm-mode)
   :init  (setq markdown-command "multimarkdown")
   :bind  (:map markdown-mode-map ("C-c C-e" . markdown-do)))
 
-(use-package tldr     :defer t)
-(use-package pdf-tools :defer t)
-(use-package pacmacs  :defer t)
-(use-package 2048-game :defer t)
+(use-package pacmacs)
+(use-package 2048-game)
+(use-package tldr)
+
+(use-package pdf-tools
+  :config (pdf-tools-install))
 
 (use-package emms
-  :defer t
   :config
   (emms-all)
   (setq emms-player-list    '(emms-player-vlc)
         emms-info-functions '(emms-info-native)))
 
+(use-package dictionary
+  :ensure nil
+  :custom
+  (dictionary-server            "dict.org")
+  (dictionary-use-single-window t)
+  :bind
+  ("C-c d" . dictionary-lookup-definition)
+  ("C-c D" . dictionary-search))
+
 (use-package google-translate
-  :defer t
   :init
   (setq google-translate-default-source-language "En"
         google-translate-default-target-language  "He"
-        google-translate-output-destination       'echo-area
         google-translate-backend-method           'curl)
   :bind ("<f10>" . google-translate-at-point)
   :config (require 'google-translate-default-ui))
 
 (use-package elfeed
-  :defer t
-  :bind ("C-x w" . elfeed)
+  :bind (("C-c e d" . elfeed)
+	 ("C-c e t" . my/elfeed-no-video)
+	 ("C-c e v" . my/elfeed-only-video))
   :config
   (setq-default elfeed-search-filter "+unread +jdn")
   (setq elfeed-use-curl t)
@@ -306,12 +360,84 @@
          ("C-c n g" . org-roam-graph)
          ("C-c n j" . org-roam-dailies-capture-today))
   :custom
-  (org-roam-directory (file-truename "~/Org/roam/"))
+  (org-roam-directory (file-truename "~/Org/Roam/"))
   (org-roam-node-display-template
    (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   :config
   (org-roam-db-autosync-mode)
   (require 'org-roam-protocol))
+
+(use-package org-roam-ui
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme     t
+          org-roam-ui-follow         t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start  nil))
+
+(use-package mu4e
+  :ensure nil
+  :config
+  (setq mu4e-maildir                      "~/Mail"
+        mu4e-get-mail-command             "mbsync gmail"
+        mu4e-update-interval              300
+        mu4e-change-filenames-when-moving t
+        mu4e-user-mail-address-list       '("lniz.cloud@gmail.com" "nachmenkurtz@gmail.com" "shmnzch@gmail.com")
+        mu4e-context-policy               'pick-first
+        mu4e-compose-context-policy       'ask-if-none
+        mu4e-maildir-shortcuts            '((:maildir "/lniz-cloud/INBOX"              :key ?i)
+                                            (:maildir "/lniz-cloud/[Gmail]/Sent Mail"  :key ?s)
+                                            (:maildir "/lniz-cloud/[Gmail]/All Mail"   :key ?a)
+                                            (:maildir "/lniz-cloud/[Gmail]/Drafts"     :key ?d)
+                                            (:maildir "/lniz-cloud/[Gmail]/Trash"      :key ?t)
+                                            (:maildir "/nachmen/INBOX"                 :key ?I)
+                                            (:maildir "/nachmen/[Gmail]/Sent Mail"     :key ?S)
+                                            (:maildir "/nachmen/[Gmail]/All Mail"      :key ?A)
+                                            (:maildir "/nachmen/[Gmail]/Drafts"        :key ?D)
+                                            (:maildir "/nachmen/[Gmail]/Trash"         :key ?T)
+                                            (:maildir "/shmnzch/INBOX"                 :key ?n)
+                                            (:maildir "/shmnzch/[Gmail]/Sent Mail"     :key ?e)
+                                            (:maildir "/shmnzch/[Gmail]/All Mail"      :key ?m)
+                                            (:maildir "/shmnzch/[Gmail]/Drafts"        :key ?x)
+                                            (:maildir "/shmnzch/[Gmail]/Trash"         :key ?z))
+        mu4e-contexts
+        `(,(make-mu4e-context
+            :name "lniz"
+            :match-func (lambda (msg)
+                          (when msg
+                            (string-prefix-p "/lniz-cloud" (mu4e-message-field msg :maildir))))
+            :vars '((user-mail-address       . "lniz.cloud@gmail.com")
+                    (user-full-name          . "Nachmen Kurtz")
+                    (mu4e-sent-folder        . "/lniz-cloud/[Gmail]/Sent Mail")
+                    (mu4e-drafts-folder      . "/lniz-cloud/[Gmail]/Drafts")
+                    (mu4e-trash-folder       . "/lniz-cloud/[Gmail]/Trash")
+                    (mu4e-refile-folder      . "/lniz-cloud/[Gmail]/All Mail")))
+          ,(make-mu4e-context
+            :name "nachmen"
+            :match-func (lambda (msg)
+                          (when msg
+                            (string-prefix-p "/nachmen" (mu4e-message-field msg :maildir))))
+            :vars '((user-mail-address       . "nachmenkurtz@gmail.com")
+                    (user-full-name          . "Nachmen Kurtz")
+                    (mu4e-sent-folder        . "/nachmen/[Gmail]/Sent Mail")
+                    (mu4e-drafts-folder      . "/nachmen/[Gmail]/Drafts")
+                    (mu4e-trash-folder       . "/nachmen/[Gmail]/Trash")
+                    (mu4e-refile-folder      . "/nachmen/[Gmail]/All Mail")))
+          ,(make-mu4e-context
+            :name "shmnzch"
+            :match-func (lambda (msg)
+                          (when msg
+                            (string-prefix-p "/shmnzch" (mu4e-message-field msg :maildir))))
+            :vars '((user-mail-address       . "shmnzch@gmail.com")
+                    (user-full-name          . "Nachmen Kurtz")
+                    (mu4e-sent-folder        . "/shmnzch/[Gmail]/Sent Mail")
+                    (mu4e-drafts-folder      . "/shmnzch/[Gmail]/Drafts")
+                    (mu4e-trash-folder       . "/shmnzch/[Gmail]/Trash")
+                    (mu4e-refile-folder      . "/shmnzch/[Gmail]/All Mail"))))))
+
+(use-package nov
+  :init
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 (use-package ligature
   :config
@@ -338,6 +464,18 @@
 (defun my/insert-iso-datetime ()
   (interactive)
   (insert (format-time-string "%Y-%m-%dT%H:%M:%S%z")))
+
+(defun my/elfeed-no-video ()
+  "Open elfeed with the -video filter applied."
+  (interactive)
+  (elfeed)
+  (elfeed-search-set-filter "+unread -video"))
+
+(defun my/elfeed-only-video ()
+  "Open elfeed with the +video filter applied."
+  (interactive)
+  (elfeed)
+  (elfeed-search-set-filter "+unread +video"))
 
 (when (file-exists-p custom-file)
   (load custom-file))
