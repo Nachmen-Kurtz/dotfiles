@@ -1,4 +1,0 @@
-#!/bin/sh
-
-sv start dhcps || exit 1
-rfkill unblock all
