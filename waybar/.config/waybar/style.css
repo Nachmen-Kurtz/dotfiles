@@ -1,6 +1,6 @@
 * {
-    font-family: 'Noto Sans Mono', monospace;
-    font-size: 12px;
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 13px;
 }
 
 window#waybar {
@@ -294,7 +294,6 @@ button:hover {
     color: #8ea8a0;
     padding: 0 8px;
     margin: 4px 2px;
-    border-radius: 6px;
 }
 
 #keyboard-state {
@@ -302,7 +301,6 @@ button:hover {
     color: #6b7a8d;
     padding: 0;
     margin: 4px 2px;
-    border-radius: 6px;
 }
 
 #keyboard-state > label {
