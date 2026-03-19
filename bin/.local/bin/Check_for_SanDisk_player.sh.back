@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# DATE="$(date +'%d-%m-%y')"
+BASE_PATH="/run/media/nachmen"
+FOLDER_NAME="9C33-6BBD"
+
+if [[ -d "$BASE_PATH" ]]; then
+  if [[ -d "$BASE_PATH/$FOLDER_NAME" ]]; then
+    echo "Available."
+  # echo "Do you want to get the new Podcasts to your player? (yes/no)"
+  #   read -r user_input
+  #   if [[ "$user_input" == "yes" ]]; then
+  #     echo "Copying podcasts..."
+  #     mkdir "$BASE_PATH/$FOLDER_NAME/gPodder/DATE"
+  #     find $HOME/gPodder -type f -mtime -1 -name "*.mp3" -exec cp -t "$BASE_PATH/$FOLDER_NAME/gPodder/$DATE/" {} +
+  #     echo "The following are copied items:"
+  #     ls "$BASE_PATH/$FOLDER_NAME/gPodder/$DATE" | nl
+  #   elif [[ "$user_input" == "no" ]]; then
+  #     echo "OK, we exit now!"
+  #   else
+  #     echo "Invalid input. Please answer yes or no."
+  #   fi
+  else
+    echo "Folder $FOLDER_NAME does not exist under $BASE_PATH."
+  fi
+else
+  echo "Base path $BASE_PATH does not exist. Please check the drive or path."
+fi

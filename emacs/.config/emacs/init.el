@@ -50,7 +50,8 @@
       global-auto-revert-non-file-buffers      t
       vc-follow-symlinks                       t
       select-enable-clipboard                  t
-      select-enable-primary                    t)
+      select-enable-primary                    t
+      confirm-kill-emacs                       #'yes-or-no-p)
 
 (setopt enable-recursive-minibuffers    t
 	read-extended-command-predicate #'command-completion-default-include-p
@@ -89,11 +90,8 @@
 (global-set-key (kbd "<f9>")     #'menu-bar-open)
 (global-set-key (kbd "<home>")   #'delete-other-windows)
 (global-set-key (kbd "<end>")    #'delete-window)
-
-(global-set-key (kbd "<f5>")
-                (lambda () (interactive) (find-file user-init-file)))
-(global-set-key (kbd "<f6>")
-                (lambda () (interactive) (find-file user-emacs-directory)))
+(global-set-key (kbd "<f8>")     #'list-bookmarks)
+(global-set-key (kbd "<f7>")     #'mu4e)
 
 (use-package doom-themes
   :config
@@ -124,12 +122,19 @@
   :init
   (savehist-mode))
 
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-kill-when-opening-new-dired-buffer t)
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+
 (use-package vertico
   :custom
   (vertico-scroll-margin 0)
-  (vertico-count  20)
-  (vertico-resize t)
-  (vertico-cycle  t)
+  (vertico-count         20)
+  (vertico-resize        t)
+  (vertico-cycle         t)
   :init
   (vertico-mode))
 
@@ -147,70 +152,18 @@
   (marginalia-mode))
 
 (use-package consult
-  :bind (("C-c M-x"           . consult-mode-command)
-         ("C-c h"             . consult-history)
-         ("C-c k"             . consult-kmacro)
-         ("C-c m"             . consult-man)
-         ("C-c i"             . consult-info)
-         ([remap Info-search] . consult-info)
-         ("C-x M-:"           . consult-complex-command)
-         ("C-x b"             . consult-buffer)
-         ("C-x 4 b"           . consult-buffer-other-window)
-         ("C-x 5 b"           . consult-buffer-other-frame)
-         ("C-x t b"           . consult-buffer-other-tab)
-         ("C-x r b"           . consult-bookmark)
-         ("C-x p b"           . consult-project-buffer)
-         ("M-#"               . consult-register-load)
-         ("M-'"               . consult-register-store)
-         ("C-M-#"             . consult-register)
-         ("M-y"               . consult-yank-pop)
-         ("M-g e"             . consult-compile-error)
-         ("M-g r"             . consult-grep-match)
-         ("M-g f"             . consult-flymake)
-         ("M-g g"             . consult-goto-line)
-         ("M-g M-g"           . consult-goto-line)
-         ("M-g o"             . consult-outline)
-         ("M-g m"             . consult-mark)
-         ("M-g k"             . consult-global-mark)
-         ("M-g i"             . consult-imenu)
-         ("M-g I"             . consult-imenu-multi)
-         ("M-s d"             . consult-find)
-         ("M-s c"             . consult-locate)
-         ("M-s g"             . consult-grep)
-         ("M-s G"             . consult-git-grep)
-         ("M-s r"             . consult-ripgrep)
-         ("M-s l"             . consult-line)
-         ("M-s L"             . consult-line-multi)
-         ("M-s k"             . consult-keep-lines)
-         ("M-s u"             . consult-focus-lines)
-         ("M-s e"             . consult-isearch-history)
-         :map isearch-mode-map
-         ("M-e"   . consult-isearch-history)
-         ("M-s e" . consult-isearch-history)
-         ("M-s l" . consult-line)
-         ("M-s L" . consult-line-multi)
-         :map minibuffer-local-map
-         ("M-s" . consult-history)
-         ("M-r" . consult-history))
-  :init
-  (advice-add #'register-preview :override #'consult-register-window)
-  (setq register-preview-delay         0.5
-	xref-show-xrefs-function       #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-  :config
-  (consult-customize
-   consult-theme              :preview-key '(:debounce 0.2 any)
-   consult-ripgrep            consult-git-grep consult-grep consult-man
-   consult-bookmark           consult-recent-file consult-xref
-   consult-source-bookmark    consult-source-file-register
-   consult-source-recent-file consult-source-project-recent-file
-   :preview-key               '(:debounce 0.4 any))
-  (setq consult-narrow-key "<"))
+  :bind (("M-o b" . consult-buffer)
+         ("M-o s" . consult-buffer-other-window)
+         ("M-o b" . consult-bookmark)
+         ("M-o y" . consult-yank-pop)
+         ("M-o g" . consult-goto-line)
+         ("M-o o" . consult-outline)
+         ("M-o i" . consult-imenu)
+         ("M-o e" . consult-isearch-history)))
 
 (use-package nerd-icons)
 
-(use-package nerd-icons-dired
-  :hook (dired-mode . nerd-icons-dired-mode))
+(use-package nerd-icons-dired)
 
 (use-package nerd-icons-ibuffer
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
@@ -268,7 +221,9 @@
   :bind  (:map markdown-mode-map ("C-c C-e" . markdown-do)))
 
 (use-package pacmacs)
+
 (use-package 2048-game)
+
 (use-package tldr)
 
 (use-package pdf-tools
@@ -291,8 +246,9 @@
 
 (use-package google-translate
   :init
-  (setq google-translate-default-source-language "En"
+  (setq google-translate-default-source-language  "En"
         google-translate-default-target-language  "He"
+	google-translate-output-destination       'popup
         google-translate-backend-method           'curl)
   :bind ("<f10>" . google-translate-at-point)
   :config (require 'google-translate-default-ui))
@@ -300,7 +256,9 @@
 (use-package elfeed
   :bind (("C-c e d" . elfeed)
 	 ("C-c e t" . my/elfeed-no-video)
-	 ("C-c e v" . my/elfeed-only-video))
+	 ("C-c e v" . my/elfeed-only-video)
+	 ("C-c e h" . my/elfeed-hebrew)
+	 ("C-c e e" . my/elfeed-english))
   :config
   (setq-default elfeed-search-filter "+unread +jdn")
   (setq elfeed-use-curl t)
@@ -476,6 +434,20 @@
   (interactive)
   (elfeed)
   (elfeed-search-set-filter "+unread +video"))
+
+(defun my/elfeed-hebrew ()
+  "Open elfeed filtered by +unread +he."
+  (interactive)
+  (elfeed)
+  (elfeed-search-set-filter "+unread +he"))
+
+(defun my/elfeed-english ()
+  "Open elfeed filtered by +unread +en."
+  (interactive)
+  (elfeed)
+  (elfeed-search-set-filter "+unread +en"))
+
+(server-start)
 
 (when (file-exists-p custom-file)
   (load custom-file))
