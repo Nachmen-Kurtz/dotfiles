@@ -155,5 +155,9 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  //
+  "sway/workspaces": {
+    "disable-scroll": true
   }
 }
