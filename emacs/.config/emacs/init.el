@@ -4,10 +4,6 @@
 (display-battery-mode           1)
 (recentf-mode                   1)
 (save-place-mode                1)
-(global-auto-revert-mode        1)
-(repeat-mode                    1)
-(winner-mode                    1)
-(blink-cursor-mode              0)
 (tooltip-mode                   1)
 (context-menu-mode              1)
 (global-hl-line-mode            1)
@@ -51,17 +47,19 @@
       vc-follow-symlinks                       t
       select-enable-clipboard                  t
       select-enable-primary                    t
+      user-mail-address                        "nachmenkurtz@gmail.com"
+      user-full-name                           "Nachmen Kurtz"
       confirm-kill-emacs                       #'yes-or-no-p)
 
 (setopt enable-recursive-minibuffers    t
-	read-extended-command-predicate #'command-completion-default-include-p
-	minibuffer-prompt-properties    '(read-only t cursor-intangible t face minibuffer-prompt)
-	scroll-conservatively           10000
-	scroll-margin                   3
-	scroll-preserve-screen-position t
-	scroll-step                     1
-	next-screen-context-lines       3
-	use-dialog-box                  nil)
+        read-extended-command-predicate #'command-completion-default-include-p
+        minibuffer-prompt-properties    '(read-only t cursor-intangible t face minibuffer-prompt)
+        scroll-conservatively           10000
+        scroll-margin                   3
+        scroll-preserve-screen-position t
+        scroll-step                     1
+        next-screen-context-lines       3
+        use-dialog-box                  nil)
 
 (unless (file-directory-p "~/.config/emacs/backups")
   (make-directory "~/.config/emacs/backups" t))
@@ -79,12 +77,14 @@
 (add-hook 'conf-mode-hook   #'display-line-numbers-mode)
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
+(add-hook 'org-mode-hook (lambda () (visual-wrap-prefix-mode -1)))
+
 (global-set-key (kbd "M-<up>")   #'beginning-of-buffer)
 (global-set-key (kbd "M-<down>") #'end-of-buffer)
 (global-set-key (kbd "M-]")      #'forward-sexp)
 (global-set-key (kbd "M-[")      #'backward-sexp)
-(global-set-key (kbd "C-c C-d")  #'my/insert-date-time)
-(global-set-key (kbd "C-c C-D")  #'my/insert-iso-datetime)
+(global-set-key (kbd "C-c t s")  #'my/insert-date-time)
+(global-set-key (kbd "C-c t i")  #'my/insert-iso-datetime)
 (global-set-key (kbd "<f11>")    #'eshell)
 (global-set-key (kbd "C-c r")    #'rectangle-mark-mode)
 (global-set-key (kbd "<f9>")     #'menu-bar-open)
@@ -113,9 +113,9 @@
         which-key-sort-order                 #'which-key-key-order-alpha
         which-key-sort-uppercase-first       t
         which-key-max-description-length     nil
-        which-key-idle-delay                 0.3
+        which-key-idle-delay                 0.2
         which-key-allow-imprecise-window-fit nil
-        which-key-separator                  " "))
+        which-key-separator                  " 󱕴 "))
 
 (use-package savehist
   :ensure nil
@@ -126,59 +126,27 @@
   :ensure nil
   :custom
   (dired-kill-when-opening-new-dired-buffer t)
+  (dired-listing-switches "-alh --group-directories-first")
   :hook
   (dired-mode . nerd-icons-dired-mode))
-
-(use-package vertico
-  :custom
-  (vertico-scroll-margin 0)
-  (vertico-count         20)
-  (vertico-resize        t)
-  (vertico-cycle         t)
-  :init
-  (vertico-mode))
-
-(use-package orderless
-  :custom
-  (completion-styles               '(orderless basic))
-  (completion-category-overrides   '((file (styles partial-completion))))
-  (completion-category-defaults    nil)
-  (completion-pcm-leading-wildcard t))
-
-(use-package marginalia
-  :bind (:map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
-  :init
-  (marginalia-mode))
-
-(use-package consult
-  :bind (("M-o b" . consult-buffer)
-         ("M-o s" . consult-buffer-other-window)
-         ("M-o b" . consult-bookmark)
-         ("M-o y" . consult-yank-pop)
-         ("M-o g" . consult-goto-line)
-         ("M-o o" . consult-outline)
-         ("M-o i" . consult-imenu)
-         ("M-o e" . consult-isearch-history)))
 
 (use-package nerd-icons)
 
 (use-package nerd-icons-dired)
 
-(use-package nerd-icons-ibuffer
-  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+(use-package nerd-icons-ibuffer)
 
 (use-package nerd-icons-completion
-  :after marginalia
   :config
-  (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+  (nerd-icons-completion-mode))
 
 (use-package ibuffer
   :ensure nil
   :bind ("<f12>" . ibuffer)
   :config
-  (setq ibuffer-default-sorting-mode 'major-mode))
+  (setq ibuffer-default-sorting-mode 'major-mode)
+  :hook
+  (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 (use-package magit
   :bind ("C-x g" . magit-status))
@@ -208,26 +176,26 @@
     (setq-local visual-fill-column-width       80
                 visual-fill-column-center-text t
                 truncate-lines                 nil)
-    (visual-line-mode 1)
+    (visual-line-mode        1)
     (visual-fill-column-mode 1))
   :hook ((Info-mode . my-layout-center-buffer)
          (eww-mode  . my-layout-center-buffer)
-         (Man-mode  . my-layout-center-buffer)
-         (org-mode  . my-layout-center-buffer)))
+         (Man-mode  . my-layout-center-buffer)))
 
 (use-package markdown-mode
-  :mode  ("README\\.md\\'" . gfm-mode)
-  :init  (setq markdown-command "multimarkdown")
-  :bind  (:map markdown-mode-map ("C-c C-e" . markdown-do)))
+  :mode
+  ("README\\.md\\'" . gfm-mode)
+  :init
+  (setq markdown-command "multimarkdown")
+  :bind
+  (:map markdown-mode-map
+	("C-c C-e" . markdown-do)))
 
 (use-package pacmacs)
 
 (use-package 2048-game)
 
 (use-package tldr)
-
-(use-package pdf-tools
-  :config (pdf-tools-install))
 
 (use-package emms
   :config
@@ -248,17 +216,33 @@
   :init
   (setq google-translate-default-source-language  "En"
         google-translate-default-target-language  "He"
-	google-translate-output-destination       'popup
         google-translate-backend-method           'curl)
   :bind ("<f10>" . google-translate-at-point)
   :config (require 'google-translate-default-ui))
 
 (use-package elfeed
+  :preface
+  (defun my/elfeed-no-video ()
+    (interactive)
+    (elfeed)
+    (elfeed-search-set-filter "+unread -video"))
+  (defun my/elfeed-only-video ()
+    (interactive)
+    (elfeed)
+    (elfeed-search-set-filter "+unread +video"))
+  (defun my/elfeed-hebrew ()
+    (interactive)
+    (elfeed)
+    (elfeed-search-set-filter "+unread +he"))
+  (defun my/elfeed-english ()
+    (interactive)
+    (elfeed)
+    (elfeed-search-set-filter "+unread +en"))
   :bind (("C-c e d" . elfeed)
-	 ("C-c e t" . my/elfeed-no-video)
-	 ("C-c e v" . my/elfeed-only-video)
-	 ("C-c e h" . my/elfeed-hebrew)
-	 ("C-c e e" . my/elfeed-english))
+         ("C-c e t" . my/elfeed-no-video)
+         ("C-c e v" . my/elfeed-only-video)
+         ("C-c e h" . my/elfeed-hebrew)
+         ("C-c e e" . my/elfeed-english))
   :config
   (setq-default elfeed-search-filter "+unread +jdn")
   (setq elfeed-use-curl t)
@@ -267,9 +251,7 @@
   (add-hook 'elfeed-new-entry-hook
             (elfeed-make-tagger :feed-url "youtube\\.com" :add 'video))
   (add-hook 'elfeed-new-entry-hook
-            (elfeed-make-tagger :feed-url "jdn\\.co.il"  :add 'jdn))
-  (add-hook 'elfeed-new-entry-hook
-            (elfeed-make-tagger :feed-url "reddit\\.com" :add 'reddit)))
+            (elfeed-make-tagger :feed-url "jdn\\.co.il"  :add 'jdn)))
 
 (use-package elfeed-org
   :after elfeed
@@ -285,70 +267,42 @@
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link))
+  :custom
+  (org-agenda-files      '("~/org/tasks.org" "~/org/projects.org"))
+  (org-startup-folded    'fold)
+  (org-log-done          'time)
+  (org-log-into-drawer   t)
+  (org-refile-targets    '((org-agenda-files         :maxlevel . 3)
+                           ("~/org/ideas.org"        :maxlevel . 2)
+                           ("~/org/thoughts.org"     :maxlevel . 1)))
+  (org-todo-keywords     '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
+  (org-capture-templates
+   '(("i" "Inbox"   entry (file          "~/org/inbox.org")               "* %?\n%U\n")
+     ("t" "Task"    entry (file+headline "~/org/tasks.org"    "Tasks")    "* TODO %?\n")
+     ("p" "Project" entry (file+headline "~/org/projects.org" "Projects") "* TODO %?\n")
+     ("j" "Idea"    entry (file+headline "~/org/ideas.org"    "Ideas")    "* %?\n%U\n")
+     ("h" "Thought" entry (file+headline "~/org/thoughts.org" "Thoughts") "* %?\n%U\n")))
   :config
-  (setq org-directory                  "~/Org"
-        org-default-notes-file         "~/Org/inbox.org"
-        org-agenda-files               '("~/Org/")
-        org-todo-keywords              '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED"))
-        org-log-done                   'time
-        org-src-fontify-natively       t
-        org-src-tab-acts-natively      t
-        org-src-window-setup           'current-window
-        org-hide-emphasis-markers      t
-        org-startup-folded             t
-        org-startup-with-inline-images t
-        org-return-follows-link        t
-        org-capture-templates
-        '(("t" "Task"    entry (file+headline "~/Org/inbox.org" "Tasks")
-           "* TODO %?\n  Added: %T\n")
-          ("n" "Note"    entry (file+headline "~/Org/inbox.org" "Notes")
-           "* %?\n  Added: %T\n")
-          ("j" "Journal" entry (file+datetree "~/Org/journal.org")
-           "* %?\n  Entered: %T\n"))))
+  (require 'org-tempo))
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode))
 
-(use-package org-roam
-  :after org
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n j" . org-roam-dailies-capture-today))
-  :custom
-  (org-roam-directory (file-truename "~/Org/Roam/"))
-  (org-roam-node-display-template
-   (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  :config
-  (org-roam-db-autosync-mode)
-  (require 'org-roam-protocol))
-
-(use-package org-roam-ui
-    :after org-roam
-    :config
-    (setq org-roam-ui-sync-theme     t
-          org-roam-ui-follow         t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start  nil))
-
 (use-package mu4e
   :ensure nil
   :config
-  (setq mu4e-maildir                      "~/Mail"
+  (setq message-send-mail-function        'message-send-mail-with-sendmail
+        sendmail-program                  "/usr/bin/msmtp"
+        message-sendmail-f-is-evil        t
+        message-sendmail-extra-arguments  '("--read-envelope-from")
+        mu4e-maildir                      "~/mail"
         mu4e-get-mail-command             "mbsync gmail"
         mu4e-update-interval              300
         mu4e-change-filenames-when-moving t
-        mu4e-user-mail-address-list       '("lniz.cloud@gmail.com" "nachmenkurtz@gmail.com" "shmnzch@gmail.com")
+        mu4e-user-mail-address-list       '("nachmenkurtz@gmail.com" "shmnzch@gmail.com" "lniz.cloud@gmail.com")
         mu4e-context-policy               'pick-first
         mu4e-compose-context-policy       'ask-if-none
-        mu4e-maildir-shortcuts            '((:maildir "/lniz-cloud/INBOX"              :key ?i)
-                                            (:maildir "/lniz-cloud/[Gmail]/Sent Mail"  :key ?s)
-                                            (:maildir "/lniz-cloud/[Gmail]/All Mail"   :key ?a)
-                                            (:maildir "/lniz-cloud/[Gmail]/Drafts"     :key ?d)
-                                            (:maildir "/lniz-cloud/[Gmail]/Trash"      :key ?t)
-                                            (:maildir "/nachmen/INBOX"                 :key ?I)
+        mu4e-maildir-shortcuts            '((:maildir "/nachmen/INBOX"                 :key ?I)
                                             (:maildir "/nachmen/[Gmail]/Sent Mail"     :key ?S)
                                             (:maildir "/nachmen/[Gmail]/All Mail"      :key ?A)
                                             (:maildir "/nachmen/[Gmail]/Drafts"        :key ?D)
@@ -357,20 +311,14 @@
                                             (:maildir "/shmnzch/[Gmail]/Sent Mail"     :key ?e)
                                             (:maildir "/shmnzch/[Gmail]/All Mail"      :key ?m)
                                             (:maildir "/shmnzch/[Gmail]/Drafts"        :key ?x)
-                                            (:maildir "/shmnzch/[Gmail]/Trash"         :key ?z))
+                                            (:maildir "/shmnzch/[Gmail]/Trash"         :key ?z)
+                                            (:maildir "/lniz-cloud/INBOX"              :key ?i)
+                                            (:maildir "/lniz-cloud/[Gmail]/Sent Mail"  :key ?s)
+                                            (:maildir "/lniz-cloud/[Gmail]/All Mail"   :key ?a)
+                                            (:maildir "/lniz-cloud/[Gmail]/Drafts"     :key ?d)
+                                            (:maildir "/lniz-cloud/[Gmail]/Trash"      :key ?t))
         mu4e-contexts
         `(,(make-mu4e-context
-            :name "lniz"
-            :match-func (lambda (msg)
-                          (when msg
-                            (string-prefix-p "/lniz-cloud" (mu4e-message-field msg :maildir))))
-            :vars '((user-mail-address       . "lniz.cloud@gmail.com")
-                    (user-full-name          . "Nachmen Kurtz")
-                    (mu4e-sent-folder        . "/lniz-cloud/[Gmail]/Sent Mail")
-                    (mu4e-drafts-folder      . "/lniz-cloud/[Gmail]/Drafts")
-                    (mu4e-trash-folder       . "/lniz-cloud/[Gmail]/Trash")
-                    (mu4e-refile-folder      . "/lniz-cloud/[Gmail]/All Mail")))
-          ,(make-mu4e-context
             :name "nachmen"
             :match-func (lambda (msg)
                           (when msg
@@ -391,7 +339,18 @@
                     (mu4e-sent-folder        . "/shmnzch/[Gmail]/Sent Mail")
                     (mu4e-drafts-folder      . "/shmnzch/[Gmail]/Drafts")
                     (mu4e-trash-folder       . "/shmnzch/[Gmail]/Trash")
-                    (mu4e-refile-folder      . "/shmnzch/[Gmail]/All Mail"))))))
+                    (mu4e-refile-folder      . "/shmnzch/[Gmail]/All Mail")))
+          ,(make-mu4e-context
+            :name "lniz"
+            :match-func (lambda (msg)
+                          (when msg
+                            (string-prefix-p "/lniz-cloud" (mu4e-message-field msg :maildir))))
+            :vars '((user-mail-address       . "lniz.cloud@gmail.com")
+                    (user-full-name          . "Nachmen Kurtz")
+                    (mu4e-sent-folder        . "/lniz-cloud/[Gmail]/Sent Mail")
+                    (mu4e-drafts-folder      . "/lniz-cloud/[Gmail]/Drafts")
+                    (mu4e-trash-folder       . "/lniz-cloud/[Gmail]/Trash")
+                    (mu4e-refile-folder      . "/lniz-cloud/[Gmail]/All Mail"))))))
 
 (use-package nov
   :init
@@ -400,19 +359,19 @@
 (use-package ligature
   :config
   (ligature-set-ligatures 'prog-mode
-    '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-      ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-      "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-      "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-      "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-      "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-      "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-      "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-      ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-      "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-      "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-      "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-      "\\\\" "://"))
+			  '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+			    ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+			    "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+			    "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+			    "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+			    "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+			    "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+			    "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+			    ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+			    "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+			    "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+			    "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+			    "\\\\" "://"))
   (global-ligature-mode t))
 
 (defun my/insert-date-time ()
@@ -422,30 +381,6 @@
 (defun my/insert-iso-datetime ()
   (interactive)
   (insert (format-time-string "%Y-%m-%dT%H:%M:%S%z")))
-
-(defun my/elfeed-no-video ()
-  "Open elfeed with the -video filter applied."
-  (interactive)
-  (elfeed)
-  (elfeed-search-set-filter "+unread -video"))
-
-(defun my/elfeed-only-video ()
-  "Open elfeed with the +video filter applied."
-  (interactive)
-  (elfeed)
-  (elfeed-search-set-filter "+unread +video"))
-
-(defun my/elfeed-hebrew ()
-  "Open elfeed filtered by +unread +he."
-  (interactive)
-  (elfeed)
-  (elfeed-search-set-filter "+unread +he"))
-
-(defun my/elfeed-english ()
-  "Open elfeed filtered by +unread +en."
-  (interactive)
-  (elfeed)
-  (elfeed-search-set-filter "+unread +en"))
 
 (server-start)
 
