@@ -1,0 +1,1 @@
+../../../dotfiles/.system/shell_scripts/Get_sterted-Install_my_apps/Netfree.sh

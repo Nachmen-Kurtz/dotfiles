@@ -1,66 +1,70 @@
-* Feeds :elfeed:
+* Feeds                                                              :elfeed:
 
-** Applications :applications:
+** Applications                                                :applications:
 *** [[https://keepassxc.org/blog/index.xml][KeePassXC Blog on KeePassXC Password Manager]]
 *** [[https://fishshell.com/blog/feed.xml][Fish-shell Blog]]
 *** [[https://calibre-ebook.com/changelog.rss][calibre Changelog]]
-*** GNU Emacs :emacs:
+*** [[https://code.claude.com/docs/en/changelog/rss.xml][Release notes for Claude Code]]
+*** GNU Emacs                                                         :emacs:
 **** [[https://emacsconf.org/index.rss][EmacsConf]]
 **** [[https://www.emacswiki.org/emacs?action=rss][EmacsWiki: SiteMap]]
 **** [[https://lucidmanager.org/tags/emacs/index.xml][Emacs on Lucid Manager]]
 **** [[https://systemcrafters.net/rss/news.xml][System Crafters News]]
+**** [[https://irreal.org/blog/?feed=rss2][Irreal]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCAiiOTio8Yu69c3XnR7nQBQ][@SystemCrafters]]
 
-** DevOps :devops:
-*** English :en:
+** DevOps                                                            :devops:
+*** English                                                              :en:
 **** [[https://spacelift.io/rss][Managing Infrastructure at Scale | Spacelift Blog]]
 **** [[https://opentofu.org/blog/rss.xml][OpenTofu Blog]]
-**** [[https://aws.amazon.com/blogs/aws/feed/][AWS News Blog]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZNhwA1B5YqiY1nLzmM0ZRg][Christian Lempa]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w][DevOps Toolbox]]
-*** Hebrew :he:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZNhwA1B5YqiY1nLzmM0ZRg][@Christian Lempa]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w][@DevOps Toolbox]]
+*** Hebrew                                                               :he:
 **** [[https://devops.nachmenk.com/blog/rss.xml][DevOps Docs & Blog Blog]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC8YAXikx8NoKTDaptAZY72g][Yoram Dar]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC8YAXikx8NoKTDaptAZY72g][@Yoram Dar]]
 
-** Linux and UNIX :linux:unix:
-*** English :en:
+** Linux and UNIX                                                :linux:unix:
+*** English                                                              :en:
 **** [[https://itsfoss.com/rss/][It's FOSS News]]
 **** [[https://www.linuxjournal.com/node/feed][Linux Journal]]
 **** [[https://distrowatch.com/news/dw.xml][DistroWatch.com: News]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCXlH5v1PkEhjzLFTUTm_U7g][X.Org Foundation]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCXlH5v1PkEhjzLFTUTm_U7g][@X.Org Foundation]]
 **** [[https://freebsdfoundation.org/feed/][FreeBSD Foundation]]
 **** [[https://www.omgubuntu.co.uk/feed][OMG! Ubuntu]]
 **** [[https://linuxiac.com/feed/][Linuxiac]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCEU9D6KIShdLeTRyH3IdSvw][It's FOSS - Linux Portal]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCEU9D6KIShdLeTRyH3IdSvw][@It's FOSS - Linux Portal]]
 **** [[https://ostechnix.com/feed/][OSTechNix]]
 **** [[https://www.linuxfoundation.org/blog/rss.xml][Linux Foundation - Blog]]
 **** [[https://voidlinux.org/atom.xml][Void news]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw][Bread on Penguins]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw][The Linux Experiment]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHDr4RtxwA1KqKGwxgdK4Vg][Computer History Museum]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC1yGcBvdPGxRIMT1yo_bKIQ][Jake@Linux]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][@DistroTube]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw][@Bread on Penguins]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw][@The Linux Experiment]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHDr4RtxwA1KqKGwxgdK4Vg][@Computer History Museum]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC1yGcBvdPGxRIMT1yo_bKIQ][@Jake@Linux]]
 **** [[https://codeberg.org/nachmenk.rss][Codeberg - Nachmen Kurtz]]
-*** Hebrew :he:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCxLxR_oW-NAmChIcSkAyZGQ][@FreeBSDProject]]
+*** Hebrew                                                               :he:
 **** [[https://nachmenk.com/feed.xml][Learn Linux]]
 
-** General Tech :tech:
-*** English :en:
+** General Tech                                                        :tech:
+*** English                                                              :en:
 **** [[https://terminaltrove.com/blog.xml][Terminal Trove]]
 **** [[https://static.fsf.org/fsforg/rss/news.xml][FSF News]]
 **** [[https://krebsonsecurity.com/feed/][Krebs on Security]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9x0AN7BWHpCDHSm9NiJFJQ][NetworkChuck]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ][Dreams of Code]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA][Fireship]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA][Veritasium]]
-*** Hebrew :he:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9x0AN7BWHpCDHSm9NiJFJQ][@NetworkChuck]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ][@Dreams of Code]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA][@Fireship]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA][@Veritasium]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCGKEMK3s-ZPbjVOIuAV8clQ][@CoreDumpped]]
+*** Hebrew                                                               :he:
 **** [[https://www.geektime.co.il/feed/][Geektime]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwywdccdYsNS_Cs6tS0U_dg][TrashTech - טראשטק]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwywdccdYsNS_Cs6tS0U_dg][@TrashTech - טראשטק]]
 **** [[https://pinatkafe.com/feed/][פינת הקפה]]
 **** [[https://www.retro.unarmedsecurity.net/blog-feed.xml][Unarmed Retro]]
 **** [[https://cybercyber.co.il/?feed=rss2][סייברסייבר (CyberCyber)]]
 **** [[https://internet-israel.com/feed/][אינטרנט ישראל]]
 
-** News :news:he:
+** News                                                             :he:news:
 *** [[https://www.jdn.co.il/feed/][JDN]]
-*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCzK4HSXyYGnGJM4C6y58ToA][Abisel Status]]
-*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCA5DZvGtE9DChiczMl_Q8sg][Lipa Schmeltzer]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCzK4HSXyYGnGJM4C6y58ToA][@Abisel Status]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCA5DZvGtE9DChiczMl_Q8sg][@Lipa Schmeltzer]]
