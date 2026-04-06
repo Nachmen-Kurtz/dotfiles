@@ -1,4 +1,3 @@
-
 include /etc/sway/config.d/*
 include catppuccin-mocha
 
@@ -10,6 +9,7 @@ exec gpodder
 exec flatpak run io.github.alainm23.planify
 exec alacritty
 exec emacs
+exec keepassxc ~/.secrets/secret_manager.kdbx
 
 focus_follows_mouse yes
 
@@ -41,7 +41,7 @@ input type:keyboard {
   xkb_numlock   enabled
 }
 
-output *  bg  ~/Pictures/Wallpapers/walls-main/poly/a_group_of_old_computer_equipment.png fill
+output *  bg  ~/Pictures/wallpapers/linux/hq8y50D-wallpaper-for-linux.png stretch
 
 output eDP-1  scale 1.25
 
@@ -60,6 +60,7 @@ workspace 8   output DP-5
 workspace 9   output DP-5
 workspace 10  output DP-5
 
+assign [app_id="org.keepassxc.KeePassXC"]     workspace 1
 assign [app_id="vivaldi-stable"]              workspace 2
 assign [app_id="org.mozilla.firefox"]         workspace 2
 assign [app_id="com.vixalien.sticky"]         workspace 4

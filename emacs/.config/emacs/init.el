@@ -276,12 +276,12 @@
                            ("~/org/ideas.org"        :maxlevel . 2)
                            ("~/org/thoughts.org"     :maxlevel . 1)))
   (org-todo-keywords     '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
-  (org-capture-templates
-   '(("i" "Inbox"   entry (file          "~/org/inbox.org")               "* %?\n%U\n")
-     ("t" "Task"    entry (file+headline "~/org/tasks.org"    "Tasks")    "* TODO %?\n")
-     ("p" "Project" entry (file+headline "~/org/projects.org" "Projects") "* TODO %?\n")
-     ("j" "Idea"    entry (file+headline "~/org/ideas.org"    "Ideas")    "* %?\n%U\n")
-     ("h" "Thought" entry (file+headline "~/org/thoughts.org" "Thoughts") "* %?\n%U\n")))
+  (org-capture-templates '(("i" "Inbox"   entry (file              "~/org/inbox.org")               "* %?\n%U\n")
+			   ("t" "Task"    entry (file+headline     "~/org/tasks.org"    "Tasks")    "* TODO %?\n")
+			   ("p" "Project" entry (file+headline     "~/org/projects.org" "Projects") "* TODO %?\n")
+			   ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")             "* %?\n%U\n")
+			   ("d" "Idea"    entry (file+headline     "~/org/ideas.org"    "Ideas")    "* %?\n%U\n")
+			   ("h" "Thought" entry (file+headline     "~/org/thoughts.org" "Thoughts") "* %?\n%U\n")))
   :config
   (require 'org-tempo))
 
