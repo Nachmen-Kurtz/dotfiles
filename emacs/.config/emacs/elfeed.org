@@ -17,7 +17,6 @@
 *** English                                                              :en:
 **** [[https://spacelift.io/rss][Managing Infrastructure at Scale | Spacelift Blog]]
 **** [[https://opentofu.org/blog/rss.xml][OpenTofu Blog]]
-**** [[https://aws.amazon.com/blogs/aws/feed/][AWS News Blog]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZNhwA1B5YqiY1nLzmM0ZRg][@Christian Lempa]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w][@DevOps Toolbox]]
 *** Hebrew                                                               :he:
