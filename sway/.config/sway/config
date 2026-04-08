@@ -1,8 +1,6 @@
 include /etc/sway/config.d/*
 include catppuccin-mocha
 
-exec wl-paste --watch cliphist store
-exec wl-paste --primary --watch cliphist store
 exec wlsunset -l 32.08 -L 34.78 -T 5700 -t 3500
 exec nm-applet
 exec gpodder
