@@ -8,6 +8,7 @@ exec flatpak run io.github.alainm23.planify
 exec alacritty
 exec emacs
 exec keepassxc ~/.secrets/secret_manager.kdbx
+exec flameshot
 
 focus_follows_mouse yes
 
