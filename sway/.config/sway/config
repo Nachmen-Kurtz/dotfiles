@@ -115,7 +115,6 @@ bindsym $mod+Alt+s exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screen
 bindsym $mod+Alt+k exec swaylock
 bindsym $mod+Alt+h exec systemctl suspend
 bindsym $mod+Alt+n exec notify-send "hello"
-bindsym $mod+Alt+c exec sh -c 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'
 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
