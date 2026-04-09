@@ -1,41 +1,42 @@
 set $mod Mod4
 
-font pango:monospace 10
+font pango:monospace 12
 
 exec_always --no-startup-id setxkbmap -layout us,il -variant , -option grp:alt_shift_toggle -option caps:none
 
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --color=1e1e2e --no-unlock-indicator --nofork
 exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY
+exec --no-startup-id keepassxc .secrets/secret_manager.kdbx
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
 set $rosewater #f5e0dc
-set $flamingo #f2cdcd
-set $pink #f5c2e7
-set $mauve #cba6f7
-set $red #f38ba8
-set $maroon #eba0ac
-set $peach #fab387
-set $yellow #f9e2af
-set $green #a6e3a1
-set $teal #94e2d5
-set $sky #89dceb
-set $sapphire #74c7ec
-set $blue #89b4fa
-set $lavender #b4befe
-set $text #cdd6f4
-set $subtext1 #bac2de
-set $subtext0 #a6adc8
-set $overlay2 #9399b2
-set $overlay1 #7f849c
-set $overlay0 #6c7086
-set $surface2 #585b70
-set $surface1 #45475a
-set $surface0 #313244
-set $base #1e1e2e
-set $mantle #181825
-set $crust #11111b
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $yellow    #f9e2af
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
 
 bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
@@ -48,9 +49,10 @@ floating_modifier $mod
 
 tiling_drag modifier titlebar
 
+bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+
 bindsym $mod+Return          exec alacritty
 bindsym $mod+Shift+q         kill
-bindsym $mod+d               exec --no-startup-id dmenu_run
 bindsym $mod+j               focus left
 bindsym $mod+k               focus down
 bindsym $mod+l               focus up
