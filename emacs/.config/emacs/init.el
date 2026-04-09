@@ -70,7 +70,7 @@
 
 (set-face-attribute 'default nil
                     :family "JetBrainsMono Nerd Font"
-                    :height 110)
+                    :height 120)
 
 (set-fontset-font t 'hebrew
                   (font-spec :family "Noto Sans Hebrew"))
@@ -129,38 +129,6 @@
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
-(use-package vertico
-  :custom
-  (vertico-scroll-margin 0)
-  (vertico-count         20)
-  (vertico-resize        t)
-  (vertico-cycle         t)
-  :init
-  (vertico-mode))
-
-(use-package orderless
-  :custom
-  (completion-styles               '(orderless basic))
-  (completion-category-overrides   '((file (styles partial-completion))))
-  (completion-category-defaults    nil)
-  (completion-pcm-leading-wildcard t))
-
-(use-package marginalia
-  :bind (:map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
-  :init
-  (marginalia-mode))
-
-(use-package consult
-  :bind (("M-o b" . consult-buffer)
-         ("M-o s" . consult-buffer-other-window)
-         ("M-o b" . consult-bookmark)
-         ("M-o y" . consult-yank-pop)
-         ("M-o g" . consult-goto-line)
-         ("M-o o" . consult-outline)
-         ("M-o i" . consult-imenu)
-         ("M-o e" . consult-isearch-history)))
-
 (use-package nerd-icons)
 
 (use-package nerd-icons-dired)
@@ -171,8 +139,7 @@
 (use-package nerd-icons-completion
   :after marginalia
   :config
-  (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+  (nerd-icons-completion-mode))
 
 (use-package ibuffer
   :ensure nil
@@ -226,9 +193,6 @@
 
 (use-package tldr)
 
-(use-package pdf-tools
-  :config (pdf-tools-install))
-
 (use-package emms
   :config
   (emms-all)
@@ -277,9 +241,6 @@
   (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org"))
   (elfeed-org))
 
-(use-package page-break-lines
-  :config (global-page-break-lines-mode 1))
-
 (use-package org
   :ensure nil
   :bind (("C-c a" . org-agenda)
@@ -308,90 +269,6 @@
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode))
-
-(use-package org-roam
-  :after org
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n j" . org-roam-dailies-capture-today))
-  :custom
-  (org-roam-directory (file-truename "~/Org/Roam/"))
-  (org-roam-node-display-template
-   (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  :config
-  (org-roam-db-autosync-mode)
-  (require 'org-roam-protocol))
-
-(use-package org-roam-ui
-    :after org-roam
-    :config
-    (setq org-roam-ui-sync-theme     t
-          org-roam-ui-follow         t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start  nil))
-
-(use-package mu4e
-  :ensure nil
-  :config
-  (setq mu4e-maildir                      "~/Mail"
-        mu4e-get-mail-command             "mbsync gmail"
-        mu4e-update-interval              300
-        mu4e-change-filenames-when-moving t
-        mu4e-user-mail-address-list       '("lniz.cloud@gmail.com" "nachmenkurtz@gmail.com" "shmnzch@gmail.com")
-        mu4e-context-policy               'pick-first
-        mu4e-compose-context-policy       'ask-if-none
-        mu4e-maildir-shortcuts            '((:maildir "/lniz-cloud/INBOX"              :key ?i)
-                                            (:maildir "/lniz-cloud/[Gmail]/Sent Mail"  :key ?s)
-                                            (:maildir "/lniz-cloud/[Gmail]/All Mail"   :key ?a)
-                                            (:maildir "/lniz-cloud/[Gmail]/Drafts"     :key ?d)
-                                            (:maildir "/lniz-cloud/[Gmail]/Trash"      :key ?t)
-                                            (:maildir "/nachmen/INBOX"                 :key ?I)
-                                            (:maildir "/nachmen/[Gmail]/Sent Mail"     :key ?S)
-                                            (:maildir "/nachmen/[Gmail]/All Mail"      :key ?A)
-                                            (:maildir "/nachmen/[Gmail]/Drafts"        :key ?D)
-                                            (:maildir "/nachmen/[Gmail]/Trash"         :key ?T)
-                                            (:maildir "/shmnzch/INBOX"                 :key ?n)
-                                            (:maildir "/shmnzch/[Gmail]/Sent Mail"     :key ?e)
-                                            (:maildir "/shmnzch/[Gmail]/All Mail"      :key ?m)
-                                            (:maildir "/shmnzch/[Gmail]/Drafts"        :key ?x)
-                                            (:maildir "/shmnzch/[Gmail]/Trash"         :key ?z))
-        mu4e-contexts
-        `(,(make-mu4e-context
-            :name "lniz"
-            :match-func (lambda (msg)
-                          (when msg
-                            (string-prefix-p "/lniz-cloud" (mu4e-message-field msg :maildir))))
-            :vars '((user-mail-address       . "lniz.cloud@gmail.com")
-                    (user-full-name          . "Nachmen Kurtz")
-                    (mu4e-sent-folder        . "/lniz-cloud/[Gmail]/Sent Mail")
-                    (mu4e-drafts-folder      . "/lniz-cloud/[Gmail]/Drafts")
-                    (mu4e-trash-folder       . "/lniz-cloud/[Gmail]/Trash")
-                    (mu4e-refile-folder      . "/lniz-cloud/[Gmail]/All Mail")))
-          ,(make-mu4e-context
-            :name "nachmen"
-            :match-func (lambda (msg)
-                          (when msg
-                            (string-prefix-p "/nachmen" (mu4e-message-field msg :maildir))))
-            :vars '((user-mail-address       . "nachmenkurtz@gmail.com")
-                    (user-full-name          . "Nachmen Kurtz")
-                    (mu4e-sent-folder        . "/nachmen/[Gmail]/Sent Mail")
-                    (mu4e-drafts-folder      . "/nachmen/[Gmail]/Drafts")
-                    (mu4e-trash-folder       . "/nachmen/[Gmail]/Trash")
-                    (mu4e-refile-folder      . "/nachmen/[Gmail]/All Mail")))
-          ,(make-mu4e-context
-            :name "shmnzch"
-            :match-func (lambda (msg)
-                          (when msg
-                            (string-prefix-p "/shmnzch" (mu4e-message-field msg :maildir))))
-            :vars '((user-mail-address       . "shmnzch@gmail.com")
-                    (user-full-name          . "Nachmen Kurtz")
-                    (mu4e-sent-folder        . "/shmnzch/[Gmail]/Sent Mail")
-                    (mu4e-drafts-folder      . "/shmnzch/[Gmail]/Drafts")
-                    (mu4e-trash-folder       . "/shmnzch/[Gmail]/Trash")
-                    (mu4e-refile-folder      . "/shmnzch/[Gmail]/All Mail"))))))
 
 (use-package nov
   :init
