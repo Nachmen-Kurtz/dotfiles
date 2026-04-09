@@ -129,7 +129,8 @@
   (dired-kill-when-opening-new-dired-buffer t)
   (dired-listing-switches "-alh --group-directories-first")
   :hook
-  (dired-mode . nerd-icons-dired-mode))
+  (dired-mode . nerd-icons-dired-mode)
+  (dired-mode . dired-hide-details-mode))
 
 (use-package nerd-icons)
 
