@@ -20,7 +20,8 @@
 
 (require 'use-package)
 
-(setq-default truncate-lines t)
+(setq-default truncate-lines   t
+              indent-tabs-mode nil)
 
 (setq frame-title-format
       '("GNU Emacs — %b"
@@ -189,7 +190,7 @@
   (setq markdown-command "multimarkdown")
   :bind
   (:map markdown-mode-map
-	("C-c C-e" . markdown-do)))
+        ("C-c C-e" . markdown-do)))
 
 (use-package pacmacs)
 
@@ -277,11 +278,11 @@
                            ("~/org/thoughts.org"     :maxlevel . 1)))
   (org-todo-keywords     '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
   (org-capture-templates '(("i" "Inbox"   entry (file              "~/org/inbox.org")               "* %?\n%U\n")
-			   ("t" "Task"    entry (file+headline     "~/org/tasks.org"    "Tasks")    "* TODO %?\n")
-			   ("p" "Project" entry (file+headline     "~/org/projects.org" "Projects") "* TODO %?\n")
-			   ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")             "* %?\n%U\n")
-			   ("d" "Idea"    entry (file+headline     "~/org/ideas.org"    "Ideas")    "* %?\n%U\n")
-			   ("h" "Thought" entry (file+headline     "~/org/thoughts.org" "Thoughts") "* %?\n%U\n")))
+                           ("t" "Task"    entry (file+headline     "~/org/tasks.org"    "Tasks")    "* TODO %?\n")
+                           ("p" "Project" entry (file+headline     "~/org/projects.org" "Projects") "* TODO %?\n")
+                           ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")             "* %?\n%U\n")
+                           ("d" "Idea"    entry (file+headline     "~/org/ideas.org"    "Ideas")    "* %?\n%U\n")
+                           ("h" "Thought" entry (file+headline     "~/org/thoughts.org" "Thoughts") "* %?\n%U\n")))
   :config
   (require 'org-tempo))
 
@@ -359,19 +360,19 @@
 (use-package ligature
   :config
   (ligature-set-ligatures 'prog-mode
-			  '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-			    ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-			    "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-			    "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-			    "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-			    "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-			    "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-			    "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-			    ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-			    "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-			    "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-			    "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-			    "\\\\" "://"))
+                          '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                            ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                            "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                            "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                            "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                            "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                            "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                            "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                            ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                            "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                            "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                            "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                            "\\\\" "://"))
   (global-ligature-mode t))
 
 (defun my/insert-date-time ()
