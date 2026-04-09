@@ -32,3 +32,4 @@ System/
 Setup_and_Install/
 .idea/
 msmtp/
+/qtile/.config/qtile/config_orginal.py
