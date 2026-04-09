@@ -53,3 +53,19 @@ alias n-c='nu -c'
 alias ls=lsd
 alias terraform=tofu
 alias myip="curl http://ipecho.net/plain; echo"
+
+# -------------------------
+# --- From fish functions ---
+# -------------------------
+alias lsl='ls -l'
+alias cwd='pwd | xclip -selection clipboard'
+alias docker='podman'
+alias gc='git clone'
+alias mypip='curl https://ifconfig.me && echo'
+alias startup_apps='ls ~/.config/autostart/'
+alias tez='eza -T --icons'
+alias trans-e-h='trans -shell -bidi -b en:he'
+alias vscodium='flatpak run com.vscodium.codium'
+alias yd1='yt-dlp'
+alias ydp='yt-dlp --config-locations ~/.config/yt-dlp/config-playlist'
+alias yt-dlp-pl='yt-dlp --config-locations ~/.config/yt-dlp/config-playlist'

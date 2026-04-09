@@ -1,3 +1,46 @@
+# -------------------------
+# --- From fish functions ---
+# -------------------------
+
+# fzf with bat preview
+function fzf() {
+    command fzf --preview 'bat --color=always {}' "$@"
+}
+
+# emacs systemctl user service control
+function emctl() {
+    systemctl --user "$@" emacs
+}
+
+# Create dir and cd into it
+function mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Man page rendered via bat
+function manb() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: manb <command>"
+        return 1
+    fi
+    command man "$@" | bat -l man --no-config --style plain
+}
+
+# Browse man page sections with fzf
+function mansec() {
+    local page="$1"
+    local sec
+    sec=$(man "$page" | col -b | grep -E '^[A-Z][A-Z ]+$' | fzf --prompt='Section> ')
+    man "$page" | col -b | awk -v s="$sec" '
+        $0==s {p=1; print; next}
+        /^[A-Z][A-Z ]+$/ && p {exit}
+        p {print}
+    '
+}
+
+########################################
+########################################
+
 # Quick file backup function
 # Usage: bkp <filename>
 # function bkp() {
