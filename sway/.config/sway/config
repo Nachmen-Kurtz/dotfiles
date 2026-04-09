@@ -62,10 +62,8 @@ workspace 10  output DP-5
 assign [app_id="org.keepassxc.KeePassXC"]     workspace 1
 assign [app_id="vivaldi-stable"]              workspace 2
 assign [app_id="org.mozilla.firefox"]         workspace 2
-assign [app_id="com.vixalien.sticky"]         workspace 4
 assign [app_id="gpodder"]                     workspace 4
 assign [app_id="io.github.alainm23.planify"]  workspace 4
-assign [app_id="org.gnome.Evolution"]         workspace 3
 assign [app_id="Alacritty"]                   workspace 5
 assign [app_id="emacs"]                       workspace 6
 assign [app_id="org.gnome.Nautilus"]          workspace 7
@@ -111,8 +109,8 @@ bindsym $mod+Shift+p      workspace prev
 
 bindsym $mod+Alt+d exec gsettings set org.gnome.desktop.interface color-scheme \'prefer-dark\'
 bindsym $mod+Alt+l exec gsettings set org.gnome.desktop.interface color-scheme \'prefer-light\'
-bindsym $mod+Alt+p exec grim - | tee ~/Pictures/Screenshots/screenshot-$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Screenshot Saved & Copied"
-bindsym $mod+Alt+s exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot-$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Area Saved & Copied"
+bindsym $mod+Alt+p exec grim - | tee ~/screenshots/$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Screenshot Saved & Copied"
+bindsym $mod+Alt+s exec grim -g "$(slurp)" - | tee ~/screenshots/$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Area Saved & Copied"
 bindsym $mod+Alt+k exec swaylock
 bindsym $mod+Alt+h exec systemctl suspend
 bindsym $mod+Alt+n exec notify-send "hello"
