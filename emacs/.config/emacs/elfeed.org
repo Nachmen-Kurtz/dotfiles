@@ -63,6 +63,7 @@
 **** [[https://www.retro.unarmedsecurity.net/blog-feed.xml][Unarmed Retro]]
 **** [[https://cybercyber.co.il/?feed=rss2][סייברסייבר (CyberCyber)]]
 **** [[https://internet-israel.com/feed/][אינטרנט ישראל]]
+**** [[https://www.youtube.com/@AI-Pashut][@AI-Pashut - AI פשוט]]
 
 ** News                                                             :he:news:
 *** [[https://www.jdn.co.il/feed/][JDN]]
