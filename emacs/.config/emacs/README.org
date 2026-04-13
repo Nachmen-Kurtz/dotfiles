@@ -1,0 +1,291 @@
+#+TITLE: GNU Emacs Configuration — README
+#+AUTHOR: Nachmen Kurtz
+#+DATE: 2026-04-13
+#+CREATED_BY: claude
+#+MODEL: claude-sonnet
+#+PATH: ~/.config/emacs/README.org
+
+* Overview
+
+This is my personal GNU Emacs configuration.
+Entry points: =early-init.el= → =init.el= → =custom.el=.
+
+Emacs packages are managed automatically by =use-package= on first startup.
+System dependencies must be installed manually before launching Emacs.
+
+* Quick Install — All System Dependencies
+
+#+begin_src sh
+  xbps-install mu isync msmtp gnupg vlc curl multimarkdown
+#+end_src
+
+Fonts must be installed separately — see the [[*Fonts][Fonts]] section.
+
+* Packages and Their Dependencies
+
+** doom-themes
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Pure Emacs Lisp theme collection. No system dependencies.
+
+Provides the =doom-one= dark theme used as the default visual style.
+
+** which-key
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Built into Emacs 30+. No system dependencies.
+
+Displays available keybindings in a popup after a prefix key.
+
+** savehist
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Built into Emacs. No system dependencies.
+
+Persists minibuffer history across sessions.
+
+** dired
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Built into Emacs. No system dependencies.
+
+File manager inside Emacs. Configured with human-readable sizes and
+directory-first listing.
+
+** nerd-icons / nerd-icons-dired / nerd-icons-ibuffer / nerd-icons-completion
+:PROPERTIES:
+:SYSTEM_DEPS: JetBrainsMono Nerd Font (or any Nerd Font)
+:END:
+
+Pure Emacs Lisp. Requires a *Nerd Font* to be installed on the system
+so the icon glyphs render correctly.
+
+Without a Nerd Font installed, icons display as boxes or question marks.
+
+Install the font:
+
+#+begin_src sh
+  mkdir -p ~/.local/share/fonts/
+  # Download JetBrainsMono Nerd Font from https://www.nerdfonts.com
+  # Unzip and copy .ttf files into ~/.local/share/fonts/
+  fc-cache -fv
+#+end_src
+
+** ibuffer
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Built into Emacs. No system dependencies.
+
+Enhanced buffer list manager. Bound to =<f12>=.
+
+** magit
+:PROPERTIES:
+:SYSTEM_DEPS: git
+:END:
+
+Requires =git= to be installed on the system. Almost certainly already present.
+
+#+begin_src sh
+  xbps-install git
+#+end_src
+
+** diff-hl
+:PROPERTIES:
+:SYSTEM_DEPS: git (via magit)
+:END:
+
+Shows git diff indicators in the fringe/margin. Depends on =git= being
+available — same dependency as Magit.
+
+** visual-fill-column
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Pure Emacs Lisp. No system dependencies.
+
+Centers and wraps text in =Info-mode=, =eww-mode=, and =Man-mode=.
+
+** markdown-mode
+:PROPERTIES:
+:SYSTEM_DEPS: multimarkdown
+:END:
+
+Requires the =multimarkdown= binary for rendering Markdown to HTML.
+
+#+begin_src sh
+  xbps-install multimarkdown
+#+end_src
+
+Without it, editing works but =markdown-do= (=C-c C-e=) will fail.
+
+** emms
+:PROPERTIES:
+:SYSTEM_DEPS: vlc
+:END:
+
+Emacs MultiMedia System. Configured to use VLC as the player backend.
+
+#+begin_src sh
+  xbps-install vlc
+#+end_src
+
+Without VLC, EMMS loads but cannot play any media.
+
+** dictionary
+:PROPERTIES:
+:SYSTEM_DEPS: none (uses dict.org over network)
+:END:
+
+Pure Emacs Lisp. Uses the public =dict.org= server over the network.
+No local binary required.
+
+Requires an active internet connection to look up words.
+
+** google-translate
+:PROPERTIES:
+:SYSTEM_DEPS: curl
+:END:
+
+Configured to use =curl= as the backend (=google-translate-backend-method 'curl=).
+
+#+begin_src sh
+  xbps-install curl
+#+end_src
+
+** elfeed
+:PROPERTIES:
+:SYSTEM_DEPS: curl
+:END:
+
+RSS/Atom feed reader. Configured with =elfeed-use-curl t=, so it uses
+=curl= to fetch feeds.
+
+#+begin_src sh
+  xbps-install curl
+#+end_src
+
+Without =curl=, feed fetching will fail silently.
+
+** elfeed-org
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Pure Emacs Lisp. No system dependencies.
+
+Reads the feed list from =~/.config/emacs/elfeed.org= instead of
+hardcoding feeds in =init.el=.
+
+** org
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Built into Emacs. No system dependencies.
+
+Used for agenda, capture templates, and the knowledge base at =~/org/=.
+
+** org-bullets
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Pure Emacs Lisp. No system dependencies.
+
+Replaces =*= heading markers with Unicode bullets for visual clarity.
+
+** mu4e
+:PROPERTIES:
+:SYSTEM_DEPS: mu, isync (mbsync), msmtp, gnupg
+:END:
+
+This is the most dependency-heavy package. =mu4e= is *not* a MELPA
+package — it ships as part of =mu= and is loaded with =:ensure nil=.
+
+| Dependency | Role                              | Install              |
+|------------+-----------------------------------+----------------------|
+| =mu=       | Indexes mail, provides =mu4e=     | =xbps-install mu=    |
+| =mbsync=   | Syncs Gmail → =~/mail=            | =xbps-install isync= |
+| =msmtp=    | Sends mail via Gmail SMTP         | =xbps-install msmtp= |
+| =gnupg=    | Decrypts passwords in =.secrets/= | =xbps-install gnupg= |
+
+Full install:
+
+#+begin_src sh
+  xbps-install mu isync msmtp gnupg
+#+end_src
+
+After installing, initialize the mail index:
+
+#+begin_src sh
+  mbsync gmail
+  mu init --maildir=~/mail --my-address=nachmenkurtz@gmail.com
+  mu index
+#+end_src
+
+** nov
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Pure Emacs Lisp. No system dependencies.
+
+Opens =.epub= files inside Emacs.
+
+** ligature
+:PROPERTIES:
+:SYSTEM_DEPS: JetBrainsMono Nerd Font (ligature support)
+:END:
+
+Pure Emacs Lisp. No system dependencies for the package itself.
+
+However, ligatures only render if the font supports them.
+JetBrainsMono Nerd Font includes full ligature support.
+
+** completion-preview
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Built into Emacs 30+. No system dependencies.
+
+Shows inline completion suggestions in =prog-mode= buffers.
+
+* Fonts
+
+Two fonts are required:
+
+| Font                    | Role            | How to install                                               |
+|-------------------------+-----------------+--------------------------------------------------------------|
+| JetBrainsMono Nerd Font | Primary font    | Download from [[https://www.nerdfonts.com][nerdfonts.com]], copy to =~/.local/share/fonts/= |
+| Noto Sans Hebrew        | Hebrew fallback | =xbps-install noto-fonts-ttf=                                |
+
+After installing any font manually:
+
+#+begin_src sh
+  fc-cache -fv
+#+end_src
+
+* File Structure
+
+#+begin_src
+~/.config/emacs/
+├── early-init.el     # UI suppression before Emacs starts
+├── init.el           # Main configuration
+├── custom.el         # Auto-generated by Emacs Custom
+├── elfeed.org        # RSS feed list (read by elfeed-org)
+├── README.org        # This file
+├── backups/          # Versioned file backups
+└── auto-save/        # Auto-save files
+#+end_src
