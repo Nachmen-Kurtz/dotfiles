@@ -145,10 +145,26 @@
 (use-package ibuffer
   :ensure nil
   :bind ("<f12>" . ibuffer)
-  :config
-  (setq ibuffer-default-sorting-mode 'major-mode)
   :hook
-  (ibuffer-mode . nerd-icons-ibuffer-mode))
+  (ibuffer-mode . nerd-icons-ibuffer-mode)
+  (ibuffer-mode . (lambda ()
+                    (ibuffer-switch-to-saved-filter-groups "default")))
+  :config
+  (setq ibuffer-default-sorting-mode 'major-mode
+        ibuffer-saved-filter-groups
+        '(("default"
+           ("Org"      (mode . org-mode))
+           ("Dired"    (mode . dired-mode))
+           ("Magit"    (name . "^magit"))
+           ("Mail"     (or (mode . mu4e-headers-mode)
+                           (mode . mu4e-view-mode)))
+           ("Elfeed"   (or (mode . elfeed-search-mode)
+                           (mode . elfeed-show-mode)))
+           ("Shell"    (mode . eshell-mode))
+           ("Prog"     (derived-mode . prog-mode))
+           ("Help"     (name . "^\\*"))
+           ("Emacs"    (or (name . "^\\*scratch\\*$")
+                           (name . "^\\*Messages\\*$")))))))
 
 (use-package magit
   :bind ("C-x g" . magit-status))
