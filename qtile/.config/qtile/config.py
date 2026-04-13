@@ -1,9 +1,8 @@
 import os, subprocess
-from collections.abc import Callable
-
 import libqtile.resources
+
 from libqtile        import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Output, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy   import lazy
 from libqtile.utils  import guess_terminal
 
@@ -12,7 +11,7 @@ def autostart():
     subprocess.Popen(os.path.expanduser("~/.config/qtile/autostart.sh"))
 
 mod      = "mod4"
-terminal = guess_terminal()
+terminal = "alacritty"
 
 keys = [
     Key([mod],            "h",      lazy.layout.left(),              desc="Move focus to left"),
@@ -41,25 +40,33 @@ keys = [
     Key([mod, "control"], "r",      lazy.reload_config(),            desc="Reload the config"),
     Key([mod, "control"], "q",      lazy.shutdown(),                 desc="Shutdown Qtile"),
     Key([mod],            "r",      lazy.spawncmd(),                 desc="Spawn a command using a prompt widget"),
-    Key([mod],            "d",      lazy.spawn("rofi -show drun"),   desc="Launch rofi"),
-]
 
-for vt in range(1, 8):
-    keys.append(
-        Key(
-            ["control", "mod1"],
-            f"f{vt}",
-            lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
-            desc=f"Switch to VT{vt}",
-        )
-    )
+    Key([mod], "p", lazy.spawn("powermenu-fedora-xorg.sh"),   desc="kill, suspend, poweroff and reboot"),
+
+    Key([mod, "control"], "a", lazy.spawn("rofi -show drun"),   desc="Launch rofi"),
+    Key([mod, "control"], "c", lazy.spawn("rofi -show run"), desc=""),
+    Key([mod, "control"], "f", lazy.spawn("rofi -show filebrowser"), desc=""),
+    Key([mod, "control"], "w", lazy.spawn("rofi -show window"), desc=""),
+    Key([mod, "control"], "s", lazy.spawn("rofi -show ssh"), desc=""),
+
+    Key([], "XF86AudioMute",        lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),     desc="Toggle mute"),
+    Key([], "XF86AudioMicMute",     lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), desc="Toggle mic mute"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),      desc="Volume up"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),      desc="Volume down"),
+
+    Key([], "XF86MonBrightnessUp",   lazy.spawn("brightnessctl set 5%+"), desc="Brightness up"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-"), desc="Brightness down"),
+
+    Key([mod], "F1", lazy.spawn(["bash", "-c", "notify-send 'Time' \"$(date +'%H:%M')\""]),        desc="Show time"),
+    Key([mod], "F2", lazy.spawn(["bash", "-c", "notify-send 'Date' \"$(date +'%A, %B %d %Y')\""]), desc="Show date"),
+    Key([mod], "F3", lazy.spawn(["bash", "-c", "notify-send 'Battery' \"$(cat /sys/class/power_supply/BAT0/capacity)% ($(cat  /sys/class/power_supply/BAT0/status))\""]), desc="Show battery"),
+]
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-group_labels = ["gen", "web", "3", "audio", "terminal", "emacs", "files", "8", "9", "virt"]
+group_labels = [" ", "󰖟 ", " ", "󱀞 ", " ", " ", " ", " ", " ", " "]
 
 group_matches = {
-    "1": [Match(wm_class="org.keepassxc.KeePassXC")],
     "2": [Match(wm_class="vivaldi-stable"), Match(wm_class="firefox")],
     "4": [Match(wm_class="gpodder"), Match(wm_class="io.github.alainm23.planify")],
     "5": [Match(wm_class="Alacritty")],
@@ -96,7 +103,6 @@ for i in groups:
 
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
 ]
 
 widget_defaults = dict(
@@ -113,19 +119,9 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
                 widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                widget.Spacer(),
                 widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
             ],
             48,
         ),
@@ -137,20 +133,12 @@ screens = [
 
 fake_screens: list[Screen] | None = None
 
-generate_screens: Callable[[list[Output]], list[Screen]] | None = None
-
 mouse = [
     Drag([mod],  "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag([mod],  "Button3", lazy.window.set_size_floating(),     start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
-dgroups_key_binder = None
-dgroups_app_rules = []
-follow_mouse_focus = True
-bring_front_click = False
-floats_kept_above = True
-cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
         *layout.Floating.default_float_rules,
@@ -162,19 +150,18 @@ floating_layout = layout.Floating(
         Match(title="pinentry"),
     ]
 )
-auto_fullscreen = True
-focus_on_window_activation = "smart"
+
+dgroups_key_binder              = None
+dgroups_app_rules               = []
+follow_mouse_focus              = True
+bring_front_click               = False
+floats_kept_above               = True
+cursor_warp                     = False
+auto_fullscreen                 = True
+focus_on_window_activation      = "smart"
 focus_previous_on_window_remove = False
-reconfigure_screens = True
-
-auto_minimize = True
-
-wl_input_rules = None
-
-wl_xcursor_theme = None
-wl_xcursor_size = 24
-
-idle_timers = []
-idle_inhibitors = []
-
-wmname = "LG3D"
+reconfigure_screens             = True
+auto_minimize                   = True
+idle_timers                     = []
+idle_inhibitors                 = []
+wmname                          = "LG3D"
