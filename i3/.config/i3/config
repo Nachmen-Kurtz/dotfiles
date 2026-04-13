@@ -50,7 +50,7 @@ floating_modifier $mod
 
 tiling_drag modifier titlebar
 
-bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindcode $mod+d exec "rofi -modi drun,run -show drun"
 
 bindsym $mod+Return          exec alacritty
 bindsym $mod+Shift+q         kill
