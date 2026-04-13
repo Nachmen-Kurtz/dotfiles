@@ -8,7 +8,6 @@ exec flatpak run io.github.alainm23.planify
 exec alacritty
 exec emacs
 exec keepassxc ~/.secrets/secret_manager.kdbx
-exec flameshot
 
 focus_follows_mouse yes
 
@@ -28,7 +27,6 @@ set $menu       fuzzel
 input type:touchpad {
   dwt               enabled
   tap               enabled
-  natural_scroll    enabled
   middle_emulation  enabled
 }
 
@@ -59,7 +57,6 @@ workspace 8   output DP-5
 workspace 9   output DP-5
 workspace 10  output DP-5
 
-assign [app_id="org.keepassxc.KeePassXC"]     workspace 1
 assign [app_id="vivaldi-stable"]              workspace 2
 assign [app_id="org.mozilla.firefox"]         workspace 2
 assign [app_id="gpodder"]                     workspace 4
@@ -90,6 +87,7 @@ bindsym $mod+f         fullscreen
 bindsym $mod+a         focus      parent
 bindsym $mod+minus     scratchpad show
 bindsym $mod+r         mode       "resize"
+bindsym $mod+p         exec       powermenu-fedora-wl.sh
 
 bindsym $mod+Shift+$left  move      left
 bindsym $mod+Shift+$down  move      down
@@ -111,8 +109,6 @@ bindsym $mod+Alt+d exec gsettings set org.gnome.desktop.interface color-scheme \
 bindsym $mod+Alt+l exec gsettings set org.gnome.desktop.interface color-scheme \'prefer-light\'
 bindsym $mod+Alt+p exec grim - | tee ~/screenshots/$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Screenshot Saved & Copied"
 bindsym $mod+Alt+s exec grim -g "$(slurp)" - | tee ~/screenshots/$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Area Saved & Copied"
-bindsym $mod+Alt+k exec swaylock
-bindsym $mod+Alt+h exec systemctl suspend
 bindsym $mod+Alt+n exec notify-send "hello"
 
 bindsym $mod+1 workspace number 1
