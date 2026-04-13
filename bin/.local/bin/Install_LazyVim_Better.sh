@@ -1,1 +1,0 @@
-../../dotfiles/.system/shell_scripts/Install_LazyVim_Better.sh
