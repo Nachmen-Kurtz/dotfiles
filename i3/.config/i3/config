@@ -5,7 +5,7 @@ font pango:monospace 12
 exec_always --no-startup-id setxkbmap -layout us,il -variant , -option grp:alt_shift_toggle -option caps:none
 
 exec --no-startup-id pipewire
-exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id redshift -l 32.08:34.78 -t 5700:3500
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --color=1e1e2e --no-unlock-indicator --nofork
 exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY
 exec --no-startup-id keepassxc .secrets/secret_manager.kdbx
