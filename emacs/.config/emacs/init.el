@@ -74,9 +74,11 @@
 (set-fontset-font t 'hebrew
                   (font-spec :family "Noto Sans Hebrew"))
 
-(add-hook 'prog-mode-hook   #'display-line-numbers-mode)
-(add-hook 'conf-mode-hook   #'display-line-numbers-mode)
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(add-hook 'emacs-startup-hook #'mu4e)
+(add-hook 'emacs-startup-hook #'elfeed)
+(add-hook 'prog-mode-hook     #'display-line-numbers-mode)
+(add-hook 'conf-mode-hook     #'display-line-numbers-mode)
+(add-hook 'before-save-hook   #'delete-trailing-whitespace)
 
 (add-hook 'org-mode-hook (lambda () (visual-wrap-prefix-mode -1)))
 
@@ -132,6 +134,30 @@
   (dired-mode . nerd-icons-dired-mode)
   (dired-mode . dired-hide-details-mode))
 
+(use-package desktop
+  :ensure nil
+  :init
+  (setq desktop-save                't
+        desktop-load-locked-desktop t
+        desktop-auto-save-timeout   60
+        desktop-restore-eager       5
+        desktop-path                (list user-emacs-directory)
+        desktop-base-file-name      "desktop"
+        desktop-base-lock-name      "desktop.lock"
+        desktop-globals-to-save     '(desktop-missing-file-warning
+                                      tags-file-name
+                                      tags-table-list
+                                      search-ring
+                                      regexp-search-ring
+                                      register-alist
+                                      file-name-history
+                                      kill-ring)
+        desktop-buffers-not-to-save
+        (rx (or (regexp "\\`\\*")
+                (regexp "\\.gpg\\'"))))
+  :config
+  (desktop-save-mode 1))
+
 (use-package nerd-icons)
 
 (use-package nerd-icons-dired)
@@ -151,20 +177,19 @@
                     (ibuffer-switch-to-saved-filter-groups "default")))
   :config
   (setq ibuffer-default-sorting-mode 'major-mode
-        ibuffer-saved-filter-groups
-        '(("default"
-           ("Org"      (mode . org-mode))
-           ("Dired"    (mode . dired-mode))
-           ("Magit"    (name . "^magit"))
-           ("Mail"     (or (mode . mu4e-headers-mode)
-                           (mode . mu4e-view-mode)))
-           ("Elfeed"   (or (mode . elfeed-search-mode)
-                           (mode . elfeed-show-mode)))
-           ("Shell"    (mode . eshell-mode))
-           ("Prog"     (derived-mode . prog-mode))
-           ("Help"     (name . "^\\*"))
-           ("Emacs"    (or (name . "^\\*scratch\\*$")
-                           (name . "^\\*Messages\\*$")))))))
+        ibuffer-saved-filter-groups  '(("default"
+                                        ("Org"      (mode . org-mode))
+                                        ("Dired"    (mode . dired-mode))
+                                        ("Magit"    (or (name . "^magit")
+                                                        (mode . diff-mode)))
+                                        ("Mail"     (or (mode . mu4e-headers-mode)
+                                                        (mode . mu4e-view-mode)
+                                                        (mode . mu4e-main-mode)))
+                                        ("Elfeed"   (or (mode . elfeed-search-mode)
+                                                        (mode . elfeed-show-mode)))
+                                        ("Shell"    (mode . eshell-mode))
+                                        ("Prog"     (derived-mode . prog-mode))
+                                        ("Special"  (name . "^\\*"))))))
 
 (use-package magit
   :bind ("C-x g" . magit-status))
