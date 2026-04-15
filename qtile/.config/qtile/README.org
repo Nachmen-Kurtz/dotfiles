@@ -1,0 +1,228 @@
+#+TITLE: Qtile Configuration — README
+#+AUTHOR: Nachmen Kurtz
+#+DATE: 2026-04-14
+#+CREATED_BY: claude
+#+MODEL: claude-sonnet
+#+PATH: ~/.config/qtile/README.org
+
+* Overview
+
+This is my personal Qtile window manager configuration for Void Linux (X11).
+Entry point: =config.py=. Startup programs are launched via =autostart.sh=,
+which is called once at startup via a =@hook.subscribe.startup_once= hook.
+
+- Mod key :: Super (mod4)
+- Terminal :: =alacritty=
+- Launcher :: =rofi=
+- Layout :: Columns
+- Bar widgets :: GroupBox, Spacer, Systray
+
+* Quick Install — All System Dependencies
+
+#+begin_src sh
+  sudo xbps-install qtile alacritty rofi pipewire pipewire-pulse \
+       brightnessctl libnotify dunst numlockx network-manager-applet \
+       redshift xorg-setxkbmap keepassxc
+#+end_src
+
+Optional (launched at autostart):
+
+#+begin_src sh
+  sudo xbps-install gpodder emacs
+#+end_src
+
+* Packages and Their Dependencies
+
+** qtile
+:PROPERTIES:
+:SYSTEM_DEPS: qtile
+:END:
+
+The window manager itself.
+
+#+begin_src sh
+  sudo xbps-install qtile
+#+end_src
+
+** alacritty
+:PROPERTIES:
+:SYSTEM_DEPS: alacritty
+:END:
+
+Default terminal emulator. Bound to =Super+Return=.
+
+#+begin_src sh
+  sudo xbps-install alacritty
+#+end_src
+
+** rofi
+:PROPERTIES:
+:SYSTEM_DEPS: rofi
+:END:
+
+Application launcher. Used in five modes:
+
+| Keybinding     | Mode          | Description          |
+|----------------+---------------+----------------------|
+| =Super+Ctrl+A= | =drun=        | Application launcher |
+| =Super+Ctrl+C= | =run=         | Run prompt           |
+| =Super+Ctrl+F= | =filebrowser= | File browser         |
+| =Super+Ctrl+W= | =window=      | Window switcher      |
+| =Super+Ctrl+S= | =ssh=         | SSH launcher         |
+
+#+begin_src sh
+  sudo xbps-install rofi
+#+end_src
+
+** pipewire / pipewire-pulse
+:PROPERTIES:
+:SYSTEM_DEPS: pipewire, pipewire-pulse
+:END:
+
+Audio server. =pactl= (provided by =pipewire-pulse=) handles volume and
+mute controls bound to the media keys.
+
+| Key                    | Action             |
+|------------------------+--------------------|
+| =XF86AudioMute=        | Toggle output mute |
+| =XF86AudioMicMute=     | Toggle mic mute    |
+| =XF86AudioRaiseVolume= | Volume +5%         |
+| =XF86AudioLowerVolume= | Volume -5%         |
+
+#+begin_src sh
+  sudo xbps-install pipewire pipewire-pulse
+#+end_src
+
+** brightnessctl
+:PROPERTIES:
+:SYSTEM_DEPS: brightnessctl
+:END:
+
+Controls screen brightness. Bound to the brightness media keys.
+
+| Key                     | Action         |
+|-------------------------+----------------|
+| =XF86MonBrightnessUp=   | Brightness +5% |
+| =XF86MonBrightnessDown= | Brightness -5% |
+
+#+begin_src sh
+  sudo xbps-install brightnessctl
+#+end_src
+
+** libnotify / dunst
+:PROPERTIES:
+:SYSTEM_DEPS: libnotify, dunst
+:END:
+
+=libnotify= provides the =notify-send= binary used by keybindings to
+display time, date, and battery info. =dunst= is the notification daemon
+that renders those popups.
+
+| Keybinding | Notification             |
+|------------+--------------------------|
+| =Super+F1= | Current time             |
+| =Super+F2= | Current date             |
+| =Super+F3= | Battery level and status |
+
+#+begin_src sh
+  sudo xbps-install libnotify dunst
+#+end_src
+
+** numlockx
+:PROPERTIES:
+:SYSTEM_DEPS: numlockx
+:END:
+
+Enables Num Lock on startup. Called in =autostart.sh=.
+
+#+begin_src sh
+  sudo xbps-install numlockx
+#+end_src
+
+** NetworkManager-applet (nm-applet)
+:PROPERTIES:
+:SYSTEM_DEPS: NetworkManager-applet
+:END:
+
+Provides the =nm-applet= tray icon for managing network connections.
+Appears in the Systray widget in the bar.
+
+#+begin_src sh
+  sudo xbps-install network-manager-applet
+#+end_src
+
+** redshift
+:PROPERTIES:
+:SYSTEM_DEPS: redshift
+:END:
+
+Blue light filter. Configured with Israel coordinates and a day/night
+color temperature transition.
+
+#+begin_src sh
+  sudo xbps-install redshift
+#+end_src
+
+Configured in =autostart.sh= as:
+
+#+begin_src sh
+  redshift -l 32.08:34.78 -t 5700:3500 &
+#+end_src
+
+** xorg-x11-server-utils (setxkbmap)
+:PROPERTIES:
+:SYSTEM_DEPS: xorg-x11-server-utils
+:END:
+
+Provides =setxkbmap=, used in =autostart.sh= to configure a US+Hebrew
+keyboard layout with =Alt+Shift= as the toggle.
+
+#+begin_src sh
+  sudo xbps-install xorg-setxkbmap
+#+end_src
+
+** keepassxc
+:PROPERTIES:
+:SYSTEM_DEPS: keepassxc
+:END:
+
+Password manager. Launched at startup with the database at
+=~/.secrets/secret_manager.kdbx=.
+
+#+begin_src sh
+  sudo xbps-install keepassxc
+#+end_src
+
+** powermenu.sh
+:PROPERTIES:
+:SYSTEM_DEPS: custom script
+:END:
+
+A custom shell script bound to =Super+P=. Provides kill, suspend, poweroff,
+and reboot options. Must be placed somewhere on =$PATH=.
+
+* Autostart
+
+=autostart.sh= is executed once at Qtile startup via =@hook.subscribe.startup_once=.
+
+| Program              | Role                                          |
+|----------------------+-----------------------------------------------|
+| =setxkbmap=          | US+Hebrew keyboard layout, Alt+Shift toggle   |
+| =numlockx on=        | Enable Num Lock                               |
+| =pipewire=           | Audio server                                  |
+| =nm-applet=          | NetworkManager tray icon                      |
+| =gpodder=            | Podcast manager (optional)                    |
+| =emacs-30.2-gtk+x11= | GNU Emacs (optional)                          |
+| =keepassxc=          | Password manager                              |
+| =dunst=              | Notification daemon                           |
+| =redshift=           | Blue light filter (Israel coords, 5700→3500K) |
+
+* File Structure
+
+#+begin_src
+~/.config/qtile/
+├── config.py          # Main configuration (keybindings, layouts, bar, groups)
+├── autostart.sh       # Startup script (keyboard, audio, tray apps)
+├── config_orginal.py  # Original/backup config
+└── README.org         # This file
+#+end_src
