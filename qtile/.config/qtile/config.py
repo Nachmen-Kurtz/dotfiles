@@ -41,13 +41,13 @@ keys = [
     Key([mod, "control"], "q",      lazy.shutdown(),                 desc="Shutdown Qtile"),
     Key([mod],            "r",      lazy.spawncmd(),                 desc="Spawn a command using a prompt widget"),
 
-    Key([mod], "p", lazy.spawn("powermenu-fedora-xorg.sh"),   desc="kill, suspend, poweroff and reboot"),
+    Key([mod], "p", lazy.spawn("powermenu-void.sh"), desc="kill, suspend, poweroff and reboot"),
 
-    Key([mod, "control"], "a", lazy.spawn("rofi -show drun"),   desc="Launch rofi"),
-    Key([mod, "control"], "c", lazy.spawn("rofi -show run"), desc=""),
-    Key([mod, "control"], "f", lazy.spawn("rofi -show filebrowser"), desc=""),
-    Key([mod, "control"], "w", lazy.spawn("rofi -show window"), desc=""),
-    Key([mod, "control"], "s", lazy.spawn("rofi -show ssh"), desc=""),
+    Key([mod, "control"], "a", lazy.spawn("rofi -show drun"),        desc="Launch rofi"),
+    Key([mod, "control"], "c", lazy.spawn("rofi -show run"),         desc="Launch rofi run prompt"),
+    Key([mod, "control"], "f", lazy.spawn("rofi -show filebrowser"), desc="Launch rofi file browser"),
+    Key([mod, "control"], "w", lazy.spawn("rofi -show window"),      desc="Launch rofi window switcher"),
+    Key([mod, "control"], "s", lazy.spawn("rofi -show ssh"),         desc="Launch rofi SSH launcher"),
 
     Key([], "XF86AudioMute",        lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),     desc="Toggle mute"),
     Key([], "XF86AudioMicMute",     lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), desc="Toggle mic mute"),
@@ -57,20 +57,25 @@ keys = [
     Key([], "XF86MonBrightnessUp",   lazy.spawn("brightnessctl set 5%+"), desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-"), desc="Brightness down"),
 
-    Key([mod], "F1", lazy.spawn(["bash", "-c", "notify-send 'Time' \"$(date +'%H:%M')\""]),        desc="Show time"),
-    Key([mod], "F2", lazy.spawn(["bash", "-c", "notify-send 'Date' \"$(date +'%A, %B %d %Y')\""]), desc="Show date"),
+    Key([mod], "F1", lazy.spawn(["bash", "-c", "notify-send 'Time' \"$(date +'%H:%M')\""]),                                                                               desc="Show time"),
+    Key([mod], "F2", lazy.spawn(["bash", "-c", "notify-send 'Date' \"$(date +'%A, %B %d %Y')\""]),                                                                        desc="Show date"),
     Key([mod], "F3", lazy.spawn(["bash", "-c", "notify-send 'Battery' \"$(cat /sys/class/power_supply/BAT0/capacity)% ($(cat  /sys/class/power_supply/BAT0/status))\""]), desc="Show battery"),
 ]
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-group_labels = [" ", "󰖟 ", " ", "󱀞 ", " ", " ", " ", " ", " ", " "]
+group_labels = [" ", "󰖟 ", " ", "󱀞 ", " ", " ", " ", " ", " ", " "]
 
 group_matches = {
-    "2": [Match(wm_class="vivaldi-stable"), Match(wm_class="firefox")],
-    "4": [Match(wm_class="gpodder"), Match(wm_class="io.github.alainm23.planify")],
-    "5": [Match(wm_class="Alacritty")],
-    "6": [Match(wm_class="emacs")],
+    "2": [Match(wm_class="vivaldi-stable"),
+          Match(wm_class="firefox"),
+          Match(wm_class="org.mozilla.firefox")],
+    "4": [Match(wm_class="gpodder"),
+          Match(wm_class="io.github.alainm23.planify")],
+    "5": [Match(wm_class="Alacritty"),
+          Match(wm_class="kitty")],
+    "6": [Match(wm_class="Emacs-30.2-gtk+x11"),
+          Match(wm_class="emacs")],
     "7": [Match(wm_class="org.gnome.Nautilus")],
     "0": [Match(wm_class="virt-manager")],
 }
