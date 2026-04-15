@@ -93,9 +93,9 @@ bindsym $mod+space           focus mode_toggle
 bindsym $mod+a               focus parent
 bindsym $mod+minus           scratchpad show
 
-bindsym $mod+F1 exec notify-send 'Time' "$(date +'%H:%M')"
-bindsym $mod+F2 exec notify-send 'Date' "$(date +'%A, %B %d %Y')"
-bindsym $mod+F3 exec notify-send 'Battery' "$(cat /sys/class/power_supply/BAT0/capacity)% ($(cat /sys/class/power_supply/BAT0/status))"
+bindsym $mod+F1 exec --no-startup-id ~/bin/notify-info.sh time
+bindsym $mod+F2 exec --no-startup-id ~/bin/notify-info.sh date
+bindsym $mod+F3 exec --no-startup-id ~/bin/notify-info.sh battery
 
 set $ws1  "1"
 set $ws2  "2"
