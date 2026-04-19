@@ -188,7 +188,10 @@
                                         ("Elfeed"   (or (mode . elfeed-search-mode)
                                                         (mode . elfeed-show-mode)))
                                         ("Shell"    (mode . eshell-mode))
-                                        ("Prog"     (derived-mode . prog-mode))
+                                        ("Prog"     (or(derived-mode . prog-mode)
+                                                       (mode . conf-space-mode)
+                                                       (mode . conf-xdefaults-mode)
+                                                       (mode . conf-unix-mode)))
                                         ("Special"  (name . "^\\*"))))))
 
 (use-package magit
