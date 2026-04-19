@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
-case "$(printf "kill\nzzz\nreboot\nshutdown" | fuzzel -d -l 4)" in
-	kill) ps -u "$USER" -o pid,comm,%cpu,%mem | fuzzel -d -l 10 -p "Kill: " | awk '{print $1}' | xargs -r kill ;;
-	zzz) swaylock & systemctl suspend ;;
-	reboot) systemctl reboot ;;
-	shutdown) systemctl poweroff ;;
-	*) exit 1 ;;
+confirm() {
+    [ "$(printf "no\nyes" | fuzzel --dmenu -l 2 -p "$1 — Are you sure? ")" = "yes" ]
+}
+
+case "$(printf "lock\nsuspend\nkill\nreboot\nshutdown" | fuzzel --dmenu -l 5 -p "Power: ")" in
+    lock)     swaylock -f -c 1e1e2e ;;
+    suspend)  swaylock -f -c 1e1e2e & sleep 0.5 && systemctl suspend ;;
+    kill)     ps -u "$USER" -o pid,comm,%cpu,%mem | fuzzel --dmenu -p "Kill: " | awk '{print $1}' | xargs -r kill ;;
+    reboot)   confirm "Reboot" && systemctl reboot ;;
+    shutdown) confirm "Shutdown" && systemctl poweroff ;;
+    *)        exit 1 ;;
 esac
