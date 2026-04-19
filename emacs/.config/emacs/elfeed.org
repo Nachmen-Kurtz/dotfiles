@@ -43,6 +43,8 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC1yGcBvdPGxRIMT1yo_bKIQ][@Jake@Linux]]
 **** [[https://codeberg.org/nachmenk.rss][Codeberg - Nachmen Kurtz]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCxLxR_oW-NAmChIcSkAyZGQ][@FreeBSDProject]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYlMGSxDy8fCQGXesK64aEg][YouTux Channel - YouTube]]
+**** [[https://blog.xfce.org/rss][Xfce Blog]]
 *** Hebrew                                                               :he:
 **** [[https://nachmenk.com/feed.xml][Learn Linux]]
 
