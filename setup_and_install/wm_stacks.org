@@ -1,0 +1,107 @@
+#+TITLE: WM Stack Reference
+#+DATE: 2026-04-11
+#+CREATED_BY: claude
+#+MODEL: claude-sonnet
+#+FILETAGS: :wm:wayland:x11:sway:hyprland:i3:qtile:
+#+PATH: ~/dotfiles/Setup_and_Install/wm_stacks.org
+
+* Summary
+
+Reference for the complete software stack required by each window manager
+environment in this dotfiles repo. Covers both Wayland (Sway, Hyprland) and
+X11 (i3, Qtile) setups.
+
+* Comparison Table
+
+| Component           | Sway               | Hyprland           | i3               | Qtile            |
+|---------------------+--------------------+--------------------+------------------+------------------|
+| Display Server      | Wayland (built-in) | Wayland (built-in) | Xorg             | Xorg             |
+| WM / Compositor     | sway               | hyprland           | i3               | qtile            |
+| Status Bar          | waybar             | waybar             | i3status         | built-in bar     |
+| Launcher / Menu     | fuzzel             | fuzzel             | rofi             | qtile prompt     |
+| Notifications       | mako               | swaync             | dunst            | dunst            |
+| Screen Lock         | swaylock           | hypridle           | i3lock           | —                |
+| Idle / Lock Trigger | swayidle           | hypridle           | xss-lock         | —                |
+| Wallpaper           | sway output bg     | hyprpaper          | —                | —                |
+| Blue Light Filter   | wlsunset           | hyprsunset         | —                | —                |
+| Screenshots         | grim + slurp       | grim + slurp       | flameshot        | flameshot        |
+| Clipboard           | wl-copy            | wl-copy            | xclip / xsel     | xclip / xsel     |
+| Audio               | pactl / pipewire   | pactl / pipewire   | pactl / pipewire | pactl / pipewire |
+| Brightness          | brightnessctl      | brightnessctl      | brightnessctl    | brightnessctl    |
+| Keyboard Layout     | xkb (sway input)   | xkb (hypr input)   | setxkbmap        | setxkbmap        |
+| Numlock             | xkb_numlock        | —                  | —                | numlockx         |
+| Network Applet      | nm-applet          | —                  | nm-applet        | nm-applet        |
+| Autostart Helper    | —                  | —                  | dex              | —                |
+| OSD                 | —                  | swayosd            | —                | —                |
+| Terminal            | alacritty          | kitty              | alacritty        | alacritty        |
+
+* Stacks by WM
+
+** Sway (Wayland)
+
+#+BEGIN_SRC text
+  sway waybar fuzzel mako swaylock swayidle wlsunset
+  grim slurp wl-copy brightnessctl nm-applet alacritty
+#+END_SRC
+
+** Hyprland (Wayland)
+
+#+BEGIN_SRC text
+  hyprland waybar fuzzel swaync hypridle hyprpaper hyprsunset
+  swayosd grim slurp wl-copy brightnessctl kitty
+#+END_SRC
+
+** i3 (X11)
+
+#+BEGIN_SRC text
+  xorg i3 i3status rofi dunst i3lock xss-lock dex
+  setxkbmap flameshot nm-applet pactl alacritty
+#+END_SRC
+
+** Qtile (X11)
+
+#+BEGIN_SRC text
+  xorg qtile dunst setxkbmap numlockx flameshot nm-applet pactl alacritty
+#+END_SRC
+
+* Install Hints
+
+Install all Wayland (Sway) deps on Fedora:
+
+#+BEGIN_SRC sh
+  sudo dnf install sway waybar fuzzel mako swaylock swayidle \
+    wlsunset grim slurp wl-clipboard brightnessctl network-manager-applet \
+    alacritty
+#+END_SRC
+
+Install all Wayland (Hyprland) deps on Fedora:
+
+#+BEGIN_SRC sh
+  sudo dnf install hyprland waybar fuzzel swaync hypridle hyprpaper \
+       hyprsunset swayosd grim slurp wl-clipboard brightnessctl kitty
+#+END_SRC
+
+Install all X11 (i3) deps on Fedora:
+
+#+BEGIN_SRC sh
+  sudo dnf install xorg-x11-server-Xorg i3 i3status rofi dunst i3lock \
+    xss-lock dex setxkbmap flameshot network-manager-applet \
+    pipewire-utils alacritty
+#+END_SRC
+
+Install all X11 (Qtile) deps on Fedora:
+
+#+BEGIN_SRC sh
+  sudo dnf install xorg-x11-server-Xorg qtile dunst setxkbmap numlockx \
+    flameshot network-manager-applet pipewire-utils alacritty
+#+END_SRC
+
+* Related
+
+- [[file:1_repos_packages_install.sh][Main Package Install Script]]
+- [[file:2_flatpak_packagas_install.sh][Flatpak Install Script]]
+- [[file:0_README.org][Setup README]]
+- [[file:../sway/.config/sway/config][Sway Config]]
+- [[file:../i3/.config/i3/config][i3 Config]]
+- [[file:../hyprland/.config/hypr/hyprland.conf][Hyprland Config]]
+- [[file:../qtile/.config/qtile/autostart.sh][Qtile Autostart]]
