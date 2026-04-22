@@ -1,0 +1,130 @@
+#+TITLE: KeePassXC D-Bus Secrets Service Configuration — README
+#+AUTHOR: Nachmen Kurtz
+#+DATE: 2026-04-19
+#+CREATED_BY: claude
+#+MODEL: claude-sonnet
+#+PATH: ~/dotfiles/keepassxc/.local/share/dbus-1/services/README.org
+
+* Overview
+
+This Stow package deploys a D-Bus service activation file that registers
+KeePassXC as the provider of the =org.freedesktop.secrets= interface.
+Without this file, applications that use the Secret Service API (such as
+Chromium, GNOME Keyring clients, or CLI tools using =libsecret=) cannot
+locate a secrets backend and will fail silently or prompt repeatedly for
+credentials.
+
+The file is placed in the user-local D-Bus services directory so that no
+root access is required and the registration is scoped to the user session.
+KeePassXC must be running and have the Secret Service integration enabled
+in its settings for the interface to respond.
+
+* Stow Packages
+
+This package is typically standalone, but the D-Bus session must be running
+before KeePassXC can register. Ensure =dbus-run-session= or =dbus-launch=
+is called from =~/.xinitrc= before i3 starts.
+
+Deploy command:
+
+#+begin_src sh
+  stow keepassxc
+#+end_src
+
+* Stow Dependencies
+
+| Package         | Requires | Reason                                        |
+|-----------------+----------+-----------------------------------------------|
+| =dbus-services= | =xorg=   | D-Bus session must be started in =~/.xinitrc= |
+
+* Environment Variables
+
+** Required by this package
+
+| Variable                   | Expected value           | Typically set in               |
+|----------------------------+--------------------------+--------------------------------|
+| =DBUS_SESSION_BUS_ADDRESS= | socket path set at login | =~/.xinitrc= via =dbus-launch= |
+
+The D-Bus activation daemon uses this variable to find the session bus.
+If it is not set, the service file will be ignored and =org.freedesktop.secrets=
+will not be reachable.
+
+* Quick Install — All System Dependencies
+
+#+begin_src sh
+  xbps-install -S keepassxc dbus
+#+end_src
+
+* Packages and Their Dependencies
+
+** KeePassXC
+:PROPERTIES:
+:SYSTEM_DEPS: keepassxc, dbus
+:END:
+
+KeePassXC is the password manager that implements the =org.freedesktop.secrets=
+D-Bus interface (Secret Service API). This allows other applications to store
+and retrieve secrets without a separate keyring daemon.
+
+#+begin_src sh
+  xbps-install -S keepassxc
+#+end_src
+
+After installing, enable the Secret Service integration inside KeePassXC:
+
+: Tools → Settings → Secret Service Integration → Enable KeePassXC Secret Service
+
+*KeePassXC must be running and unlocked* for the Secret Service interface to
+respond. D-Bus will launch the =Exec= binary listed in the service file when
+an application first requests =org.freedesktop.secrets=, but KeePassXC still
+needs to be unlocked manually.
+
+** D-Bus session activation
+:PROPERTIES:
+:SYSTEM_DEPS: dbus
+:END:
+
+The =dbus-1/services/= directory is scanned by the D-Bus daemon to discover
+user-local service providers. The file deployed by this package tells D-Bus
+to start =/usr/bin/keepassxc= when any application requests the
+=org.freedesktop.secrets= name on the session bus.
+
+#+begin_src sh
+  xbps-install -S dbus
+#+end_src
+
+Ensure the session bus is started in =~/.xinitrc=:
+
+#+begin_src sh
+  exec dbus-launch --exit-with-session i3
+#+end_src
+
+Or, if you use =dbus-launch= separately:
+
+#+begin_src sh
+  eval $(dbus-launch --sh-syntax --exit-with-session)
+#+end_src
+
+If the D-Bus session is not running, the service file has no effect and
+applications will fail to find =org.freedesktop.secrets=.
+
+* File Structure
+
+#+begin_src
+~/dotfiles/keepassxc/
+└── .local/
+    └── share/
+        └── dbus-1/
+            └── services/
+                └── org.freedesktop.secrets.service   # D-Bus activation file
+#+end_src
+
+Deployed path: =~/.local/share/dbus-1/services/org.freedesktop.secrets.service=
+
+File contents:
+
+#+begin_src conf
+  [D-BUS Service]
+  Name=org.freedesktop.secrets
+  Exec=/usr/bin/keepassxc
+#+end_src
