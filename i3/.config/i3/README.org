@@ -1,0 +1,352 @@
+#+TITLE: i3 Configuration — README
+#+AUTHOR: Nachmen Kurtz
+#+DATE: 2026-04-19
+#+CREATED_BY: claude
+#+MODEL: claude-sonnet
+#+PATH: ~/.config/i3/README.org
+
+* Overview
+
+Personal i3 configuration for X11. Entry point: =~/.xinitrc= → =i3=.
+Color scheme: Catppuccin Mocha throughout (bar, borders, lock screen).
+
+This setup spans multiple Stow packages — all must be deployed together for a
+fully working session.
+
+* Stow Packages
+
+| Package | Path deployed                 | Role                                    |
+|---------+-------------------------------+-----------------------------------------|
+| =i3=    | =~/.config/i3/=               | WM config, colors, keybindings          |
+| =xorg=  | =~/.xinitrc=, =~/.Xresources= | Session entry point, DPI                |
+| =dunst= | =~/.config/dunst/=            | Notification daemon                     |
+| =rofi=  | =~/.config/rofi/=             | App launcher / dmenu replacement        |
+| =bin=   | =~/bin/=                      | Helper scripts (powermenu, notify-info) |
+
+Deploy all at once from the repo root:
+
+#+begin_src sh
+  stow i3 xorg dunst rofi bin
+#+end_src
+
+* Quick Install — All System Dependencies
+
+#+begin_src sh
+  sudo xbps-install -S i3 i3status i3lock xorg \
+       dunst rofi feh numlockx xss-lock \
+       redshift network-manager-applet brightnessctl \
+       pipewire pipewire-pulse \
+       alacritty setxkbmap xrdb keepassxc
+#+end_src
+
+* Packages and Their Dependencies
+
+** i3
+:PROPERTIES:
+:SYSTEM_DEPS: i3, xorg-server
+:END:
+
+The window manager itself.
+
+#+begin_src sh
+  sudo xbps-install -S i3
+#+end_src
+
+Session is started via =~/.xinitrc=:
+
+#+begin_src sh
+  exec dbus-launch --exit-with-session i3
+#+end_src
+
+=dbus-launch= wraps i3 so that D-Bus is available to apps (required by
+KeePassXC, NetworkManager applet, etc.). The config also runs
+=dbus-update-activation-environment DISPLAY XAUTHORITY= on startup to
+propagate those variables into the D-Bus activation environment.
+
+** i3status
+:PROPERTIES:
+:SYSTEM_DEPS: i3status
+:END:
+
+Provides the status bar text rendered inside i3's built-in bar.
+
+#+begin_src sh
+  sudo xbps-install -S i3status
+#+end_src
+
+Config file: =~/.config/i3status/config= (not in this repo — i3 falls back to
+its compiled-in defaults if missing).
+
+** i3lock
+:PROPERTIES:
+:SYSTEM_DEPS: i3lock, xss-lock
+:END:
+
+Screen locker. Invoked by =xss-lock= automatically on idle/suspend, and by
+=powermenu-void.sh= on manual lock.
+
+Lock color matches Catppuccin Mocha base: =#1e1e2e=.
+
+#+begin_src sh
+  sudo xbps-install -S i3lock xss-lock
+#+end_src
+
+=xss-lock= is launched on startup:
+
+#+begin_src sh
+  exec --no-startup-id xss-lock --transfer-sleep-lock -- \
+      i3lock --color=1e1e2e --no-unlock-indicator --nofork
+#+end_src
+
+** setxkbmap (keyboard layout)
+:PROPERTIES:
+:SYSTEM_DEPS: setxkbmap
+:END:
+
+Dual US/Hebrew layout toggled with =Alt+Shift=.
+
+#+begin_src sh
+  sudo xbps-install -S setxkbmap
+#+end_src
+
+Runs as =exec_always= so layout survives config reload:
+
+#+begin_src sh
+  exec_always --no-startup-id setxkbmap -layout us,il -option grp:alt_shift_toggle
+#+end_src
+
+** feh (wallpaper)
+:PROPERTIES:
+:SYSTEM_DEPS: feh
+:END:
+
+Sets the wallpaper from =~/.config/i3/wallpaper.jpg= at session start (called
+from =~/.xinitrc= before i3 launches).
+
+#+begin_src sh
+  sudo xbps-install -S feh
+#+end_src
+
+#+begin_src sh
+  # In ~/.xinitrc
+  feh --bg-fill ~/.config/i3/wallpaper.jpg
+#+end_src
+
+** Xft.dpi / xrdb
+:PROPERTIES:
+:SYSTEM_DEPS: xrdb
+:END:
+
+=~/.Xresources= sets =Xft.dpi: 120= for HiDPI scaling. Merged at session start
+from =~/.xinitrc=:
+
+#+begin_src sh
+  [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
+#+end_src
+
+Change this value if using a different screen density.
+
+#+begin_src sh
+  sudo xbps-install -S xrdb
+#+end_src
+
+** dunst
+:PROPERTIES:
+:SYSTEM_DEPS: dunst
+:END:
+
+Notification daemon. Launched on startup: =exec --no-startup-id dunst=.
+
+#+begin_src sh
+  sudo xbps-install -S dunst
+#+end_src
+
+Config: =~/.config/dunst/dunstrc= (the =dunst= Stow package).
+
+** rofi
+:PROPERTIES:
+:SYSTEM_DEPS: rofi
+:END:
+
+Used as both the app launcher and the dmenu backend for =powermenu-void.sh=.
+
+#+begin_src sh
+  sudo xbps-install -S rofi
+#+end_src
+
+Config: =~/.config/rofi/config.rasi= (the =rofi= Stow package). Icon theme
+is set to =MacTahoe= — replace with any installed theme if unavailable.
+
+Keybindings:
+
+| Key            | Mode             |
+|----------------+------------------|
+| =Super+Ctrl+a= | =drun= (apps)    |
+| =Super+Ctrl+c= | =run= (commands) |
+| =Super+Ctrl+f= | =filebrowser=    |
+| =Super+Ctrl+w= | =window=         |
+| =Super+Ctrl+s= | =ssh=            |
+
+** redshift
+:PROPERTIES:
+:SYSTEM_DEPS: redshift
+:END:
+
+Color temperature adjustment. Coordinates are hardcoded for Tel Aviv (32.08 N,
+34.78 E). Adjust in the config if running elsewhere.
+
+#+begin_src sh
+  sudo xbps-install -S redshift
+#+end_src
+
+#+begin_src sh
+  exec --no-startup-id redshift -l 32.08:34.78 -t 5700:3500
+#+end_src
+
+** numlockx
+:PROPERTIES:
+:SYSTEM_DEPS: numlockx
+:END:
+
+Enables Num Lock on session start.
+
+#+begin_src sh
+  sudo xbps-install -S numlockx
+#+end_src
+
+** NetworkManager applet (nm-applet)
+:PROPERTIES:
+:SYSTEM_DEPS: network-manager-applet
+:END:
+
+System tray icon for Wi-Fi and VPN management.
+
+#+begin_src sh
+  sudo xbps-install -S network-manager-applet
+#+end_src
+
+** PipeWire
+:PROPERTIES:
+:SYSTEM_DEPS: pipewire, pipewire-pulse
+:END:
+
+Audio server. Launched on startup: =exec --no-startup-id pipewire=.
+=pipewire-pulse= provides the PulseAudio compatibility layer used by =pactl=.
+
+#+begin_src sh
+  sudo xbps-install -S pipewire pipewire-pulse
+#+end_src
+
+Volume keys use =pactl=:
+
+#+begin_src sh
+  bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+  bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+  bindsym XF86AudioMute        exec pactl set-sink-mute   @DEFAULT_SINK@ toggle
+#+end_src
+
+** brightnessctl
+:PROPERTIES:
+:SYSTEM_DEPS: brightnessctl
+:END:
+
+Backlight control for laptop displays.
+
+#+begin_src sh
+  sudo xbps-install -S brightnessctl
+#+end_src
+
+#+begin_src sh
+  bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+  bindsym XF86MonBrightnessUp   exec brightnessctl set 5%+
+#+end_src
+
+** KeePassXC
+:PROPERTIES:
+:SYSTEM_DEPS: keepassxc
+:END:
+
+Password manager. Launched on startup, pointing to =~/.secrets/secret_manager.kdbx=.
+That file is *not* in this repo (it is in =.gitignore=).
+
+#+begin_src sh
+  sudo xbps-install -S keepassxc
+#+end_src
+
+** bin scripts
+:PROPERTIES:
+:SYSTEM_DEPS: rofi, dunst (notify-send), bash
+:END:
+
+Two scripts from the =bin= Stow package are referenced by i3:
+
+| Script                    | Bound to         | Function                         |
+|---------------------------+------------------+----------------------------------|
+| =~/bin/powermenu-void.sh= | =Super+p=        | Lock / sleep / reboot / shutdown |
+| =~/bin/notify-info.sh=    | =Super+F1/F2/F3= | Time / date / battery popups     |
+
+=powermenu-void.sh= uses =zzz= and =loginctl= (elogind) for sleep and session
+control on Void Linux.
+
+* Workspace Assignments
+
+| Workspace | Class     |
+|-----------+-----------|
+|         2 | Firefox   |
+|         5 | Alacritty |
+|         6 | Emacs     |
+
+* Color Scheme
+
+All colors are Catppuccin Mocha. Variables are defined at the top of =config=
+and referenced throughout the bar and client color settings.
+
+Key colors used structurally:
+
+| Role                 | Variable    | Hex       |
+|----------------------+-------------+-----------|
+| Background           | =$base=     | =#1e1e2e= |
+| Focused border       | =$lavender= | =#b4befe= |
+| Urgent border        | =$peach=    | =#fab387= |
+| Bar active workspace | =$mauve=    | =#cba6f7= |
+| Bar text             | =$text=     | =#cdd6f4= |
+| Lock screen          | (hardcoded) | =#1e1e2e= |
+
+* File Structure
+
+#+begin_src
+~/.config/i3/
+├── config          # Main WM configuration
+└── wallpaper.jpg   # Desktop background (not version-controlled)
+
+~/.xinitrc          # Session entry point (from xorg Stow package)
+~/.Xresources       # DPI setting: Xft.dpi 120 (from xorg Stow package)
+~/.config/dunst/
+└── dunstrc         # Notification daemon (from dunst Stow package)
+~/.config/rofi/
+└── config.rasi     # Launcher config (from rofi Stow package)
+~/bin/
+├── powermenu-void.sh    # Power menu (from bin Stow package)
+└── notify-info.sh       # Time/date/battery notifications (from bin Stow package)
+#+end_src
+
+
+
+
+
+
+
+
+
+
+* Other /*very importennt*/  depends:
+1. stow:
+   + bin (needed for: powermenu.sh,
+   + notify-info.sh), xorg (for X server),
+   + rofi, dunst
+2. add to path: ~~/bin~ to .bashrc:
+   #+begin_src sh
+     PATH="/usr/local/bin:/usr/bin"          # insert the default path
+     PATH="$HOME/.local/bin:$HOME/bin:$PATH" # add our custom needed path's
+     export PATH
+   #+end_src
