@@ -1,4 +1,3 @@
-
 podman_rm_all_stopped() {
   podman rm $(podman ps -aq)
 }
@@ -24,16 +23,13 @@ lcase() {
     tr '[:upper:]' '[:lower:]'
 }
 
-
 today() {
     date '+%Y-%m-%d'
 }
 
-
 filesize() {
     du -sk * | sort -n
 }
-
 
 paths() {
     echo $PATH | tr ':' '\n'
@@ -43,13 +39,9 @@ ff() {
   find . -type f -iname "*$1*" 2>/dev/null
 }
 
-
 fd() {
   find . -type d -iname "*$1*" 2>/dev/null
 }
-
-
-
 
 myips() {
   echo "Internal: $(hostname -I | awk '{print $1}')"
@@ -63,8 +55,6 @@ upt() {
 topmem() {
   ps -eo pid,comm,%mem --sort=-%mem | head
 }
-
-
 
 mkcd() {
   mkdir -p "$1" && cd "$1" || return
@@ -93,10 +83,10 @@ extract() {
 watchlog() {
   tail -f "$1" | ccze -A
 }
+
 portcheck() {
   nc -zv "$1" "$2"
 }
-
 
 bak() {
   cp "$1" "$1.$(date +%F_%H-%M).bak"
