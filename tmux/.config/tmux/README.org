@@ -1,0 +1,222 @@
+#+TITLE: tmux Configuration — README
+#+AUTHOR: Nachmen Kurtz
+#+DATE: 2026-04-19
+#+CREATED_BY: claude
+#+MODEL: claude-sonnet
+#+PATH: ~/.config/tmux/README.org
+
+* Overview
+
+tmux is a terminal multiplexer that manages persistent sessions, windows, and
+panes within a single terminal. This configuration uses =C-a= as the prefix
+(replacing the default =C-b=), applies a Catppuccin Mocha theme via the
+official Catppuccin plugin, and sets =fish= as the default shell inside tmux
+sessions. Plugins are managed by TPM (Tmux Plugin Manager), installed
+separately at =~/.tmux/plugins/tpm=. The status bar sits at the top of the
+screen and displays session name, current application, CPU usage, weather,
+and date/time.
+
+* Quick Install — All System Dependencies
+
+#+begin_src sh
+  xbps-install -S tmux fish
+#+end_src
+
+* Packages and Their Dependencies
+
+** tmux
+:PROPERTIES:
+:SYSTEM_DEPS: tmux
+:END:
+
+The terminal multiplexer itself.
+
+#+begin_src sh
+  xbps-install -S tmux
+#+end_src
+
+Config is loaded from =~/.config/tmux/tmux.conf= (XDG path, requires tmux ≥ 3.1).
+
+** fish shell
+:PROPERTIES:
+:SYSTEM_DEPS: fish
+:END:
+
+Set as the =default-shell= inside all tmux sessions. Fish must be installed
+and available at =/usr/bin/fish=.
+
+#+begin_src sh
+  xbps-install -S fish
+#+end_src
+
+If fish is missing, tmux will fail to open new windows and panes.
+
+** TPM — Tmux Plugin Manager
+:PROPERTIES:
+:SYSTEM_DEPS: git
+:END:
+
+TPM bootstraps all plugins listed at the bottom of =tmux.conf=. It is *not*
+managed by XBPS — install it manually:
+
+#+begin_src sh
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+#+end_src
+
+After cloning, open tmux and press =C-a I= to install all plugins. TPM
+expects its root at =~/.tmux/plugins/tpm= (note: =~/.tmux/=, not
+=~/.config/tmux/=).
+
+** Catppuccin theme
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Provides the Mocha color scheme for the status bar and window tabs. Installed
+as a TPM plugin and also sourced directly:
+
+#+begin_src conf
+  run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux
+#+end_src
+
+The Catppuccin plugin is placed inside =~/.config/tmux/plugins/= (separate
+from the TPM root at =~/.tmux/plugins/=). Verify that the path above matches
+where TPM actually clones it — TPM clones to =~/.tmux/plugins/= by default,
+so the =run= line may need to be adjusted to:
+
+#+begin_src conf
+  run ~/.tmux/plugins/catppuccin/tmux/catppuccin.tmux
+#+end_src
+
+** tmux-sensible
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Applies a set of sensible default options that most users agree on. Installed
+via TPM. No post-install steps needed.
+
+** tmux-resurrect
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Saves and restores tmux sessions across reboots. Press =C-a C-s= to save,
+=C-a C-r= to restore. Session data is stored in
+=~/.local/share/tmux/resurrect/= by default.
+
+** tmux-continuum
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Automatically saves the tmux environment at a regular interval and restores
+it on tmux server start. Depends on =tmux-resurrect= being installed.
+
+** tmux-yank
+:PROPERTIES:
+:SYSTEM_DEPS: xclip
+:END:
+
+Copies text selected in copy mode to the system clipboard. Requires an X11
+clipboard tool.
+
+#+begin_src sh
+  xbps-install -S xclip
+#+end_src
+
+Without =xclip= (or an equivalent like =xsel=), yanked text will not reach
+the system clipboard.
+
+** tmux-battery
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Exposes battery status as a tmux format variable. Currently referenced
+indirectly via Catppuccin status integration (not explicitly shown in the
+status-right line). No post-install steps.
+
+** tmux-cpu
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Provides =#{E:@catppuccin_status_cpu}= for the status bar, showing CPU usage.
+No system dependencies beyond tmux itself.
+
+** tmux-logging
+:PROPERTIES:
+:SYSTEM_DEPS: none
+:END:
+
+Logs pane output to files. Log files are written to:
+
+#+begin_src conf
+  set -g @logging-path "~/.local/share/tmux/logging/"
+#+end_src
+
+Create the directory before first use:
+
+#+begin_src sh
+  mkdir -p ~/.local/share/tmux/logging
+#+end_src
+
+** tmux-weather
+:PROPERTIES:
+:SYSTEM_DEPS: curl
+:END:
+
+Fetches weather data from wttr.in and displays it in the status bar via
+=#{E:@catppuccin_status_weather}=. Requires internet access and =curl=.
+
+#+begin_src sh
+  xbps-install -S curl
+#+end_src
+
+* Keybindings
+
+| Key          | Action                                          |
+|--------------+-------------------------------------------------|
+| =C-a=        | Prefix (replaces default =C-b=)                 |
+| =C-a C-a=    | Send literal prefix to inner session            |
+| =C-a c=      | New window (inherits current pane path)         |
+| =C-a \vert=  | Split horizontally (inherits current pane path) |
+| =C-a -=      | Split vertically (inherits current pane path)   |
+| =C-a h/j/k/l= | Select pane left/down/up/right (vi-style)      |
+| =C-a H/J/K/L= | Resize pane by 5 cells (repeatable)            |
+| =C-a r=      | Reload config and display confirmation          |
+| =M-1= … =M-5= | Jump directly to window 1–5 (no prefix needed) |
+
+Copy mode and status bar navigation use vi keys (=mode-keys vi=,
+=status-keys vi=).
+
+* Color Scheme
+
+Theme: *Catppuccin Mocha*
+
+Configured via the Catppuccin tmux plugin. The status bar uses no explicit
+background color (=@catppuccin_status_background "none"=), inheriting from
+the terminal.
+
+| Setting                          | Value       |
+|----------------------------------+-------------|
+| =@catppuccin_flavor=             | =mocha=     |
+| =@catppuccin_window_status_style= | =basic=    |
+| =@catppuccin_window_flags=       | =icon=      |
+
+* File Structure
+
+#+begin_src
+~/.config/tmux/
+├── tmux.conf          # Main configuration (this package)
+├── history            # tmux command-line history file
+└── plugins/
+    └── catppuccin/    # Catppuccin plugin (cloned by TPM or manually)
+        └── tmux/
+            └── catppuccin.tmux
+
+~/.tmux/               # TPM root (not managed by this Stow package)
+└── plugins/
+    └── tpm/
+#+end_src
