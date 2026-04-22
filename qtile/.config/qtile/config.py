@@ -57,9 +57,9 @@ keys = [
     Key([], "XF86MonBrightnessUp",   lazy.spawn("brightnessctl set 5%+"), desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-"), desc="Brightness down"),
 
-    Key([mod], "F1", lazy.spawn(["bash", "-c", "notify-send 'Time' \"$(date +'%H:%M')\""]),                                                                               desc="Show time"),
-    Key([mod], "F2", lazy.spawn(["bash", "-c", "notify-send 'Date' \"$(date +'%A, %B %d %Y')\""]),                                                                        desc="Show date"),
-    Key([mod], "F3", lazy.spawn(["bash", "-c", "notify-send 'Battery' \"$(cat /sys/class/power_supply/BAT0/capacity)% ($(cat  /sys/class/power_supply/BAT0/status))\""]), desc="Show battery"),
+    Key([mod], "F1", lazy.spawn("notifi-info.sh time"),    desc="Show time"),
+    Key([mod], "F2", lazy.spawn("notify-info.sh date"),    desc="Show date"),
+    Key([mod], "F3", lazy.spawn("notify-info.sh battery"), desc="Show battery"),
 ]
 
 groups = []
