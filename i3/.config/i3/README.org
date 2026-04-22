@@ -329,24 +329,3 @@ Key colors used structurally:
 ├── powermenu-void.sh    # Power menu (from bin Stow package)
 └── notify-info.sh       # Time/date/battery notifications (from bin Stow package)
 #+end_src
-
-
-
-
-
-
-
-
-
-
-* Other /*very importennt*/  depends:
-1. stow:
-   + bin (needed for: powermenu.sh,
-   + notify-info.sh), xorg (for X server),
-   + rofi, dunst
-2. add to path: ~~/bin~ to .bashrc:
-   #+begin_src sh
-     PATH="/usr/local/bin:/usr/bin"          # insert the default path
-     PATH="$HOME/.local/bin:$HOME/bin:$PATH" # add our custom needed path's
-     export PATH
-   #+end_src
