@@ -38,7 +38,7 @@ input type:keyboard {
   xkb_numlock   enabled
 }
 
-output *  bg  ~/Pictures/wallpapers/linux/hq8y50D-wallpaper-for-linux.png stretch
+output *  bg  "~/wallpapers/wallpapers/linux/Why Void Linux Beats Everything Else.webp" fill
 
 output eDP-1  scale 1.25
 
