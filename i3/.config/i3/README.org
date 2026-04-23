@@ -280,10 +280,10 @@ That file is *not* in this repo (it is in =.gitignore=).
 
 Two scripts from the =bin= Stow package are referenced by i3:
 
-| Script                    | Bound to         | Function                         |
-|---------------------------+------------------+----------------------------------|
-| =~/bin/powermenu-void.sh= | =Super+p=        | Lock / sleep / reboot / shutdown |
-| =~/bin/notify-info.sh=    | =Super+F1/F2/F3= | Time / date / battery popups     |
+| Script              | Bound to         | Function                         |
+|---------------------+------------------+----------------------------------|
+| =powermenu-void.sh= | =Super+p=        | Lock / sleep / reboot / shutdown |
+| =notify-info.sh=    | =Super+F1/F2/F3= | Time / date / battery popups     |
 
 =powermenu-void.sh= uses =zzz= and =loginctl= (elogind) for sleep and session
 control on Void Linux.
@@ -316,15 +316,19 @@ Key colors used structurally:
 
 #+begin_src
 ~/.config/i3/
-├── config          # Main WM configuration
-└── wallpaper.jpg   # Desktop background (not version-controlled)
+├── config               # Main WM configuration
+└── wallpaper.jpg        # Desktop background (not version-controlled)
 
-~/.xinitrc          # Session entry point (from xorg Stow package)
-~/.Xresources       # DPI setting: Xft.dpi 120 (from xorg Stow package)
+~/.xinitrc               # Session entry point (from xorg Stow package)
+
+~/.Xresources            # DPI setting: Xft.dpi 120 (from xorg Stow package)
+
 ~/.config/dunst/
-└── dunstrc         # Notification daemon (from dunst Stow package)
+└── dunstrc              # Notification daemon (from dunst Stow package)
+
 ~/.config/rofi/
-└── config.rasi     # Launcher config (from rofi Stow package)
+└── config.rasi          # Launcher config (from rofi Stow package)
+
 ~/bin/
 ├── powermenu-void.sh    # Power menu (from bin Stow package)
 └── notify-info.sh       # Time/date/battery notifications (from bin Stow package)
