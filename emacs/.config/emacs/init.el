@@ -158,6 +158,15 @@
   :config
   (desktop-save-mode 1))
 
+(use-package repeat
+  :ensure nil
+  :init
+  (repeat-mode 1)
+  :custom
+  (repeat-exit-timeout  3)
+  (repeat-exit-key      (kbd "RET"))
+  (repeat-echo-function #'repeat-echo-message))
+
 (use-package nerd-icons)
 
 (use-package nerd-icons-dired)
