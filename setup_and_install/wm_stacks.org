@@ -1,9 +1,10 @@
 #+TITLE: WM Stack Reference
 #+DATE: 2026-04-11
 #+CREATED_BY: claude
-#+MODEL: claude-sonnet
+#+MODEL: claude-opus
 #+FILETAGS: :wm:wayland:x11:sway:hyprland:i3:qtile:
 #+PATH: ~/dotfiles/Setup_and_Install/wm_stacks.org
+#+SOURCE_SKILL: org-note
 
 * Summary
 
@@ -66,34 +67,33 @@ X11 (i3, Qtile) setups.
 
 * Install Hints
 
-Install all Wayland (Sway) deps on Fedora:
+Install all Wayland (Sway) deps on Void Linux:
 
 #+BEGIN_SRC sh
-  sudo dnf install sway waybar fuzzel mako swaylock swayidle \
-    wlsunset grim slurp wl-clipboard brightnessctl network-manager-applet \
-    alacritty
+  sudo xbps-install sway waybar fuzzel mako swaylock swayidle \
+    wlsunset grim slurp wl-clipboard brightnessctl NetworkManager alacritty
 #+END_SRC
 
-Install all Wayland (Hyprland) deps on Fedora:
+Install all Wayland (Hyprland) deps on Void Linux:
 
 #+BEGIN_SRC sh
-  sudo dnf install hyprland waybar fuzzel swaync hypridle hyprpaper \
-       hyprsunset swayosd grim slurp wl-clipboard brightnessctl kitty
+  sudo xbps-install hyprland waybar fuzzel swaync hypridle hyprpaper \
+    hyprsunset swayosd grim slurp wl-clipboard brightnessctl kitty
 #+END_SRC
 
-Install all X11 (i3) deps on Fedora:
+Install all X11 (i3) deps on Void Linux:
 
 #+BEGIN_SRC sh
-  sudo dnf install xorg-x11-server-Xorg i3 i3status rofi dunst i3lock \
-    xss-lock dex setxkbmap flameshot network-manager-applet \
-    pipewire-utils alacritty
+  sudo xbps-install xorg i3 i3status rofi dunst i3lock \
+    xss-lock dex setxkbmap flameshot NetworkManager \
+    pipewire alacritty
 #+END_SRC
 
-Install all X11 (Qtile) deps on Fedora:
+Install all X11 (Qtile) deps on Void Linux:
 
 #+BEGIN_SRC sh
-  sudo dnf install xorg-x11-server-Xorg qtile dunst setxkbmap numlockx \
-    flameshot network-manager-applet pipewire-utils alacritty
+  sudo xbps-install xorg qtile dunst setxkbmap numlockx \
+    flameshot NetworkManager pipewire alacritty
 #+END_SRC
 
 * Related
