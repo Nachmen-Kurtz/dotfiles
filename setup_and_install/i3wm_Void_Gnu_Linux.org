@@ -1,0 +1,90 @@
+#+title: i3wm - Void Gnu Linux
+#+date: <2026-04-22 Wed>
+#+author: Nachmen Kurtz
+#+email: nachmenkurtz@gmail.com
+#+creator: Emacs 30.2 (Org mode 9.7.11)
+
+* Stow pkg's:
+
+[[file:~/dotfiles/xorg/][X.org Server]]
+[[file:~/dotfiles/i3/][i3 Window Manager]]
+[[file:~/dotfiles/alacritty/][Alacritty Terminal]]
+[[file:~/dotfiles/bin/][Binaries and Scripts]]
+[[file:~/dotfiles/keepassxc/][KeePassXC Secret Service Manager]]
+[[file:~/dotfiles/fonts/][Nerd Fonts]]
+[[file:~/dotfiles/rofi/][Rofi launcher]]
+[[file:~/dotfiles/dunst/][Dunst Notification Daemon]]
+
+* XBPS pkg's
+
+#+begin_src sh
+  sudo xbps-install -S \
+       xorg numlockx setxkbmap xrdb xinit \
+       i3 i3status i3lock xss-lock \
+       brightnessctl pipewire pipewire-pulse wireplumber \
+       dunst rofi feh redshift network-manager-applet \
+       alacritty keepassxc
+#+end_src
+
+* Env-Vars - Path:
+
+#+begin_src sh
+  echo 'export PATH="$HOME/.local/bin:$HOME/bin:$PATH"' >> ~/.bashrc && . ~/.bashrc
+#+end_src
+
+* Create the directorys and stow pkg's
+
+** X.org
+
+#+begin_src sh
+  stow xorg
+#+end_src
+
+** i3
+
+#+begin_src sh
+  mkdir -p ~/.config/i3
+  stow i3
+#+end_src
+
+** Alacritty
+
+#+begin_src sh
+  mkdir -p ~/.config/alacritty
+  stow alacritty
+#+end_src
+
+** Binaries and Scripts
+
+#+begin_src sh
+  mkdir ~/bin
+  stow bin
+#+end_src
+
+** KeePassXC
+
+#+begin_src sh
+  mkdir -p ~/.local/share/dbus-1/services/
+  stow keepassxc
+#+end_src
+
+** Nerd Fonts
+
+#+begin_src sh
+  mkdir -p ~/.local/share/fonts
+  stow fonts
+#+end_src
+
+** Rofi
+
+#+begin_src sh
+  mkdir -p ~/.config/rofi
+  stow rofi
+#+end_src
+
+** Dunst
+
+#+begin_src sh
+  mkdir ~/.config/dunst
+  stow dunst
+#+end_src
