@@ -47,6 +47,7 @@
 **** [[https://blog.xfce.org/rss][Xfce Blog]]
 *** Hebrew                                                               :he:
 **** [[https://nachmenk.com/feed.xml][Learn Linux]]
+**** [[https://whatsup.org.il/backend.php?utf8=1][לינוקס, תוכנה חופשית וקוד פתוח בעברית]]
 
 ** General Tech                                                        :tech:
 *** English                                                              :en:
