@@ -1,3 +1,5 @@
-function ydp --wraps='yt-dlp --config-locations .config/yt-dlp/config-playlist' --description 'alias ydp yt-dlp --config-locations .config/yt-dlp/config-playlist'
-    yt-dlp --config-locations .config/yt-dlp/config-playlist $argv
+function ydp --wraps=yt-dlp --description 'yt-dlp with playlist config'
+    if command -q yt-dlp
+        yt-dlp --config-locations ~/.config/yt-dlp/config-playlist $argv
+    end
 end

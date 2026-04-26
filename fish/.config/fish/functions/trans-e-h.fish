@@ -1,3 +1,5 @@
-function trans-e-h --description 'alias trans trans -shell -b en:he'
-    command trans -shell -bidi -b en:he $argv
+function trans-e-h --description 'translate English to Hebrew'
+    if command -q trans
+        trans -shell -bidi -b en:he $argv
+    end
 end

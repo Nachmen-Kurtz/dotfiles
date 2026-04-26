@@ -1,3 +1,5 @@
-function tez --wraps='eza -T --icons' --description 'alias tez eza -T --icons'
-    eza -T --icons $argv
+function tez --wraps='eza -T --icons' --description 'tree view with eza'
+    if command -q eza
+        eza -T --icons $argv
+    end
 end
