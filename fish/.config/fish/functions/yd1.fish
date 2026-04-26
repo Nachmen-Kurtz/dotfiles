@@ -1,3 +1,5 @@
-function yd1 --wraps=yt-dlp --description 'alias yd1 yt-dlp'
-    yt-dlp $argv
+function yd1 --wraps=yt-dlp --description 'download with yt-dlp'
+    if command -q yt-dlp
+        yt-dlp $argv
+    end
 end

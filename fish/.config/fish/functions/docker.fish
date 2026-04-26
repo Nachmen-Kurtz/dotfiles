@@ -1,3 +1,5 @@
 function docker --wraps=podman --description 'alias docker podman'
-    podman $argv
+    if command -q podman
+        podman $argv
+    end
 end

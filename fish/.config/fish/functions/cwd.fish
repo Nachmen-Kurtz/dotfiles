@@ -1,3 +1,5 @@
-function cwd --wraps='pwd | xclip -selection clipboard' --description 'alias cwd pwd | xclip -selection clipboard'
-    pwd | xclip -selection clipboard $argv
+function cwd --description 'copy current path to clipboard'
+    if command -q xclip
+        pwd | xclip -selection clipboard
+    end
 end

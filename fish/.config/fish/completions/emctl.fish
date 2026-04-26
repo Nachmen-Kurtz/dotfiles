@@ -1,1 +1,0 @@
-complete -c emctl -a "start stop restart status enable disable"
