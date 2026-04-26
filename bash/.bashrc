@@ -1,17 +1,10 @@
-if [ -f /etc/bashrc ]; then
-  . /etc/bashrc
-fi
+[[ $- != *i* ]] && return
 
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-  PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+alias ls='ls --color=auto'
 
-if [ -d ~/.bashrc.d ]; then
-  for rc in ~/.bashrc.d/*; do
-    if [ -f "$rc" ]; then
-      . "$rc"
-    fi
-  done
-fi
-unset rc
+PS1='[\u@\h \W]\$ '
+
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export EDITOR="$(which nano)"
+export VISUAL="$EDITOR"
+export SUDO_EDITOR="$EDITOR"
