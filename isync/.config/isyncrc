@@ -1,0 +1,94 @@
+IMAPAccount gmail-lniz
+Host imap.gmail.com
+Port 993
+User lniz.cloud@gmail.com
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty -d ~/.secrets/gmail-lniz.gpg"
+TLSType IMAPS
+TLSVersions +1.2 +1.3
+AuthMechs LOGIN
+
+IMAPStore gmail-lniz-remote
+Account gmail-lniz
+
+MaildirStore gmail-lniz-local
+Path ~/mail/lniz-cloud/
+Inbox ~/mail/lniz-cloud/INBOX
+SubFolders Verbatim
+
+Channel gmail-lniz
+Far :gmail-lniz-remote:
+Near :gmail-lniz-local:
+Patterns *
+Create Near
+Expunge None
+SyncState *
+Sync Full
+CopyArrivalDate yes
+
+
+
+
+IMAPAccount gmail-nachmen
+Host imap.gmail.com
+Port 993
+User nachmenkurtz@gmail.com
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty -d ~/.secrets/gmail-nachmen.gpg"
+TLSType IMAPS
+TLSVersions +1.2 +1.3
+AuthMechs LOGIN
+
+IMAPStore gmail-nachmen-remote
+Account gmail-nachmen
+
+MaildirStore gmail-nachmen-local
+Path ~/mail/nachmen/
+Inbox ~/mail/nachmen/INBOX
+SubFolders Verbatim
+
+Channel gmail-nachmen
+Far :gmail-nachmen-remote:
+Near :gmail-nachmen-local:
+Patterns *
+Create Near
+Expunge None
+SyncState *
+Sync Full
+CopyArrivalDate yes
+
+
+
+
+IMAPAccount gmail-shmnzch
+Host imap.gmail.com
+Port 993
+User shmnzch@gmail.com
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty -d ~/.secrets/gmail-shmnzch.gpg"
+TLSType IMAPS
+TLSVersions +1.2 +1.3
+AuthMechs LOGIN
+
+IMAPStore gmail-shmnzch-remote
+Account gmail-shmnzch
+
+MaildirStore gmail-shmnzch-local
+Path ~/mail/shmnzch/
+Inbox ~/mail/shmnzch/INBOX
+SubFolders Verbatim
+
+Channel gmail-shmnzch
+Far :gmail-shmnzch-remote:
+Near :gmail-shmnzch-local:
+Patterns *
+Create Near
+Expunge None
+SyncState *
+Sync Full
+CopyArrivalDate yes
+
+
+
+
+Group gmail
+Channel gmail-lniz
+Channel gmail-nachmen
+Channel gmail-shmnzch

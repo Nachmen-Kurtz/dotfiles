@@ -1,0 +1,28 @@
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-bundle.crt
+logfile        ~/.local/state/msmtp/msmtp.log
+
+account        nachmen
+host           smtp.gmail.com
+port           587
+from           nachmenkurtz@gmail.com
+user           nachmenkurtz@gmail.com
+passwordeval   gpg --quiet --for-your-eyes-only --no-tty -d ~/.secrets/gmail-nachmen.gpg
+
+account        shmnzch
+host           smtp.gmail.com
+port           587
+from           shmnzch@gmail.com
+user           shmnzch@gmail.com
+passwordeval   gpg --quiet --for-your-eyes-only --no-tty -d ~/.secrets/gmail-shmnzch.gpg
+
+account        lniz
+host           smtp.gmail.com
+port           587
+from           lniz.cloud@gmail.com
+user           lniz.cloud@gmail.com
+passwordeval   gpg --quiet --for-your-eyes-only --no-tty -d ~/.secrets/gmail-lniz.gpg
+
+account default : nachmen
