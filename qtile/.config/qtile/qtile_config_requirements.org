@@ -30,3 +30,4 @@
 *** pactl
 *** brightnessctl
 *** [[file:~/dotfiles/bin/bin/notify-info.sh]]
+*** [[file:qtile.png]]
