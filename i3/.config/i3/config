@@ -2,19 +2,6 @@ set $mod Mod4
 
 font pango:monospace 12
 
-exec_always --no-startup-id setxkbmap -layout us,il -option grp:alt_shift_toggle
-
-exec --no-startup-id dunst
-exec --no-startup-id numlockx on
-exec --no-startup-id emacs
-exec --no-startup-id alacritty
-exec --no-startup-id nm-applet
-exec --no-startup-id pipewire
-exec --no-startup-id redshift -l 32.08:34.78 -t 5700:3500
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --color=1e1e2e --no-unlock-indicator --nofork
-exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY
-exec --no-startup-id keepassxc .secrets/secret_manager.kdbx
-
 set $refresh_i3status killall -SIGUSR1 i3status
 
 set $rosewater #f5e0dc
@@ -145,6 +132,10 @@ bindsym $mod+Shift+c      reload
 bindsym $mod+Shift+r      restart
 bindsym $mod+Shift+e      exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+minus  move scratchpad
+
+bindsym $mod+Tab       workspace next
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+grave     workspace back_and_forth
 
 mode "resize" {
     bindsym j         resize shrink width  10 px or 10 ppt
