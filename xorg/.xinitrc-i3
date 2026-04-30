@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. ~/.xinitrc-common
+
+feh --bg-fill ~/.config/i3/wallpaper.jpg
+
+xss-lock -- i3lock --color=1e1e2e --no-unlock-indicator --nofork &
+exec dbus-launch --exit-with-session i3
