@@ -6,10 +6,6 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy   import lazy
 from libqtile.utils  import guess_terminal
 
-@hook.subscribe.startup_once
-def autostart():
-    subprocess.Popen(os.path.expanduser("~/.config/qtile/autostart.sh"))
-
 mod      = "mod4"
 terminal = "alacritty"
 
@@ -57,26 +53,29 @@ keys = [
     Key([], "XF86MonBrightnessUp",   lazy.spawn("brightnessctl set 5%+"), desc="Brightness up"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-"), desc="Brightness down"),
 
-    Key([mod], "F1", lazy.spawn("notifi-info.sh time"),    desc="Show time"),
+    Key([mod], "F1", lazy.spawn("notify-info.sh time"),    desc="Show time"),
     Key([mod], "F2", lazy.spawn("notify-info.sh date"),    desc="Show date"),
     Key([mod], "F3", lazy.spawn("notify-info.sh battery"), desc="Show battery"),
+    Key([mod], "F4", lazy.spawn("notify-info.sh light"),   desc="Show brightness"),
+    Key([mod], "F5", lazy.spawn("notify-info.sh volume"),  desc="Show volume"),
 ]
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-group_labels = [" ", "󰖟 ", " ", "󱀞 ", " ", " ", " ", " ", " ", " "]
+group_labels = ["  gen", "󰖟  work", "  term", "  utils", "  emacs", "  files", "󰝚  music", "󱀞  pods", "  other", "  other"]
 
 group_matches = {
     "2": [Match(wm_class="vivaldi-stable"),
-          Match(wm_class="firefox"),
+          Match(wm_class="Firefox"),
           Match(wm_class="org.mozilla.firefox")],
-    "4": [Match(wm_class="gpodder"),
+    "8": [Match(wm_class="gpodder"),
           Match(wm_class="io.github.alainm23.planify")],
-    "5": [Match(wm_class="Alacritty"),
+    "3": [Match(wm_class="Alacritty"),
           Match(wm_class="kitty")],
-    "6": [Match(wm_class="Emacs-30.2-gtk+x11"),
+    "5": [Match(wm_class="Emacs-30.2-gtk+x11"),
           Match(wm_class="emacs")],
-    "7": [Match(wm_class="org.gnome.Nautilus")],
+    "6": [Match(wm_class="org.gnome.Nautilus"),
+          Match(wm_class="thunar")],
     "0": [Match(wm_class="virt-manager")],
 }
 
@@ -112,8 +111,7 @@ layouts = [
 
 widget_defaults = dict(
     font="sans",
-    fontsize=24,
-    padding=6,
+    fontsize=18,
 )
 
 extension_defaults = widget_defaults.copy()
@@ -126,6 +124,14 @@ screens = [
             [
                 widget.GroupBox(),
                 widget.Spacer(),
+                widget.Clock(format='%d/%m/%y %H:%M'),
+                widget.Sep(),
+                widget.Backlight(),
+                widget.Sep(),
+                widget.Volume(),
+                widget.Sep(),
+                widget.Battery(),
+                widget.Sep(),
                 widget.Systray(),
             ],
             48,
