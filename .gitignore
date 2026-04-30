@@ -28,8 +28,4 @@ custom.el
 .tmux/resurrect/
 .tmux/continuum/
 CLAUDE.md
-System/
-Setup_and_Install/
 .idea/
-msmtp/
-/qtile/.config/qtile/config_orginal.py
