@@ -63,7 +63,7 @@ detect_os() {
 
 detect_package_managers() {
   AVAILABLE_PKG_MGRS=()
-
+  if command -v xbps-query &>/dev/null; then AVAILABLE_PKG_MGRS+=("XBPS"); fi
   if command -v dnf &>/dev/null; then AVAILABLE_PKG_MGRS+=("DNF"); fi
   if command -v apt &>/dev/null; then AVAILABLE_PKG_MGRS+=("APT"); fi
   if command -v pacman &>/dev/null; then AVAILABLE_PKG_MGRS+=("Pacman"); fi
@@ -101,26 +101,29 @@ echo ""
 print_section "Collection Plan"
 echo -e "${WHITE}The script will collect:${NC}"
 for mgr in "${AVAILABLE_PKG_MGRS[@]}"; do
-  case $mgr in
-  "DNF")
-    echo -e "${CYAN}  • DNF:${NC} Transaction history, repositories, installed packages"
-    ;;
-  "APT")
-    echo -e "${CYAN}  • APT:${NC} Installation logs, installed packages, repositories"
-    ;;
-  "Pacman")
-    echo -e "${CYAN}  • Pacman:${NC} Installation logs, installed packages, package database"
-    ;;
-  "Flatpak")
-    echo -e "${CYAN}  • Flatpak:${NC} History, installed applications"
-    ;;
-  "Cargo")
-    echo -e "${CYAN}  • Cargo:${NC} Installed Rust packages"
-    ;;
-  "Homebrew")
-    echo -e "${CYAN}  • Homebrew:${NC} Installed packages, casks, taps"
-    ;;
-  esac
+    case $mgr in
+        "XBPS")
+            echo -e "${CYAN}  • XBPS:${NC} Installed packages, manual installs, repos, config"
+            ;;
+        "DNF")
+            echo -e "${CYAN}  • DNF:${NC} Transaction history, repositories, installed packages"
+            ;;
+        "APT")
+            echo -e "${CYAN}  • APT:${NC} Installation logs, installed packages, repositories"
+            ;;
+        "Pacman")
+            echo -e "${CYAN}  • Pacman:${NC} Installation logs, installed packages, package database"
+            ;;
+        "Flatpak")
+            echo -e "${CYAN}  • Flatpak:${NC} History, installed applications"
+            ;;
+        "Cargo")
+            echo -e "${CYAN}  • Cargo:${NC} Installed Rust packages"
+            ;;
+        "Homebrew")
+            echo -e "${CYAN}  • Homebrew:${NC} Installed packages, casks, taps"
+            ;;
+    esac
 done
 echo ""
 
@@ -148,6 +151,27 @@ done
 
 print_success "Created directory structure in: $BASE_DIR"
 echo ""
+
+if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " XBPS " ]]; then
+  print_header "Collecting XBPS History"
+  mkdir -p "${BASE_DIR}/XBPS"
+
+  print_info "Running: xbps-query -l (installed packages)"
+  xbps-query -l >"${BASE_DIR}/XBPS/xbps_installed.txt" 2>&1 && print_success "XBPS installed packages collected" || print_warning "xbps-query -l failed"
+
+  print_info "Running: xbps-query -m (manually installed)"
+  xbps-query -m >"${BASE_DIR}/XBPS/xbps_manual.txt" 2>&1 && print_success "XBPS manual packages collected" || print_warning "xbps-query -m failed"
+
+  print_info "Running: xbps-query --list-repos"
+  xbps-query --list-repos >"${BASE_DIR}/XBPS/xbps_repos.txt" 2>&1 && print_success "XBPS repos collected" || print_warning "xbps-query --list-repos failed"
+
+  print_info "Copying xbps.d config..."
+  if [ -d /etc/xbps.d ]; then
+    cp -r /etc/xbps.d "${BASE_DIR}/XBPS/" 2>&1 && print_success "xbps.d copied" || print_warning "Failed to copy xbps.d"
+  fi
+
+  echo ""
+fi
 
 if [[ " ${AVAILABLE_PKG_MGRS[@]} " =~ " DNF " ]]; then
   print_header "Collecting DNF History"
