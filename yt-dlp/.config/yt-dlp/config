@@ -6,7 +6,7 @@
 --write-description
 --write-thumbnail
 
---download-archive ~/Videos/.yt-dlp/yt-dlp-archive.txt
--o ~/Videos/.yt-dlp/%(title)s.%(ext)s
+--download-archive ~/videos/.yt-dlp/yt-dlp-archive.txt
+-o ~/videos/.yt-dlp/%(title)s.%(ext)s
 
 --sponsorblock-mark all
