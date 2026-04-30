@@ -1,0 +1,6 @@
+#!/bin/sh
+
+. ~/.xinitrc-common
+
+xss-lock -- i3lock --color=1e1e2e --no-unlock-indicator --nofork &
+exec dbus-launch --sh-syntax --exit-with-session qtile start
