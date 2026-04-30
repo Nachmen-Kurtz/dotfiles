@@ -5,7 +5,7 @@
 --write-description
 --write-playlist-metafiles
 
---download-archive ~/Videos/.yt-dlp/yt-dlp-archive.txt
--o ~/Videos/.yt-dlp/%(playlist_title)s/%(playlist_index)02d - %(title)s.%(ext)s
+--download-archive ~/videos/.yt-dlp/yt-dlp-archive.txt
+-o ~/videos/.yt-dlp/%(playlist_title)s/%(playlist_index)02d - %(title)s.%(ext)s
 
 --sponsorblock-mark all
