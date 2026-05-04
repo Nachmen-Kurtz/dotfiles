@@ -2,8 +2,6 @@ set $mod Mod4
 
 font pango:monospace 12
 
-set $refresh_i3status killall -SIGUSR1 i3status
-
 set $rosewater #f5e0dc
 set $flamingo  #f2cdcd
 set $pink      #f5c2e7
@@ -31,8 +29,11 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+
 bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -45,44 +46,45 @@ tiling_drag modifier titlebar
 
 bindsym $mod+p exec powermenu-void.sh
 
-bindsym $mod+Ctrl+a exec rofi -show drun
-bindsym $mod+Ctrl+c exec rofi -show run
-bindsym $mod+Ctrl+f exec rofi -show filebrowser
-bindsym $mod+Ctrl+w exec rofi -show window
-bindsym $mod+Ctrl+s exec rofi -show ssh
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+c exec rofi -show run
+bindsym $mod+b exec rofi -show filebrowser
+bindsym $mod+x exec rofi -show window
+bindsym $mod+i exec rofi -show ssh
 
-bindsym $mod+Return          exec alacritty
-bindsym $mod+Shift+q         kill
-bindsym $mod+j               focus left
-bindsym $mod+k               focus down
-bindsym $mod+l               focus up
-bindsym $mod+semicolon       focus right
-bindsym $mod+Left            focus left
-bindsym $mod+Down            focus down
-bindsym $mod+Up              focus up
-bindsym $mod+Right           focus right
-bindsym $mod+Shift+j         move left
-bindsym $mod+Shift+k         move down
-bindsym $mod+Shift+l         move up
-bindsym $mod+Shift+semicolon move right
-bindsym $mod+Shift+Left      move left
-bindsym $mod+Shift+Down      move down
-bindsym $mod+Shift+Up        move up
-bindsym $mod+Shift+Right     move right
-bindsym $mod+h               split h
-bindsym $mod+v               split v
-bindsym $mod+f               fullscreen toggle
-bindsym $mod+s               layout stacking
-bindsym $mod+w               layout tabbed
-bindsym $mod+e               layout toggle split
-bindsym $mod+Shift+space     floating toggle
-bindsym $mod+space           focus mode_toggle
-bindsym $mod+a               focus parent
-bindsym $mod+minus           scratchpad show
+bindsym $mod+Return      exec alacritty
+bindsym $mod+Shift+q     kill
+bindsym $mod+Left        focus left
+bindsym $mod+Down        focus down
+bindsym $mod+Up          focus up
+bindsym $mod+Right       focus right
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+h           split h
+bindsym $mod+v           split v
+bindsym $mod+f           fullscreen toggle
+bindsym $mod+s           layout stacking
+bindsym $mod+w           layout tabbed
+bindsym $mod+e           layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space       focus mode_toggle
+bindsym $mod+a           focus parent
+bindsym $mod+minus       scratchpad show
+bindsym $mod+Shift+c     reload
+bindsym $mod+Shift+r     restart
+bindsym $mod+Shift+e     exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 bindsym $mod+F1 exec --no-startup-id notify-info.sh time
 bindsym $mod+F2 exec --no-startup-id notify-info.sh date
 bindsym $mod+F3 exec --no-startup-id notify-info.sh battery
+bindsym $mod+F4 exec --no-startup-id notify-info.sh light
+bindsym $mod+F5 exec --no-startup-id notify-info.sh volume
+bindsym $mod+F6 exec --no-startup-id monitor-laptop.sh
+bindsym $mod+F7 exec --no-startup-id monitor-dock.sh
+bindsym $mod+F9 exec --no-startup-id toggle-theme.sh
 
 set $ws1  "1"
 set $ws2  "2"
@@ -95,6 +97,20 @@ set $ws8  "8"
 set $ws9  "9"
 set $ws10 "10"
 
+workspace 1  output eDP-1
+workspace 2  output DP-3-1
+workspace 3  output DP-3-8
+workspace 4  output DP-3-1
+workspace 5  output DP-3-8
+workspace 6  output DP-3-8
+workspace 7  output DP-3-8
+workspace 8  output DP-3-8
+workspace 9  output DP-3-8
+workspace 10 output DP-3-8
+
+assign [class="Firefox"]   workspace 2
+assign [class="gpodder"]   workspace 4
+assign [class="thuner"]    workspace 7
 assign [class="Alacritty"] workspace 5
 assign [class="Emacs"]     workspace 6
 assign [class="Firefox"]   workspace 2
@@ -105,6 +121,10 @@ for_window [class="maketag"]      floating enable
 for_window [class="ssh-askpass"]  floating enable
 for_window [title="branchdialog"] floating enable
 for_window [title="pinentry"]     floating enable
+
+bindsym $mod+Tab       workspace next
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+grave     workspace back_and_forth
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -128,15 +148,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-bindsym $mod+Shift+c      reload
-bindsym $mod+Shift+r      restart
-bindsym $mod+Shift+e      exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+minus  move scratchpad
-
-bindsym $mod+Tab       workspace next
-bindsym $mod+Shift+Tab workspace prev
-bindsym $mod+grave     workspace back_and_forth
-
 mode "resize" {
     bindsym j         resize shrink width  10 px or 10 ppt
     bindsym k         resize grow   height 10 px or 10 ppt
@@ -159,19 +170,3 @@ client.unfocused         $overlay0 $base $text  $rosewater $overlay0
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
-
-bar {
-    status_command i3status
-    position top
-    colors {
-        background         $base
-        statusline         $text
-        focused_statusline $text
-        focused_separator  $base
-
-        focused_workspace  $base  $mauve    $crust
-        active_workspace   $base  $surface2 $text
-        inactive_workspace $base  $base     $text
-        urgent_workspace   $base  $red      $crust
-    }
-}
