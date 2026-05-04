@@ -1,28 +1,44 @@
 include /etc/sway/config.d/*
 include catppuccin-mocha
 
+set $mod   Mod4
+set $term  kitty
+set $menu  fuzzel
+
+set $left  h
+set $down  j
+set $up    k
+set $right l
+
+set $ps1 Print
+set $ps2 Control+Print
+set $ps3 Alt+Print
+set $ps4 Alt+Control+Print
+set $psf $(xdg-user-dir PICTURES)/ps_$(date +"%Y%m%d%H%M%S").png
+
+set $wallpapers_path $HOME/pictures/wallpapers/flowers
+
+set $gnome-schema org.gnome.desktop.interface
+
+set $num_of_workspaces 10
+
+exec dbus-update-activation-environment --all
 exec wlsunset -l 32.08 -L 34.78 -T 5700 -t 3500
+exec swaykbdd
 exec nm-applet
 exec gpodder
-exec flatpak run io.github.alainm23.planify
 exec alacritty
+exec mako
 exec emacs
-exec keepassxc ~/.secrets/secret_manager.kdbx
+exec pipewire
+exec firefox
 
 focus_follows_mouse yes
 
 exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
+    timeout 300 'swaylock -f' \
     timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-    before-sleep 'swaylock -f -c 000000'
-
-set $mod        Mod4
-set $left       h
-set $down       j
-set $up         k
-set $right      l
-set $term       alacritty
-set $menu       fuzzel
+    before-sleep 'swaylock -f'
 
 input type:touchpad {
   dwt               enabled
@@ -38,63 +54,74 @@ input type:keyboard {
   xkb_numlock   enabled
 }
 
-output *  bg  "~/wallpapers/wallpapers/linux/Why Void Linux Beats Everything Else.webp" fill
+seat seat0 xcursor_theme macOS-White
 
-output eDP-1  scale 1.25
+output eDP-1 bg $(find $wallpapers_path -type f | shuf -n 1) fill
+output DP-6  bg $(find $wallpapers_path -type f | shuf -n 1) fill
+output DP-5  bg $(find $wallpapers_path -type f | shuf -n 1) fill
 
-output eDP-1  position  0     0
-output DP-6   position  1536  0
-output DP-5   position  3456  0
+output eDP-1 scale 1.25 position 0    0
+output DP-6             position 1536 0
+output DP-5             position 3456 0
 
-workspace 1   output eDP-1
-workspace 2   output DP-6
-workspace 4   output DP-6
-workspace 3   output DP-5
-workspace 5   output DP-5
-workspace 6   output DP-5
-workspace 7   output DP-5
-workspace 8   output DP-5
-workspace 9   output DP-5
-workspace 10  output DP-5
+gaps inner 10
+gaps outer 5
 
-assign [app_id="vivaldi-stable"]              workspace 2
-assign [app_id="org.mozilla.firefox"]         workspace 2
-assign [app_id="gpodder"]                     workspace 4
-assign [app_id="io.github.alainm23.planify"]  workspace 4
-assign [app_id="Alacritty"]                   workspace 5
-assign [app_id="emacs"]                       workspace 6
-assign [app_id="org.gnome.Nautilus"]          workspace 7
-assign [app_id="virt-manager"]		      workspace 10
+workspace 1  output eDP-1
+workspace 2  output DP-6
+workspace 4  output DP-6
+workspace 3  output DP-5
+workspace 5  output DP-5
+workspace 6  output DP-5
+workspace 7  output DP-5
+workspace 8  output DP-5
+workspace 9  output DP-5
+workspace 10 output DP-5
+
+assign [app_id="vivaldi-stable"]      workspace 2
+assign [app_id="org.mozilla.firefox"] workspace 2
+assign [app_id="gpodder"]             workspace 4
+assign [app_id="Alacritty"]           workspace 5
+assign [app_id="emacs"]               workspace 6
+assign [app_id="virt-manager"]	      workspace 10
+
+for_window [window_role = "pop-up"]                      floating enable
+for_window [window_role = "bubble"]                      floating enable
+for_window [window_role = "dialog"]                      floating enable
+for_window [window_type = "dialog"]                      floating enable
+for_window [window_role = "task_dialog"]                 floating enable
+for_window [window_type = "menu"]                        floating enable
+for_window [app_id = "floating"]                         floating enable
+for_window [app_id="org.keepassxc.KeePassXC"]            floating enable
+for_window [app_id = "floating_update"]                  floating enable, resize set width 1000px height 600px
+for_window [class = "(?i)pinentry"]                      floating enable
+for_window [title = "Administrator privileges required"] floating enable
+for_window [title = "About Mozilla Firefox"]             floating enable
+for_window [window_role = "About"]                       floating enable
+for_window [app_id="firefox" title="Library"]            floating enable, border pixel 1, sticky enable
+for_window [title = "Firefox - Sharing Indicator"]       kill
+for_window [title = "Firefox — Sharing Indicator"]       kill
 
 floating_modifier $mod normal
 
-bindsym $mod+$left     focus      left
-bindsym $mod+$down     focus      down
-bindsym $mod+$up       focus      up
-bindsym $mod+$right    focus      right
-bindsym $mod+Left      focus      left
-bindsym $mod+Down      focus      down
-bindsym $mod+Up        focus      up
-bindsym $mod+Right     focus      right
-bindsym $mod+Return    exec       $term
-bindsym $mod+d         exec       $menu
-bindsym $mod+b         splith
-bindsym $mod+v         splitv
-bindsym $mod+s         layout     stacking
-bindsym $mod+w         layout     tabbed
-bindsym $mod+e         layout     toggle split
-bindsym $mod+f         fullscreen
-bindsym $mod+a         focus      parent
-bindsym $mod+minus     scratchpad show
-bindsym $mod+r         mode       "resize"
-bindsym $mod+p         exec       powermenu-fedora-wl.sh
+bindsym $mod+Left   focus      left
+bindsym $mod+Down   focus      down
+bindsym $mod+Up     focus      up
+bindsym $mod+Right  focus      right
+bindsym $mod+Return exec       $term
+bindsym $mod+d      exec       $menu
+bindsym $mod+h      splith
+bindsym $mod+v      splitv
+bindsym $mod+s      layout     stacking
+bindsym $mod+w      layout     tabbed
+bindsym $mod+e      layout     toggle split
+bindsym $mod+f      fullscreen
+bindsym $mod+a      focus      parent
+bindsym $mod+minus  scratchpad show
+bindsym $mod+r      mode       "resize"
+bindsym $mod+p      exec       powermenu-wl.sh
 
-bindsym $mod+Shift+$left  move      left
-bindsym $mod+Shift+$down  move      down
-bindsym $mod+Shift+$up    move      up
-bindsym $mod+Shift+$right move      right
 bindsym $mod+Shift+c      reload
-bindsym $mod+Shift+e      exec      swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
 bindsym $mod+Shift+Left   move      left
 bindsym $mod+Shift+Down   move      down
 bindsym $mod+Shift+Up     move      up
@@ -104,12 +131,18 @@ bindsym $mod+Shift+space  floating  toggle
 bindsym $mod+Shift+minus  move      scratchpad
 bindsym $mod+Shift+n      workspace next
 bindsym $mod+Shift+p      workspace prev
+bindsym $mod+shift+h      exec $term htop
 
-bindsym $mod+Alt+d exec gsettings set org.gnome.desktop.interface color-scheme \'prefer-dark\'
-bindsym $mod+Alt+l exec gsettings set org.gnome.desktop.interface color-scheme \'prefer-light\'
-bindsym $mod+Alt+p exec grim - | tee ~/screenshots/$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Screenshot Saved & Copied"
-bindsym $mod+Alt+s exec grim -g "$(slurp)" - | tee ~/screenshots/$(date +%F_%H-%M-%S).png | wl-copy && notify-send "Area Saved & Copied"
-bindsym $mod+Alt+n exec notify-send "hello"
+bindsym $ps1 exec grim - | wl-copy
+bindsym $ps2 exec grim -g "$(slurp)" - | wl-copy
+bindsym $ps3 exec grim $psf
+bindsym $ps4 exec grim -g "$(slurp)" $psf
+
+bindsym $mod+control+Right workspace next
+bindsym $mod+control+Left  workspace prev
+bindsym $mod+Tab           workspace next
+bindsym $mod+Shift+Tab     workspace prev
+bindsym $mod+grave         workspace back_and_forth
 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -143,6 +176,9 @@ bindsym --locked XF86MonBrightnessUp    exec brightnessctl set 5%+
 bindsym $mod+F1 exec notify-info.sh time
 bindsym $mod+F2 exec notify-info.sh date
 bindsym $mod+F3 exec notify-info.sh battery
+bindsym $mod+F4 exec notify-info.sh light
+bindsym $mod+F5 exec notify-info.sh volume
+bindsym $mod+F9 exec toggle-theme-wl.sh
 
 mode "resize" {
   bindsym $left   resize shrink width   10px
