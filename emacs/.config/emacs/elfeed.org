@@ -57,8 +57,8 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9x0AN7BWHpCDHSm9NiJFJQ][@NetworkChuck]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ][@Dreams of Code]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA][@Fireship]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA][@Veritasium]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCGKEMK3s-ZPbjVOIuAV8clQ][@CoreDumpped]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCy8KBeOp4g2B749unbq1I_Q][@WhiteboardDoodles24]]
 *** Hebrew                                                               :he:
 **** [[https://www.geektime.co.il/feed/][Geektime]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwywdccdYsNS_Cs6tS0U_dg][@TrashTech - טראשטק]]
@@ -72,3 +72,4 @@
 *** [[https://www.jdn.co.il/feed/][JDN]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCzK4HSXyYGnGJM4C6y58ToA][@Abisel Status]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCA5DZvGtE9DChiczMl_Q8sg][@Lipa Schmeltzer]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCayenVcNFTYvBS18NjTStLA][@RebbeClips]]
