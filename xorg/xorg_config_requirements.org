@@ -1,0 +1,10 @@
+* files
+** [[file:.Xresources]]
+*** MacOS-White
+** [[file:.xinitrc-qtile]]
+*** [[file:~/dotfiles/qtile]]
+** [[file:.xinitrc-i3]]
+*** [[file:~/dotfiles/i3]]
+** [[file:.xinitrc-common]]
+*** [[file:.xinitrc-qtile]]
+*** [[file:.xinitrc-i3]]

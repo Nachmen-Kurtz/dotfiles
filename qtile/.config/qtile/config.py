@@ -9,22 +9,42 @@ from libqtile.utils  import guess_terminal
 mod      = "mod4"
 terminal = "alacritty"
 
+def toggle_theme(qtile):
+    subprocess.run(["toggle-theme.sh"])
+
 keys = [
-    Key([mod],            "h",      lazy.layout.left(),              desc="Move focus to left"),
-    Key([mod],            "l",      lazy.layout.right(),             desc="Move focus to right"),
-    Key([mod],            "j",      lazy.layout.down(),              desc="Move focus down"),
-    Key([mod],            "k",      lazy.layout.up(),                desc="Move focus up"),
-    Key([mod],            "space",  lazy.layout.next(),              desc="Move window focus to other window"),
+    Key(
+        [mod], "left",
+        lazy.layout.left(),
+        desc="Move focus to left"
+    ),
+    Key(
+        [mod], "right",
+        lazy.layout.right(),
+        desc="Move focus to right"
+    ),
+    Key(
+        [mod], "down",
+        lazy.layout.down(),
+        desc="Move focus down"
+    ),
+    Key(
+        [mod],
+        "up",
+        lazy.layout.up(),
+        desc="Move focus up"
+    ),
+    Key([mod], "space", lazy.layout.next(),  desc="Move window focus to other window"),
 
-    Key([mod, "shift"],   "h",      lazy.layout.shuffle_left(),      desc="Move window to the left"),
-    Key([mod, "shift"],   "l",      lazy.layout.shuffle_right(),     desc="Move window to the right"),
-    Key([mod, "shift"],   "j",      lazy.layout.shuffle_down(),      desc="Move window down"),
-    Key([mod, "shift"],   "k",      lazy.layout.shuffle_up(),        desc="Move window up"),
+    Key([mod, "shift"], "left",  lazy.layout.shuffle_left(),  desc="Move window to the left"),
+    Key([mod, "shift"], "right", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "down",  lazy.layout.shuffle_down(),  desc="Move window down"),
+    Key([mod, "shift"], "up",    lazy.layout.shuffle_up(),    desc="Move window up"),
 
-    Key([mod, "control"], "h",      lazy.layout.grow_left(),         desc="Grow window to the left"),
-    Key([mod, "control"], "l",      lazy.layout.grow_right(),        desc="Grow window to the right"),
-    Key([mod, "control"], "j",      lazy.layout.grow_down(),         desc="Grow window down"),
-    Key([mod, "control"], "k",      lazy.layout.grow_up(),           desc="Grow window up"),
+    Key([mod, "control"], "left",  lazy.layout.grow_left(),  desc="Grow window to the left"),
+    Key([mod, "control"], "right", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "control"], "down",  lazy.layout.grow_down(),  desc="Grow window down"),
+    Key([mod, "control"], "up",    lazy.layout.grow_up(),    desc="Grow window up"),
 
     Key([mod],            "n",      lazy.layout.normalize(),         desc="Reset all window sizes"),
     Key([mod, "shift"],   "Return", lazy.layout.toggle_split(),      desc="Toggle between split and unsplit sides of stack"),
@@ -35,15 +55,14 @@ keys = [
     Key([mod],            "t",      lazy.window.toggle_floating(),   desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r",      lazy.reload_config(),            desc="Reload the config"),
     Key([mod, "control"], "q",      lazy.shutdown(),                 desc="Shutdown Qtile"),
-    Key([mod],            "r",      lazy.spawncmd(),                 desc="Spawn a command using a prompt widget"),
 
     Key([mod], "p", lazy.spawn("powermenu-void.sh"), desc="kill, suspend, poweroff and reboot"),
 
-    Key([mod, "control"], "a", lazy.spawn("rofi -show drun"),        desc="Launch rofi"),
-    Key([mod, "control"], "c", lazy.spawn("rofi -show run"),         desc="Launch rofi run prompt"),
-    Key([mod, "control"], "f", lazy.spawn("rofi -show filebrowser"), desc="Launch rofi file browser"),
-    Key([mod, "control"], "w", lazy.spawn("rofi -show window"),      desc="Launch rofi window switcher"),
-    Key([mod, "control"], "s", lazy.spawn("rofi -show ssh"),         desc="Launch rofi SSH launcher"),
+    Key([mod], "a", lazy.spawn("rofi -show drun"),        desc="Launch rofi"),
+    Key([mod], "c", lazy.spawn("rofi -show run"),         desc="Launch rofi run prompt"),
+    Key([mod], "d", lazy.spawn("rofi -show filebrowser"), desc="Launch rofi file browser"),
+    Key([mod], "x", lazy.spawn("rofi -show window"),      desc="Launch rofi window switcher"),
+    Key([mod], "s", lazy.spawn("rofi -show ssh"),         desc="Launch rofi SSH launcher"),
 
     Key([], "XF86AudioMute",        lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"),     desc="Toggle mute"),
     Key([], "XF86AudioMicMute",     lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), desc="Toggle mic mute"),
@@ -58,6 +77,8 @@ keys = [
     Key([mod], "F3", lazy.spawn("notify-info.sh battery"), desc="Show battery"),
     Key([mod], "F4", lazy.spawn("notify-info.sh light"),   desc="Show brightness"),
     Key([mod], "F5", lazy.spawn("notify-info.sh volume"),  desc="Show volume"),
+
+    Key([mod], "F9", lazy.function(toggle_theme)),
 ]
 
 groups = []
@@ -65,17 +86,11 @@ group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 group_labels = ["  gen", "󰖟  work", "  term", "  utils", "  emacs", "  files", "󰝚  music", "󱀞  pods", "  other", "  other"]
 
 group_matches = {
-    "2": [Match(wm_class="vivaldi-stable"),
-          Match(wm_class="Firefox"),
-          Match(wm_class="org.mozilla.firefox")],
-    "8": [Match(wm_class="gpodder"),
-          Match(wm_class="io.github.alainm23.planify")],
-    "3": [Match(wm_class="Alacritty"),
-          Match(wm_class="kitty")],
-    "5": [Match(wm_class="Emacs-30.2-gtk+x11"),
-          Match(wm_class="emacs")],
-    "6": [Match(wm_class="org.gnome.Nautilus"),
-          Match(wm_class="thunar")],
+    "2": [Match(wm_class="Firefox")],
+    "3": [Match(wm_class="Alacritty")],
+    "5": [Match(wm_class="emacs")],
+    "6": [Match(wm_class="thuner")],
+    "8": [Match(wm_class="gpodder")],
     "0": [Match(wm_class="virt-manager")],
 }
 
@@ -134,7 +149,7 @@ screens = [
                 widget.Sep(),
                 widget.Systray(),
             ],
-            48,
+            36,
         ),
         background="#000000",
         wallpaper=logo,

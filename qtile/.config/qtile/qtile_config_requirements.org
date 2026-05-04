@@ -10,11 +10,13 @@
 *** [[file:~/dotfiles/dunst]]
 *** redshift
 *** picom
+*** [[file:~/dotfiles/xorg/.xsettingsd]]
 *** [[file:~/dotfiles/keepassxc/]]
 *** [[file:~/dotfiles/emacs]]
 *** [[file:~/dotfiles/alacritty]]
 *** firefox
 *** gpodder
+*** flameshot
 
 ** [[file:~/dotfiles/xorg/.xinitrc-qtile]]
 *** [[file:~/dotfiles/xorg/.xinitrc-common]]
@@ -27,6 +29,7 @@
 *** [[file:~/dotfiles/bash/.bashrc]]
 *** [[file:~/dotfiles/bin/bin/powermenu-void.sh]]
 *** [[file:~/dotfiles/rofi]]
+*** [[file:~/dotfiles/bin/bin/toggle-theme.sh]]
 *** pactl
 *** brightnessctl
 *** [[file:~/dotfiles/bin/bin/notify-info.sh]]

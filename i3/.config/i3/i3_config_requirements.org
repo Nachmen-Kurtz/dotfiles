@@ -6,11 +6,15 @@
 *** numlockx
 *** pipewire
 *** nm-applet
+*** dunst
 *** [[file:~/dotfiles/dunst]]
 *** redshift
 *** picom
+*** keepassxc
 *** [[file:~/dotfiles/keepassxc/]]
+*** emacs
 *** [[file:~/dotfiles/emacs]]
+*** alacritty
 *** [[file:~/dotfiles/alacritty]]
 *** firefox
 *** gpodder
@@ -22,6 +26,7 @@
 *** xss-lock
 *** i3lock
 *** dbus
+*** i3
 *** [[file:~/dotfiles/i3]]
 
 ** [[file:config]]
@@ -29,6 +34,8 @@
 *** brightnessctl
 *** [[file:~/dotfiles/bash/.bashrc]]
 *** [[file:~/dotfiles/bin/bin/powermenu-void.sh]]
+*** rofi
 *** [[file:~/dotfiles/rofi]]
 *** [[file:~/dotfiles/bin/bin/notify-info.sh]]
 *** i3status
+*** polybar
