@@ -1,7 +1,6 @@
+(tool-bar-mode                  0)
+(scroll-bar-mode                0)
 (column-number-mode             1)
-(size-indication-mode           1)
-(display-time-mode              1)
-(display-battery-mode           1)
 (recentf-mode                   1)
 (save-place-mode                1)
 (tooltip-mode                   1)
@@ -23,18 +22,13 @@
 (setq-default truncate-lines   t
               indent-tabs-mode nil)
 
-(setq frame-title-format
-      '("GNU Emacs — %b"
-        (:eval (when (buffer-file-name)
-                 (format " (%s)" (abbreviate-file-name (buffer-file-name)))))))
-
 (setq use-package-always-ensure                t
       use-package-expand-minimally             t
       backup-by-copying                        t
       backup-directory-alist                   '(("." . "~/.config/emacs/backups"))
       auto-save-file-name-transforms           `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t))
       delete-old-versions                      t
-      kept-new-versions                        6
+      kept-new-versions                        10
       kept-old-versions                        2
       version-control                          t
       vc-make-backup-files                     t
@@ -128,7 +122,6 @@
 (use-package dired
   :ensure nil
   :custom
-  (dired-kill-when-opening-new-dired-buffer t)
   (dired-listing-switches "-alh --group-directories-first")
   :hook
   (dired-mode . nerd-icons-dired-mode)
@@ -139,8 +132,8 @@
   :init
   (setq desktop-save                't
         desktop-load-locked-desktop t
-        desktop-auto-save-timeout   60
-        desktop-restore-eager       5
+        desktop-auto-save-timeout   15
+        desktop-restore-eager       nil
         desktop-path                (list user-emacs-directory)
         desktop-base-file-name      "desktop"
         desktop-base-lock-name      "desktop.lock"
@@ -163,15 +156,34 @@
   :init
   (repeat-mode 1)
   :custom
-  (repeat-exit-timeout  3)
+  (repeat-exit-timeout  10)
   (repeat-exit-key      (kbd "RET"))
   (repeat-echo-function #'repeat-echo-message))
 
+(use-package fish-mode)
+
 (use-package nerd-icons)
 
-(use-package nerd-icons-dired)
+(use-package nerd-icons-dired
+  :ensure t
+  :hook (dired-mode . nerd-icons-dired-mode))
 
-(use-package nerd-icons-ibuffer)
+(use-package nerd-icons-ibuffer
+  :ensure t
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode)
+  :custom
+  (nerd-icons-ibuffer-formats
+   '((mark modified read-only locked " "
+           (icon 2 2)
+           (name 60 60 :left :elide)
+           " "
+           (size-h 9 -1 :right)
+           " "
+           (mode+ 16 16 :left :elide)
+           " " filename-and-process+)
+     (mark " "
+           (name 16 -1)
+           " " filename))))
 
 (use-package nerd-icons-completion
   :config
@@ -181,30 +193,34 @@
   :ensure nil
   :bind ("<f12>" . ibuffer)
   :hook
-  (ibuffer-mode . nerd-icons-ibuffer-mode)
   (ibuffer-mode . (lambda ()
                     (ibuffer-switch-to-saved-filter-groups "default")))
   :config
-  (setq ibuffer-default-sorting-mode 'major-mode
-        ibuffer-saved-filter-groups  '(("default"
-                                        ("Dired"   (mode . dired-mode))
-                                        ("Org"     (or (mode . org-mode)
+  (setq ibuffer-saved-filter-groups '(("default"
+                                       ("Dired"    (mode . dired-mode))
+                                       ("Org"      (or (mode . org-mode)
                                                        (mode . org-agenda-mode)))
-                                        ("Prog"    (or (derived-mode . prog-mode)
+                                       ("Text"     (or (mode . text-mode)
+                                                       (mode . fundamental-mode)))
+                                       ("Markdown" (or(mode . markdown-mode)
+                                                      (mode . gfm-mode)))
+                                       ("Prog"     (or (derived-mode . prog-mode)
                                                        (mode . conf-space-mode)
                                                        (mode . conf-xdefaults-mode)
-                                                       (mode . conf-unix-mode)))
-                                        ("Magit"   (or (name . "^magit")
+                                                       (mode . conf-unix-mode)
+                                                       (name . ".gitignore")
+                                                       (mode . conf-toml-mode)))
+                                       ("Magit"    (or (name . "^magit")
                                                        (mode . diff-mode)))
-                                        ("Shell"   (mode . eshell-mode))
-                                        ("Mail"    (name . "^\\*mu4e"))
-                                        ("Elfeed"  (name . "^\\*elfeed"))
-                                        ("Help"    (or (mode . Man-mode)
+                                       ("Shell"    (mode . eshell-mode))
+                                       ("Mail"     (name . "^\\*mu4e"))
+                                       ("Elfeed"   (name . "^\\*elfeed"))
+                                       ("Help"     (or (mode . Man-mode)
                                                        (mode . tldr-mode)
                                                        (mode . help-mode)
                                                        (mode . Info-mode)
                                                        (mode . apropos-mode)))
-                                        ("Special" (name . "^\\*"))))))
+                                       ("Special"  (name . "^\\*"))))))
 
 (use-package magit
   :bind ("C-x g" . magit-status))
@@ -331,12 +347,12 @@
                            ("~/org/ideas.org"        :maxlevel . 2)
                            ("~/org/thoughts.org"     :maxlevel . 1)))
   (org-todo-keywords     '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "CANCELLED")))
-  (org-capture-templates '(("i" "Inbox"   entry (file              "~/org/inbox.org")               "* %?\n%U\n")
+
+  (org-capture-templates '(("i" "Inbox"   entry (file              "~/org/inbox.org")               "* %?\n")
                            ("t" "Task"    entry (file+headline     "~/org/tasks.org"    "Tasks")    "* TODO %?\n")
                            ("p" "Project" entry (file+headline     "~/org/projects.org" "Projects") "* TODO %?\n")
-                           ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")             "* %?\n%U\n")
-                           ("d" "Idea"    entry (file+headline     "~/org/ideas.org"    "Ideas")    "* %?\n%U\n")
-                           ("h" "Thought" entry (file+headline     "~/org/thoughts.org" "Thoughts") "* %?\n%U\n")))
+                           ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")             "* %?\n")
+                           ("h" "Thought" entry (file+headline     "~/org/thoughts.org" "Thoughts") "* %?\n")))
   :config
   (require 'org-tempo))
 

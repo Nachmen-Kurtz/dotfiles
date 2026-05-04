@@ -16,7 +16,7 @@ System dependencies must be installed manually before launching Emacs.
 * Quick Install — All System Dependencies
 
 #+begin_src sh
-  xbps-install mu isync msmtp gnupg vlc curl multimarkdown
+  xbps-install mu isync msmtp gnupg pinentry-gtk vlc curl multimarkdown
 #+end_src
 
 Fonts must be installed separately — see the [[*Fonts][Fonts]] section.
@@ -223,7 +223,7 @@ package — it ships as part of =mu= and is loaded with =:ensure nil=.
 Full install:
 
 #+begin_src sh
-  xbps-install mu isync msmtp gnupg
+  xbps-install mu isync msmtp gnupg pinentry-gtk
 #+end_src
 
 After installing, initialize the mail index:
