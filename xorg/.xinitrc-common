@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd ~
+
 [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 
 setxkbmap -layout us,il -variant , -option grp:alt_shift_toggle
@@ -11,9 +13,11 @@ nm-applet &
 dunst &
 redshift -l 32.08:34.78 -t 5700:3500 &
 picom --backend glx --vsync &
+xsettingsd &
 
 keepassxc ~/.secrets/secret_manager.kdbx &
 emacs &
 alacritty &
 firefox &
 gpodder &
+flameshot &
