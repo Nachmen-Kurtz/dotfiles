@@ -1,8 +1,24 @@
-# Colors
-
+font=monospace 12
 background-color=#1e1e2e
 text-color=#cdd6f4
+width=400
+height=120
+padding=10
+border-size=3
 border-color=#eba0ac
+border-radius=15
+progress-color=over #313244
+icons=1
+max-icon-size=64
+icon-border-radius=5
+history=1
+default-timeout=10000
+ignore-timeout=0
+max-visible=10
+anchor=bottom-center
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#f5c2e7
 progress-color=over #313244
 
 [urgency=high]
