@@ -32,9 +32,11 @@
       backup-by-copying                        t
       backup-directory-alist                   '(("." . "~/.config/emacs/backups"))
       auto-save-file-name-transforms           `((".*" ,(expand-file-name "~/.config/emacs/auto-save/") t))
+      auto-save-timeout                        600
+      auto-save-interval                       600
       delete-old-versions                      t
-      kept-new-versions                        10
-      kept-old-versions                        2
+      kept-new-versions                        30
+      kept-old-versions                        5
       version-control                          t
       vc-make-backup-files                     t
       custom-file                              (expand-file-name "custom.el" user-emacs-directory)
