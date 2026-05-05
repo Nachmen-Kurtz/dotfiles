@@ -22,6 +22,11 @@
 (setq-default truncate-lines   t
               indent-tabs-mode nil)
 
+(setq-default mode-line-buffer-identification
+              '(:eval (if (buffer-file-name)
+                          (abbreviate-file-name (buffer-file-name))
+                        "%b")))
+
 (setq use-package-always-ensure                t
       use-package-expand-minimally             t
       backup-by-copying                        t
@@ -274,7 +279,7 @@
 (use-package emms
   :config
   (emms-all)
-  (setq emms-player-list    '(emms-player-vlc)
+  (setq emms-player-list    '(emms-player-mpv)
         emms-info-functions '(emms-info-native)))
 
 (use-package dictionary
@@ -320,12 +325,14 @@
   :config
   (setq-default elfeed-search-filter "+unread +jdn")
   (setq elfeed-use-curl t)
+  (add-hook 'kill-emacs-hook         #'elfeed-db-compact)
   (add-hook 'elfeed-show-mode-hook   #'visual-line-mode)
   (add-hook 'elfeed-search-mode-hook #'visual-line-mode)
   (add-hook 'elfeed-new-entry-hook
             (elfeed-make-tagger :feed-url "youtube\\.com" :add 'video))
   (add-hook 'elfeed-new-entry-hook
-            (elfeed-make-tagger :feed-url "jdn\\.co.il"  :add 'jdn)))
+            (elfeed-make-tagger :feed-url "jdn\\.co.il"  :add 'jdn))
+  (run-at-time nil (* 8 60 60) #'elfeed-update))
 
 (use-package elfeed-org
   :after elfeed
@@ -341,7 +348,7 @@
   :custom
   (org-agenda-files      '("~/org/tasks.org" "~/org/projects.org"))
   (org-startup-folded    'fold)
-  (org-log-done          'time)
+  (org-log-done          nil)
   (org-log-into-drawer   t)
   (org-refile-targets    '((org-agenda-files         :maxlevel . 3)
                            ("~/org/ideas.org"        :maxlevel . 2)
