@@ -38,4 +38,6 @@ abbr svsa "sudo sv status /var/service/*"
 abbr svl  "ls /var/service"
 abbr svla "ls /etc/sv"
 
+abbr upman "sudo makewhatis /usr/share/man"
+
 abbr abl "cat ~/.config/fish/conf.d/abbr.fish"
