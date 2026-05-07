@@ -8,8 +8,6 @@
 (global-hl-line-mode            1)
 (global-visual-wrap-prefix-mode 1)
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -43,7 +41,6 @@
       mouse-wheel-follow-mouse                 t
       mouse-wheel-progressive-speed            nil
       mouse-wheel-scroll-amount                '(2 ((shift) . 8) ((control) . nil))
-      ad-redefinition-action                   'accept
       native-comp-async-report-warnings-errors nil
       global-auto-revert-non-file-buffers      t
       vc-follow-symlinks                       t
@@ -97,9 +94,21 @@
 (global-set-key (kbd "<f8>")     #'list-bookmarks)
 (global-set-key (kbd "<f7>")     #'mu4e)
 
-(use-package doom-themes
+(use-package package
+  :ensure nil
   :config
-  (load-theme 'doom-one t))
+  (setq package-archives
+        '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+          ("melpa" . "https://melpa.org/packages/")))
+  (setq package-archive-priorities
+        '(("gnu-elpa" . 3)
+          ("nongnu" . 2)
+          ("melpa" . 1))))
+
+(use-package nord-theme
+  :config
+  (load-theme 'nord t))
 
 (use-package completion-preview
   :ensure nil
@@ -131,7 +140,6 @@
   :custom
   (dired-listing-switches "-alh --group-directories-first")
   :hook
-  (dired-mode . nerd-icons-dired-mode)
   (dired-mode . dired-hide-details-mode))
 
 (use-package desktop
@@ -164,7 +172,6 @@
   (repeat-mode 1)
   :custom
   (repeat-exit-timeout  10)
-  (repeat-exit-key      (kbd "RET"))
   (repeat-echo-function #'repeat-echo-message))
 
 (use-package fish-mode)
@@ -298,7 +305,7 @@
   (setq google-translate-default-source-language  "En"
         google-translate-default-target-language  "He"
         google-translate-backend-method           'curl)
-  :bind ("<f10>" . google-translate-at-point)
+  :bind ("C-c h" . google-translate-at-point)
   :config (require 'google-translate-default-ui))
 
 (use-package elfeed
