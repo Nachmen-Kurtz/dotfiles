@@ -22,6 +22,7 @@ set $num_of_workspaces 10
 
 exec dbus-update-activation-environment --all
 exec wlsunset -l 32.08 -L 34.78 -T 5700 -t 3500
+exec wl-paste --watch cliphist store
 exec swaykbdd
 exec nm-applet
 exec gpodder
@@ -30,6 +31,8 @@ exec mako
 exec emacs
 exec pipewire
 exec firefox
+exec mpd ~/.config/mpd/mpd.conf
+exec ~/.local/bin/mpd-notify.sh
 
 font Google Sans Flex 12
 
@@ -64,8 +67,8 @@ output eDP-1 scale 1.25 position 0    0
 output DP-6             position 1536 0
 output DP-5             position 3456 0
 
-gaps inner 10
-gaps outer 5
+gaps inner 20
+gaps outer 20
 
 workspace "1  "  output eDP-1
 workspace "2 󰖟 "  output DP-6
@@ -78,12 +81,13 @@ workspace "8 󰝚 "  output DP-5
 workspace "9  "  output DP-5
 workspace "10  " output DP-5
 
-assign [app_id="Firefox"]   workspace "2  "
-assign [app_id="Alacritty"] workspace "3  "
+assign [app_id="Firefox"]   workspace "2 󰖟 "
+assign [app_id="kitty"]     workspace "3  "
 assign [app_id="thunar"]    workspace "4  "
 assign [app_id="gpodder"]   workspace "7 󱀞 "
 assign [app_id="emacs"]     workspace "10  "
 
+for_window [app_id = "Alacritty"]                         floating enable
 for_window [window_role = "pop-up"]                      floating enable
 for_window [window_role = "bubble"]                      floating enable
 for_window [window_role = "dialog"]                      floating enable
@@ -91,13 +95,13 @@ for_window [window_type = "dialog"]                      floating enable
 for_window [window_role = "task_dialog"]                 floating enable
 for_window [window_type = "menu"]                        floating enable
 for_window [app_id = "floating"]                         floating enable
-for_window [app_id="org.keepassxc.KeePassXC"]            floating enable
+for_window [app_id = "org.keepassxc.KeePassXC"]            floating enable
 for_window [app_id = "floating_update"]                  floating enable, resize set width 1000px height 600px
 for_window [class = "(?i)pinentry"]                      floating enable
 for_window [title = "Administrator privileges required"] floating enable
 for_window [title = "About Mozilla Firefox"]             floating enable
 for_window [window_role = "About"]                       floating enable
-for_window [app_id="firefox" title="Library"]            floating enable, border pixel 1, sticky enable
+for_window [app_id = "firefox" title="Library"]            floating enable, border pixel 1, sticky enable
 for_window [title = "Firefox - Sharing Indicator"]       kill
 for_window [title = "Firefox — Sharing Indicator"]       kill
 for_window [title = "Rename"]                            floating enable
@@ -120,6 +124,7 @@ bindsym $mod+a      focus      parent
 bindsym $mod+minus  scratchpad show
 bindsym $mod+r      mode       "resize"
 bindsym $mod+p      exec       powermenu-wl.sh
+bindsym $mod+c      exec       cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 
 bindsym $mod+Shift+c      reload
 bindsym $mod+Shift+Left   move      left
@@ -129,9 +134,7 @@ bindsym $mod+Shift+Right  move      right
 bindsym $mod+Shift+q      kill
 bindsym $mod+Shift+space  floating  toggle
 bindsym $mod+Shift+minus  move      scratchpad
-bindsym $mod+Shift+n      workspace next
-bindsym $mod+Shift+p      workspace prev
-bindsym $mod+shift+h      exec $term htop
+bindsym $mod+shift+h      exec      $term htop
 
 bindsym $ps1 exec grim - | wl-copy
 bindsym $ps2 exec grim -g "$(slurp)" - | wl-copy
