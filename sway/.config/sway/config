@@ -67,8 +67,7 @@ output eDP-1 scale 1.25 position 0    0
 output DP-6             position 1536 0
 output DP-5             position 3456 0
 
-gaps inner 20
-gaps outer 20
+gaps inner 10
 
 workspace "1  "  output eDP-1
 workspace "2 󰖟 "  output DP-6
@@ -81,13 +80,13 @@ workspace "8 󰝚 "  output DP-5
 workspace "9  "  output DP-5
 workspace "10  " output DP-5
 
-assign [app_id="Firefox"]   workspace "2 󰖟 "
-assign [app_id="kitty"]     workspace "3  "
-assign [app_id="thunar"]    workspace "4  "
-assign [app_id="gpodder"]   workspace "7 󱀞 "
-assign [app_id="emacs"]     workspace "10  "
+assign [app_id="Firefox"] workspace "2 󰖟 "
+assign [app_id="kitty"]   workspace "3  "
+assign [app_id="thunar"]  workspace "4  "
+assign [app_id="gpodder"] workspace "7 󱀞 "
+assign [app_id="emacs"]   workspace "10  "
 
-for_window [app_id = "Alacritty"]                         floating enable
+for_window [app_id = "Alacritty"]                        floating enable
 for_window [window_role = "pop-up"]                      floating enable
 for_window [window_role = "bubble"]                      floating enable
 for_window [window_role = "dialog"]                      floating enable
@@ -95,13 +94,13 @@ for_window [window_type = "dialog"]                      floating enable
 for_window [window_role = "task_dialog"]                 floating enable
 for_window [window_type = "menu"]                        floating enable
 for_window [app_id = "floating"]                         floating enable
-for_window [app_id = "org.keepassxc.KeePassXC"]            floating enable
+for_window [app_id = "org.keepassxc.KeePassXC"]          floating enable
 for_window [app_id = "floating_update"]                  floating enable, resize set width 1000px height 600px
 for_window [class = "(?i)pinentry"]                      floating enable
 for_window [title = "Administrator privileges required"] floating enable
 for_window [title = "About Mozilla Firefox"]             floating enable
 for_window [window_role = "About"]                       floating enable
-for_window [app_id = "firefox" title="Library"]            floating enable, border pixel 1, sticky enable
+for_window [app_id = "firefox" title="Library"]          floating enable, border pixel 1, sticky enable
 for_window [title = "Firefox - Sharing Indicator"]       kill
 for_window [title = "Firefox — Sharing Indicator"]       kill
 for_window [title = "Rename"]                            floating enable
