@@ -1,6 +1,5 @@
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
-[ "$(tty)" = "/dev/tty1" ] && exec dbus-run-session sway > /tmp/sway.log 2>&1
 _start_sway() {
     export XDG_SESSION_TYPE=wayland
     export XDG_CURRENT_DESKTOP=sway
@@ -10,4 +9,4 @@ _start_sway() {
 
 [ "$(tty)" = "/dev/tty1" ] && _start_sway
 
-[ -f $HOME/.bashrc ] && . $HOME/.bashrc
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
