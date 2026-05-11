@@ -1,0 +1,1 @@
+30 11 * * * /usr/local/bin/xbps-update.sh
