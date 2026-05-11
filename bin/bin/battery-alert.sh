@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 BAT=/sys/class/power_supply/BAT0
 CAPACITY=$(cat "$BAT/capacity" 2>/dev/null)
