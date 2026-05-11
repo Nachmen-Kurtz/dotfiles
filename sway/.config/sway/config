@@ -1,24 +1,13 @@
 include /etc/sway/config.d/*
 include catppuccin-mocha
 
-set $mod   Mod4
-set $term  alacritty
-set $menu  fuzzel
-
-set $left  h
-set $down  j
-set $up    k
-set $right l
-
-set $ps1 Print
-set $ps2 Control+Print
-set $ps3 Alt+Print
-set $ps4 Alt+Control+Print
-set $psf $(xdg-user-dir PICTURES)/ps_$(date +"%Y%m%d%H%M%S").png
+set $mod  Mod4
+set $term alacritty
+set $menu fuzzel
 
 set $wallpapers_path $HOME/pictures/wallpapers/flowers
-
-set $num_of_workspaces 10
+set $screenshots     ~/screenshots
+set $stamp           $(date +'%s_grim.png')
 
 exec dbus-update-activation-environment --all
 exec wlsunset -l 32.08 -L 34.78 -T 5700 -t 3500
@@ -26,15 +15,15 @@ exec wl-paste --watch cliphist store
 exec swaykbdd
 exec nm-applet
 exec gpodder
-exec kitty
+exec alacritty --daemon
 exec mako
 exec emacs
 exec pipewire
 exec firefox
 exec mpd ~/.config/mpd/mpd.conf
-exec ~/.local/bin/mpd-notify.sh
+exec mpd-notify.sh
 
-font Google Sans Flex 12
+font JetBrainsMono Nerd Font 12
 
 focus_follows_mouse yes
 
@@ -44,20 +33,22 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 input type:touchpad {
-  dwt               enabled
-  tap               enabled
-  middle_emulation  enabled
+  dwt              enabled
+  tap              enabled
+  middle_emulation enabled
 }
 
 input type:keyboard {
-  xkb_layout    us,il
-  xkb_variant   ,
-  xkb_options   grp:alt_shift_toggle
-  xkb_capslock  disabled
-  xkb_numlock   enabled
+  xkb_layout   us,il
+  xkb_variant  ,
+  xkb_options  grp:alt_shift_toggle
+  xkb_capslock disabled
+  xkb_numlock  enabled
 }
 
 seat seat0 xcursor_theme macOS-White
+seat seat0 hide_cursor 3000
+seat seat0 hide_cursor when-typing enable
 
 output eDP-1 bg $(find $wallpapers_path -type f | shuf -n 1) fill
 output DP-6  bg $(find $wallpapers_path -type f | shuf -n 1) fill
@@ -86,65 +77,80 @@ assign [app_id="thunar"]  workspace "4  "
 assign [app_id="gpodder"] workspace "7 󱀞 "
 assign [app_id="emacs"]   workspace "10  "
 
-for_window [app_id = "Alacritty"]                        floating enable
-for_window [window_role = "pop-up"]                      floating enable
-for_window [window_role = "bubble"]                      floating enable
-for_window [window_role = "dialog"]                      floating enable
-for_window [window_type = "dialog"]                      floating enable
-for_window [window_role = "task_dialog"]                 floating enable
-for_window [window_type = "menu"]                        floating enable
-for_window [app_id = "floating"]                         floating enable
-for_window [app_id = "org.keepassxc.KeePassXC"]          floating enable
-for_window [app_id = "floating_update"]                  floating enable, resize set width 1000px height 600px
-for_window [class = "(?i)pinentry"]                      floating enable
-for_window [title = "Administrator privileges required"] floating enable
-for_window [title = "About Mozilla Firefox"]             floating enable
-for_window [window_role = "About"]                       floating enable
-for_window [app_id = "firefox" title="Library"]          floating enable, border pixel 1, sticky enable
-for_window [title = "Firefox - Sharing Indicator"]       kill
-for_window [title = "Firefox — Sharing Indicator"]       kill
-for_window [title = "Rename"]                            floating enable
+for_window [window_role = "pop-up"]             floating enable
+for_window [window_role = "bubble"]             floating enable
+for_window [window_role = "dialog"]             floating enable
+for_window [window_role = "task_dialog"]        floating enable
+for_window [window_role = "About"]              floating enable
+for_window [window_type = "dialog"]             floating enable
+for_window [window_type = "menu"]               floating enable
+for_window [app_id = "floating"]                floating enable
+for_window [app_id = "org.keepassxc.KeePassXC"] floating enable
+for_window [app_id = "floating_update"]         floating enable, resize set width 1000px height 600px
+for_window [app_id="htop"]                      floating enable
+for_window [app_id="floating-terminal"]         floating enable
+for_window [app_id = "Firefox" title="Library"] floating enable
+for_window [class = "(?i)pinentry"]             floating enable
+for_window [title = "About Mozilla Firefox"]    floating enable
+for_window [title = "Rename"]                   floating enable
 
 floating_modifier $mod normal
 
-bindsym $mod+Left   focus      left
-bindsym $mod+Down   focus      down
-bindsym $mod+Up     focus      up
-bindsym $mod+Right  focus      right
-bindsym $mod+Return exec       $term
-bindsym $mod+d      exec       $menu
+bindsym $mod+r   mode "resize"
+bindsym $mod+F12 mode "screenshot"
+
+bindsym $mod+Left   focus left
+bindsym $mod+Down   focus down
+bindsym $mod+Up     focus up
+bindsym $mod+Right  focus right
+bindsym $mod+Return exec $term
+bindsym $mod+d      exec $menu
 bindsym $mod+h      splith
 bindsym $mod+v      splitv
-bindsym $mod+s      layout     stacking
-bindsym $mod+w      layout     tabbed
-bindsym $mod+e      layout     toggle split
+bindsym $mod+s      layout stacking
+bindsym $mod+w      layout tabbed
+bindsym $mod+e      layout toggle split
 bindsym $mod+f      fullscreen
-bindsym $mod+a      focus      parent
-bindsym $mod+minus  scratchpad show
-bindsym $mod+r      mode       "resize"
-bindsym $mod+p      exec       powermenu-wl.sh
-bindsym $mod+c      exec       cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
+bindsym $mod+a      focus parent
+bindsym $mod+Minus  scratchpad show
+bindsym $mod+p      exec powermenu-wl.sh
+bindsym $mod+b      exec cliphist list | fuzzel -w 100 --dmenu --with-nth 2 | cliphist decode | wl-copy
+bindsym $mod+c      exec fuzzel-run.sh
 
-bindsym $mod+Shift+c      reload
-bindsym $mod+Shift+Left   move      left
-bindsym $mod+Shift+Down   move      down
-bindsym $mod+Shift+Up     move      up
-bindsym $mod+Shift+Right  move      right
+bindsym $mod+Shift+r      reload
+bindsym $mod+Shift+Left   move left
+bindsym $mod+Shift+Down   move down
+bindsym $mod+Shift+Up     move up
+bindsym $mod+Shift+Right  move right
 bindsym $mod+Shift+q      kill
-bindsym $mod+Shift+space  floating  toggle
-bindsym $mod+Shift+minus  move      scratchpad
-bindsym $mod+shift+h      exec      $term htop
+bindsym $mod+Shift+Space  floating toggle
+bindsym $mod+Shift+Minus  move scratchpad
+bindsym $mod+Shift+Return exec $term --class "floating-terminal"
+bindsym $mod+Shift+p      exec $term --class htop -T htop -e htop
+bindsym $mod+Shift+w      exec switch-window.sh
 
-bindsym $ps1 exec grim - | wl-copy
-bindsym $ps2 exec grim -g "$(slurp)" - | wl-copy
-bindsym $ps3 exec grim $psf
-bindsym $ps4 exec grim -g "$(slurp)" $psf
+bindsym $mod+Ctrl+c exec notify-info.sh time
+bindsym $mod+Ctrl+d exec notify-info.sh date
+bindsym $mod+Ctrl+v exec notify-info.sh volume
+bindsym $mod+Ctrl+l exec notify-info.sh light
+bindsym $mod+Ctrl+b exec notify-info.sh battery
+bindsym $mod+Ctrl+t exec toggle-theme-wl.sh
 
-bindsym $mod+control+Right workspace next
-bindsym $mod+control+Left  workspace prev
-bindsym $mod+Tab           workspace next
-bindsym $mod+Shift+Tab     workspace prev
-bindsym $mod+grave         workspace back_and_forth
+bindsym Print       exec grim "$HOME/screenshots/$stamp"
+bindsym Shift+Print exec grim -g "$(slurp)" "$HOME/screenshots/$stamp"
+bindsym Ctrl+Print  exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Print  exec screenshot-menu.sh
+
+bindsym $mod+Shift+s exec swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp | wl-copy
+bindsym $mod+o       exec slurp -o -f "%o" | wl-copy
+bindsym $mod+Ctrl+s  exec slurp-menu.sh
+
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left  workspace prev
+bindsym $mod+grave      workspace back_and_forth
+
+bindsym $mod+control+alt+left  move container to workspace prev, workspace prev
+bindsym $mod+control+alt+right move container to workspace next, workspace next
 
 bindsym $mod+1 workspace "1  "
 bindsym $mod+2 workspace "2 󰖟 "
@@ -168,33 +174,46 @@ bindsym $mod+Shift+8 move container to workspace "8 󰝚 "
 bindsym $mod+Shift+9 move container to workspace "9  "
 bindsym $mod+Shift+0 move container to workspace "10  "
 
-bindsym --locked XF86AudioMute          exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-bindsym --locked XF86AudioLowerVolume   exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioRaiseVolume   exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioMicMute       exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-bindsym --locked XF86MonBrightnessDown  exec brightnessctl set 5%-
-bindsym --locked XF86MonBrightnessUp    exec brightnessctl set 5%+
+bindsym $mod+Alt+1 move container to workspace "1  " , workspace "1  "
+bindsym $mod+Alt+2 move container to workspace "2 󰖟 " , workspace "2 󰖟 "
+bindsym $mod+Alt+3 move container to workspace "3  " , workspace "3  "
+bindsym $mod+Alt+4 move container to workspace "4  " , workspace "4  "
+bindsym $mod+Alt+5 move container to workspace "5  " , workspace "5  "
+bindsym $mod+Alt+6 move container to workspace "6 󰖟 " , workspace "6 󰖟 "
+bindsym $mod+Alt+7 move container to workspace "7 󱀞 " , workspace "7 󱀞 "
+bindsym $mod+Alt+8 move container to workspace "8 󰝚 " , workspace "8 󰝚 "
+bindsym $mod+Alt+9 move container to workspace "9  " , workspace "9  "
+bindsym $mod+Alt+0 move container to workspace "10  ", workspace "10  "
 
-bindsym $mod+F1 exec notify-info.sh time
-bindsym $mod+F2 exec notify-info.sh date
-bindsym $mod+F3 exec notify-info.sh battery
-bindsym $mod+F4 exec notify-info.sh light
-bindsym $mod+F5 exec notify-info.sh volume
-bindsym $mod+F9 exec toggle-theme-wl.sh
+bindsym --locked XF86AudioMute        exec pactl set-sink-mute   \@DEFAULT_SINK@   toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@   -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@   +5%
+bindsym --locked XF86AudioMicMute     exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp   exec brightnessctl set 5%+
 
 mode "resize" {
-  bindsym $left   resize shrink width   10px
-  bindsym $down   resize grow   height  10px
-  bindsym $up     resize shrink height  10px
-  bindsym $right  resize grow   width   10px
-
-  bindsym Left  resize shrink width   10px
-  bindsym Down  resize grow   height  10px
-  bindsym Up    resize shrink height  10px
-  bindsym Right resize grow   width   10px
+  bindsym Left  resize shrink width  10px
+  bindsym Down  resize grow   height 10px
+  bindsym Up    resize shrink height 10px
+  bindsym Right resize grow   width  10px
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
+}
+
+mode "screenshot" {
+    bindsym s       exec slurp | wl-copy, mode "default"
+    bindsym Shift+s exec swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp | wl-copy, mode "default"
+    bindsym o       exec slurp -o -f "%o" | wl-copy, mode "default"
+
+    bindsym Print       exec grim "$HOME/screenshots/$stamp", mode "default"
+    bindsym Shift+Print exec grim -g "$(slurp)" "$HOME/screenshots/$stamp", mode "default"
+    bindsym ctrl+Print  exec grim -g "$(slurp)" - | wl-copy, mode "default"
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
 }
 
 bar {
