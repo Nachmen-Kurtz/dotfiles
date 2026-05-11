@@ -1,0 +1,82 @@
+{
+  "height": 30,
+  //
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+    "sway/scratchpad"
+  ],
+  //
+  "modules-center": [
+    "sway/language",
+    "keyboard-state"
+  ],
+  //
+  "modules-right": [
+    "tray"
+  ],
+  //
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  //
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  //
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": [
+      "",
+      ""
+    ]
+  },
+//
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+  //
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  //
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  //
+  "sway/workspaces": {
+    "disable-scroll": true
+  }
+}

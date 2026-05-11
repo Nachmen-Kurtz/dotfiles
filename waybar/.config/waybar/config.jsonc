@@ -1,0 +1,40 @@
+{
+  "layer": "top",
+
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+  ],
+
+  "modules-center": [
+    "sway/window"
+  ],
+
+  "modules-right": [
+    "group/hardware",
+    "battery",
+    "clock"
+  ],
+
+  "sway/window": {
+    "max-length": 50,
+    "swap-icon-label": true
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "clock": {
+    "format-alt": "{:%a, %d. %b  %H:%M}"
+  },
+
+  "group/hardware": {
+    "orientation": "vertical",
+    "modules": [
+      "cpu",
+      "memory",
+    ]
+  },
+}
